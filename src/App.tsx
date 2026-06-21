@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FlaskIntro from './components/FlaskIntro';
-import EventsPage from './components/EventsPage';
+import TeamsPage from './pages/TeamsPage';
 import MolCursor from './components/MolCursor';
 
 const App = () => {
@@ -11,7 +11,12 @@ const App = () => {
     setIntroComplete(true);
     setTimeout(() => setFadeIn(true), 60);
   };
-
+  const mainPageStyle: React.CSSProperties = {
+  opacity: fadeIn ? 1 : 0,
+  transition: 'opacity 1s ease',
+  visibility: introComplete ? 'visible' : 'hidden',
+  position: introComplete ? 'relative' : 'absolute',
+};
   return (
     <>
       {/* Custom molecular cursor — always visible */}
@@ -21,13 +26,8 @@ const App = () => {
       {!introComplete && <FlaskIntro onComplete={handleIntroComplete} />}
 
       {/* Main page */}
-      <div style={{
-        opacity: fadeIn ? 1 : 0,
-        transition: 'opacity 1s ease',
-        visibility: introComplete ? 'visible' : 'hidden',
-        position: introComplete ? 'relative' : 'absolute',
-      }}>
-        <EventsPage />
+      <div style={mainPageStyle}>
+        <TeamsPage />
       </div>
     </>
   );
