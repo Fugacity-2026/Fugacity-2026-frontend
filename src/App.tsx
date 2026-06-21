@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import FlaskIntro from './components/FlaskIntro';
 import TeamsPage from './pages/TeamsPage';
 import MolCursor from './components/MolCursor';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SponsorsPage from "./pages/SponsorsPage";
 
 const App = () => {
   const [introComplete, setIntroComplete] = useState(false);
@@ -18,7 +20,7 @@ const App = () => {
   position: introComplete ? 'relative' : 'absolute',
 };
   return (
-    <>
+  <BrowserRouter>
       {/* Custom molecular cursor — always visible */}
       <MolCursor />
 
@@ -27,9 +29,13 @@ const App = () => {
 
       {/* Main page */}
       <div style={mainPageStyle}>
-        <TeamsPage />
-      </div>
-    </>
+  <Routes>
+    <Route path="/" element={<TeamsPage />} />
+    <Route path="/teams" element={<TeamsPage />} />
+    <Route path="/sponsors" element={<SponsorsPage />} />
+  </Routes>
+</div>
+        </BrowserRouter>
   );
 };
 

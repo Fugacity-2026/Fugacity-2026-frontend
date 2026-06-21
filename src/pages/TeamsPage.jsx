@@ -603,7 +603,7 @@ const TeamsPage = () => {
           <a href="#" className="hover:text-cyan-200 transition-colors">Home</a>
           <a href="#" className="hover:text-cyan-200 transition-colors">About</a>
           <a href="#" className="hover:text-cyan-200 transition-colors">Events</a>
-          <a href="#" className="hover:text-cyan-200 transition-colors">Sponsors</a>
+          <a href="/sponsors" className="hover:text-cyan-200 transition-colors">Sponsors</a>
           <a href="#" className="hover:text-cyan-200 transition-colors">FAQs</a>
           <a href="#heads" className="text-cyan-400 hover:text-cyan-200 transition-colors">Teams</a>
         </nav>
