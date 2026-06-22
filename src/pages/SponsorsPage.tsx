@@ -47,19 +47,23 @@ const SponsorCard = ({ logo, name, role }: { logo: string; name: string; role: s
       className="relative pt-12 flex flex-col items-center" // Added flex centering
     >
       {/* Floating Logo: Removed absolute positioning */}
-      <motion.div
-        whileHover={{ rotate: 360 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="z-20 mb-4" // Use margin to separate from the card below
-      >
-        <div className="w-20 h-20 rounded-full bg-white p-3 shadow-xl flex items-center justify-center">
-          <img
-            src={logo}
-            alt={name}
-            className="w-full h-full object-contain"
-          />
-        </div>
-      </motion.div>
+     <motion.div
+  whileHover={{
+    rotate: 360,
+    scale: 1.08,
+  }}
+  transition={{
+    duration: 0.8,
+    ease: "easeInOut",
+  }}
+  className="w-20 h-20 rounded-full bg-white flex items-center justify-center overflow-hidden mx-auto shrink-0"
+>
+  <img
+    src={logo}
+    alt={name}
+    className="w-16 h-16 object-contain"
+  />
+</motion.div>
 
 
       {/* Card */}
@@ -75,106 +79,148 @@ const SponsorCard = ({ logo, name, role }: { logo: string; name: string; role: s
 };
 const NetworkCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const nodesRef = useRef<Node[]>([]);
-  const rafRef = useRef<number>();
-  const mouse = useRef({ x: -1000, y: -1000, radius: 150 });
 
   useEffect(() => {
-    const canvas = canvasRef.current!;
-    const ctx = canvas.getContext('2d')!;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouse.current.x = e.clientX;
-      mouse.current.y = e.clientY;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let particles: any[] = [];
+    const particleCount = 150;
+    const mouse = { x: null as number | null, y: null as number | null, radius: 180 };
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
-    window.addEventListener('mousemove', handleMouseMove);
 
-    const resize = () => { 
-      canvas.width = window.innerWidth; 
-      canvas.height = window.innerHeight; 
-    };
-    resize();
-    window.addEventListener('resize', resize);
+    class Particle {
+      x: number;
+      y: number;
+      baseRadius: number;
+      radius: number;
+      vx: number;
+      vy: number;
+      color: string;
 
-    // Initialize nodes
-    nodesRef.current = Array.from({ length: 150 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
-      r: Math.random() * 2 + 1,
-    }));
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.baseRadius = Math.random() * 2.5 + 1.5;
+        this.radius = this.baseRadius;
+        this.vx = (Math.random() - 0.5) * 1.5;
+        this.vy = (Math.random() - 0.5) * 1.5;
+        this.color = "rgba(34, 211, 238, 0.45)";
+      }
 
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const nodes = nodesRef.current;
-      const m = mouse.current;
+      update() {
+        const speedMultiplier = 0.5;
+        this.x += this.vx * speedMultiplier;
+        this.y += this.vy * speedMultiplier;
 
-      nodes.forEach((n) => {
-        // 1. Repulsion Logic
-        const dx = n.x - m.x;
-        const dy = n.y - m.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
 
-        if (dist < m.radius) {
-          const force = (m.radius - dist) / m.radius;
-          n.x += (dx / dist) * force * 1.5; 
-          n.y += (dy / dist) * force * 1.5;
-        }
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = this.x - mouse.x;
+          const dy = this.y - mouse.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // 2. Normal Movement
-        n.x += n.vx; n.y += n.vy;
-        
-        // 3. Boundary Wrap-around (keeps them from disappearing)
-        if (n.x < 0) n.x = canvas.width;
-        if (n.x > canvas.width) n.x = 0;
-        if (n.y < 0) n.y = canvas.height;
-        if (n.y > canvas.height) n.y = 0;
-      });
-
-      // 4. Draw Lines
-      for (let i = 0; i < nodes.length; i++) {
-  for (let j = i + 1; j < nodes.length; j++) {
-    const dx = nodes[j].x - nodes[i].x;
-    const dy = nodes[j].y - nodes[i].y;
-    const d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 200) {
-            ctx.beginPath();
-            const opacity = (1 - d / 200) * 0.25;
-            ctx.strokeStyle = `rgba(6,214,160,${(1 - d / 140) * 0.22})`;
-            ctx.lineWidth = 0.7;
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.stroke();
+          if (distance < mouse.radius) {
+            const force = (mouse.radius - distance) / mouse.radius;
+            const pushFactor = force * 4;
+            const angle = Math.atan2(dy, dx);
+            this.x += Math.cos(angle) * pushFactor;
+            this.y += Math.sin(angle) * pushFactor;
+            this.radius = this.baseRadius * 1.5;
+          } else {
+            this.radius = this.baseRadius;
           }
         }
       }
 
-      // 5. Draw Bubbles
-      nodes.forEach((n) => {
+      draw() {
+        if (!ctx) return;
         ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(6,214,160,0.7)'; 
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
         ctx.fill();
-      });
+      }
+    }
 
-      rafRef.current = requestAnimationFrame(draw);
+    const drawLattice = () => {
+      const connectionDistance = 115;
+      const maxOpacity = 0.18;
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < connectionDistance) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(34, 211, 238, ${Math.max(
+              0,
+              maxOpacity * (1 - dist / connectionDistance)
+            )})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
     };
 
-    draw();
+    const init = () => {
+      particles = [];
+      for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+    };
+
+    const animate = () => {
+      ctx.fillStyle = "rgba(14, 33, 44, 0.15)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
+
+      drawLattice();
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+
+    const handleMouseLeave = () => {
+      mouse.x = null;
+      mouse.y = null;
+    };
+
+    resizeCanvas();
+    init();
+    animate();
+
+    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseleave", handleMouseLeave);
+
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', resize);
-      cancelAnimationFrame(rafRef.current!);
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 
-  return (
-  <canvas 
-  ref={canvasRef} 
-  className="fixed inset-0 pointer-events-none z-0 bg-[#071219]" 
-/>
-);
+  return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-0" />;
 };
 
 
@@ -729,18 +775,94 @@ const SponsorsPage = () => {
 
 
   return (
-    <div
-  className="min-h-screen text-slate-100 overflow-x-hidden custom-scrollbar relative"
-  style={{ 
-    background: 'linear-gradient(to bottom, #112733 0%, #0e202b 50%, #09151c 100%)', 
-    fontFamily: "'Inter', sans-serif" 
-  }}
->
+    <div className="relative min-h-screen bg-gradient-to-b from-[#112733] via-[#0e202b] to-[#09151c] text-slate-100 font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
       <NetworkCanvas />
+      <header className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl z-50 glass-panel rounded-full px-6 py-2.5 flex items-center justify-between shadow-xl">
+  <a href="/" className="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-100">
+    FUGACITY
+  </a>
+
+  <nav className="hidden md:flex items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-slate-400">
+    <a href="/" className="hover:text-cyan-200 transition-colors">Home</a>
+    <a href="/#about" className="hover:text-cyan-200 transition-colors">About</a>
+    <a href="/events" className="hover:text-cyan-200 transition-colors">Events</a>
+    <a href="/sponsors" className="text-cyan-400 hover:text-cyan-200 transition-colors">Sponsors</a>
+    <a href="/#faqs" className="hover:text-cyan-200 transition-colors">FAQs</a>
+    <a href="/teams" className="hover:text-cyan-200 transition-colors">Teams</a>
+  </nav>
+
+  <button className="px-6 py-2 rounded-full text-[11px] font-black uppercase tracking-widest bg-cyan-400 hover:bg-cyan-300 text-[#0d1b22] transition-all shadow-[0_0_15px_rgba(34,211,238,0.4)] active:scale-95">
+    Register Now
+  </button>
+</header>
+<style>{`
+  html, body { margin: 0; padding: 0; }
+  #root { min-height: 100vh; }
+
+  .glass-panel {
+    background: rgba(22, 44, 56, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(34, 211, 238, 0.12);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: #0e202b; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: #1c3b4e; border-radius: 10px; }
+   .marquee-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: max-content;
+    animation: marquee-scroll 35s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+  }
+
+  .flip-inner.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .flip-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    backface-visibility: hidden;
+    overflow: hidden;
+  }
+
+  .flip-back {
+    transform: rotateY(180deg);
+  }
+`}</style>
 
 
       {/* ── HERO ───────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative z-10 flex flex-col items-center justify-center pt-14 pb-10 px-4 text-center">
+      <section ref={heroRef} className="relative z-10 flex flex-col items-center justify-center pt-32 pb-10 px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={heroInView ? { opacity: 1, y: 0 } : {}}
@@ -762,7 +884,7 @@ const SponsorsPage = () => {
           className="text-slate-400 text-base md:text-lg max-w-xl"
           style={{ letterSpacing: '0.05em' }}
         >
-          WHERE CHEMICAL INGENUITY MEETS KINETIC ENERGY
+          PARTNERING WITH INNOVATION, EMPOWERING EXCELLENCE
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -880,25 +1002,7 @@ const SponsorsPage = () => {
             {/* Chemical bonds */}
 
 
-{[...Array(15)].map((_, i) => (
-  <motion.div
-    key={i}
-    className="absolute w-2 h-2 rounded-full bg-[#06d6a0]/30"
-    initial={{
-      x: Math.random() * 1000,
-      y: 500,
-    }}
-    animate={{
-      y: -50,
-      opacity: [0, 1, 0],
-    }}
-    transition={{
-      duration: 6 + Math.random() * 4,
-      repeat: Infinity,
-      delay: Math.random() * 5,
-    }}
-  />
-))}
+
 
 
 
@@ -984,11 +1088,49 @@ const SponsorsPage = () => {
       </section>
 
 
-      <footer className="relative z-10 py-6 px-4 border-t border-white/5 text-center">
-        <p className="text-slate-600 text-xs tracking-widest uppercase font-display">
-          Fugacity '26 · IIT Kharagpur · Annual Chemical Engineering Festival
-        </p>
-      </footer>
+      <footer className="relative z-10 w-full border-t border-slate-800/60 bg-[#07131a]/95 backdrop-blur-xl py-6 px-8 mt-auto">
+  <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-evenly items-center gap-6">
+    <div className="flex items-center gap-5 text-slate-400">
+      <a
+        href="https://www.linkedin.com/company/chemical-engineering-association-iit-kharagpur/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400 hover:shadow-[0_0_12px_rgba(34,211,238,0.4)] transition-all"
+      >
+        in
+      </a>
+      <a
+        href="https://www.instagram.com/cheaiitkgp/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400 hover:shadow-[0_0_12px_rgba(34,211,238,0.4)] transition-all"
+      >
+        ◎
+      </a>
+      <a
+        href="https://www.facebook.com/cheaiitkgp/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400 hover:shadow-[0_0_12px_rgba(34,211,238,0.4)] transition-all"
+      >
+        f
+      </a>
+    </div>
+
+    <div className="text-right flex flex-col items-end">
+      <h4 className="text-[11px] font-bold text-slate-200 tracking-widest uppercase mb-1.5">
+        Chemical Engineering Department
+      </h4>
+      <p className="text-[11px] text-slate-400 tracking-wider flex items-center gap-2 mt-0.5">
+        <span className="text-cyan-600">✉</span> cheaiitkgp@gmail.com
+      </p>
+    </div>
+  </div>
+
+  <div className="text-center mt-6 text-[9px] text-slate-600 tracking-widest uppercase">
+    © 2026 Fugacity. All rights reserved.
+  </div>
+</footer>
     </div>
   );
 };
