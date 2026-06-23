@@ -1,17 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import MoleculeBackground from '../components/MoleculeBackground';
 
 const HomePage = () => {
-  const canvasRef = useRef(null);
   const shapesCanvasRef = useRef(null);
   const titleRef = useRef(null);
   const scrollContainerRef = useRef(null);
-  const thermometerTrackRef = useRef(null);
   
   const [activeFaq, setActiveFaq] = useState(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const scrollRef = useRef(0);
-  const [isDraggingThermometer, setIsDraggingThermometer] = useState(false);
-  const [currentTemp, setCurrentTemp] = useState(-25);
 
   // COUNTDOWN STATE ENGINE
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -43,299 +41,9 @@ const HomePage = () => {
     setIsTransitioning(true);
     setTimeout(() => {
       setIsTransitioning(false);
-      console.log(`Mapsd to ${destination}`);
+      console.log(`Mapped to ${destination}`);
     }, 800);
   };
-
-  // THERMOMETER DRAG AND SCROLL ENGINE
-  const updateScrollFromThermometer = (clientY) => {
-    if (!thermometerTrackRef.current) return;
-    const rect = thermometerTrackRef.current.getBoundingClientRect();
-    
-    let pct = (clientY - rect.top) / rect.height;
-    pct = Math.max(0, Math.min(1, pct));
-    
-    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    window.scrollTo(0, pct * docHeight);
-  };
-
-  useEffect(() => {
-    const handleGlobalMouseMove = (e) => {
-      if (isDraggingThermometer) {
-        updateScrollFromThermometer(e.clientY);
-      }
-    };
-    const handleGlobalMouseUp = () => {
-      setIsDraggingThermometer(false);
-    };
-
-    if (isDraggingThermometer) {
-      window.addEventListener('mousemove', handleGlobalMouseMove);
-      window.addEventListener('mouseup', handleGlobalMouseUp);
-    }
-    return () => {
-      window.removeEventListener('mousemove', handleGlobalMouseMove);
-      window.removeEventListener('mouseup', handleGlobalMouseUp);
-    };
-  }, [isDraggingThermometer]);
-
-
-  // DYNAMIC PHASE TRANSITION KINETICS ENGINE
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    
-    let animationFrameId;
-    let particles = [];
-    const particleCount = 200; 
-    const mouse = { x: null, y: null, radius: 150, speed: 0, lastX: null, lastY: null };
-
-    const handleScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight;
-      const clientHeight = document.documentElement.clientHeight;
-      const docHeight = scrollHeight - clientHeight;
-      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
-      scrollRef.current = progress;
-
-      let temp = -25;
-      if (progress <= 0.5) {
-        temp = -25 + (progress * 2 * (27 - (-25)));
-      } else {
-        temp = 27 + ((progress - 0.5) * 2 * (100 - 27));
-      }
-      setCurrentTemp(Math.round(temp));
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.baseX = this.x; 
-        this.baseY = this.y; 
-        this.baseRadius = Math.random() * 2.5 + 1.5;
-        this.radius = this.baseRadius;
-        this.vx = (Math.random() - 0.5) * 2;
-        this.vy = (Math.random() - 0.5) * 2;
-        this.color = 'rgba(34, 211, 238, 0.3)'; 
-      }
-
-      update(phaseProgress) {
-        let speedMultiplier = 1;
-        let returnForce = 0;
-        let upwardDrift = 0;
-
-        if (phaseProgress < 0.25) {
-          speedMultiplier = 0.2;
-          returnForce = 0.05;
-          this.color = 'rgba(16, 185, 129, 0.4)'; 
-        } else if (phaseProgress >= 0.25 && phaseProgress < 0.65) {
-          speedMultiplier = 0.65; 
-          returnForce = 0; 
-          this.color = 'rgba(34, 211, 238, 0.45)'; 
-        } else {
-          const gasIntensity = (phaseProgress - 0.65) / 0.35; 
-          speedMultiplier = 1.2 + (gasIntensity * 1.5); 
-          returnForce = 0; 
-          upwardDrift = gasIntensity * 2.5; 
-          this.color = `rgba(56, 189, 248, ${0.3 + (gasIntensity * 0.4)})`; 
-        }
-
-        this.x += this.vx * speedMultiplier;
-        this.y += (this.vy * speedMultiplier) - upwardDrift;
-
-        if (returnForce > 0) {
-          this.x += (this.baseX - this.x) * returnForce;
-          this.y += (this.baseY - this.y) * returnForce;
-        }
-
-        if (this.x < 0 || this.x > canvas.width) {
-          this.vx *= -1;
-          if (phaseProgress < 0.25) this.baseX = this.x < 0 ? 10 : canvas.width - 10;
-        }
-        
-        if (this.y < -50 && upwardDrift > 0) {
-          this.y = canvas.height + 10;
-        } else if (this.y < 0 || this.y > canvas.height) {
-          this.vy *= -1;
-          if (phaseProgress < 0.25) {
-            this.baseY = this.y < 0 ? 10 : canvas.height - 10;
-          }
-        }
-
-        if (mouse.x !== null && mouse.y !== null) {
-          const dx = this.x - mouse.x;
-          const dy = this.y - mouse.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          const interactionRadius = mouse.radius * (1 + phaseProgress); 
-
-          if (distance < interactionRadius) {
-            const force = (interactionRadius - distance) / interactionRadius;
-            const pushFactor = (mouse.speed > 5 ? force * 9 : force * 3.5) * (0.6 + phaseProgress);
-            const angle = Math.atan2(dy, dx);
-            
-            this.x += Math.cos(angle) * pushFactor;
-            this.y += Math.sin(angle) * pushFactor;
-            this.radius = this.baseRadius * 1.8; 
-          } else {
-            this.radius = this.baseRadius;
-          }
-        }
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-      }
-    }
-
-    const drawLattice = (phaseProgress) => {
-      if (phaseProgress > 0.65) return;
-      const connectionDistance = 120 - (phaseProgress * 150); 
-      if (connectionDistance <= 0) return;
-      const maxOpacity = 0.15 * (1 - (phaseProgress / 0.65));
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < connectionDistance) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(34, 211, 238, ${Math.max(0, maxOpacity * (1 - dist / connectionDistance))})`;
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
-        }
-      }
-    };
-
-    const drawWaterWaves = (phaseProgress) => {
-      let waveIntensity = 0;
-      if (phaseProgress >= 0.2 && phaseProgress < 0.5) {
-        waveIntensity = (phaseProgress - 0.2) / 0.3; 
-      } else if (phaseProgress >= 0.5 && phaseProgress < 0.75) {
-        waveIntensity = Math.max(0, 1 - (phaseProgress - 0.5) / 0.25);
-      }
-
-      if (waveIntensity <= 0) return;
-
-      const time = Date.now() * 0.002;
-      const baseHeight = canvas.height - (180 * waveIntensity); 
-      const defaultAmplitude = 45 * waveIntensity; 
-
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(0, canvas.height);
-      for (let x = 0; x <= canvas.width; x += 10) {
-        let currentAmplitude = defaultAmplitude;
-
-        if (mouse.x !== null && mouse.y !== null) {
-          const xDist = Math.abs(x - mouse.x);
-          if (xDist < 180) { 
-            const proximityFactor = (180 - xDist) / 180;
-            const yDist = Math.abs(mouse.y - baseHeight);
-            if (yDist < 250) {
-              currentAmplitude += 40 * proximityFactor * (1 - yDist / 250);
-            }
-          }
-        }
-
-        const y = baseHeight + Math.sin(x * 0.004 + time) * currentAmplitude + Math.cos(x * 0.002 + time * 0.5) * (currentAmplitude * 0.3);
-        ctx.lineTo(x, y);
-      }
-      ctx.lineTo(canvas.width, canvas.height);
-      ctx.fillStyle = `rgba(34, 211, 238, ${0.14 * waveIntensity})`;
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.moveTo(0, canvas.height);
-      for (let x = 0; x <= canvas.width; x += 10) {
-        let currentAmplitude = defaultAmplitude * 0.7;
-
-        if (mouse.x !== null && mouse.y !== null) {
-          const xDist = Math.abs(x - mouse.x);
-          if (xDist < 180) {
-            const proximityFactor = (180 - xDist) / 180;
-            const yDist = Math.abs(mouse.y - (baseHeight + 15));
-            if (yDist < 250) {
-              currentAmplitude += 35 * proximityFactor * (1 - yDist / 250);
-            }
-          }
-        }
-
-        const y = (baseHeight + 20) + Math.sin(x * 0.006 - time * 0.8) * currentAmplitude + Math.cos(x * 0.003 + time) * (currentAmplitude * 0.3);
-        ctx.lineTo(x, y);
-      }
-      ctx.lineTo(canvas.width, canvas.height);
-      ctx.fillStyle = `rgba(56, 189, 248, ${0.19 * waveIntensity})`;
-      ctx.fill();
-      ctx.restore();
-    };
-
-    const init = () => {
-      particles = [];
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-      }
-    };
-
-    const animate = () => {
-      const phase = scrollRef.current;
-      const bgOpacity = 0.12 + (phase * 0.08);
-      ctx.fillStyle = `rgba(10, 23, 31, ${bgOpacity})`; 
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach(p => {
-        p.update(phase);
-        p.draw();
-      });
-      
-      drawLattice(phase);
-      drawWaterWaves(phase); 
-      
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    const handleMouseMove = (e) => {
-      if (mouse.lastX !== null && mouse.lastY !== null) {
-        const dx = e.clientX - mouse.lastX;
-        const dy = e.clientY - mouse.lastY;
-        mouse.speed = Math.sqrt(dx * dx + dy * dy);
-      }
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      mouse.lastX = e.clientX;
-      mouse.lastY = e.clientY;
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; mouse.speed = 0; });
-    init();
-    animate();
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   // HERO LAYER SHAPES ENGINE
   useEffect(() => {
@@ -492,54 +200,10 @@ const HomePage = () => {
   const extendedEvents = [...eventData, ...eventData];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#0a171f] via-[#09141c] to-[#050c12] text-slate-100 font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
+    <div className="relative min-h-screen text-slate-100 font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
       
-      <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-0" />
-
-      {/* ENCAPSULATED THERMOMETER MODULE (Corrected Overlapping and Spacing Setup) */}
-      <div className="fixed right-5 top-1/2 transform -translate-y-1/2 z-50 select-none hidden md:flex">
-        <div className="bg-[#0b1b24]/95 border border-cyan-500/30 shadow-[0_0_25px_rgba(34,211,238,0.15)] rounded-xl px-3 py-5 flex flex-col items-center w-[135px]">
-          
-          <span className="text-[9px] font-black font-mono tracking-[0.15em] text-cyan-400 mb-4 uppercase bg-cyan-950/40 border border-cyan-800/40 px-2 py-0.5 rounded shadow-[0_0_8px_rgba(34,211,238,0.2)]">
-            THERMOMETER
-          </span>
-
-          {/* Track frame alignment container shifted right to accommodate wider safety gap on left layout */}
-          <div className="relative h-[310px] w-1.5 bg-[#07131a] border border-slate-800 rounded-full flex flex-col justify-between items-center py-4 ml-auto mr-1.5" ref={thermometerTrackRef}>
-            
-            <div 
-              className="absolute top-0 left-0 right-0 bg-gradient-to-b from-emerald-500 via-cyan-500 to-red-500 rounded-full transition-all duration-75 shadow-[0_0_15px_rgba(34,211,238,0.5)]"
-              style={{ height: `${scrollRef.current * 100}%` }}
-            />
-
-            {/* Added wider right offset padding (right-7) to completely prevent overlapping congestion with slider tracking disk */}
-            <div className="absolute right-7 top-2 text-[9px] font-mono font-black text-emerald-400 flex flex-col items-end leading-none text-right">
-              <span className="bg-emerald-950/40 border border-emerald-500/30 px-1.5 py-0.5 rounded shadow-[0_0_5px_rgba(16,185,129,0.2)]">SOLID</span>
-              <span className="text-[7px] text-slate-400 mt-0.5 font-bold">-25°C</span>
-            </div>
-
-            <div className="absolute right-7 top-1/2 transform -translate-y-1/2 text-[9px] font-mono font-black text-cyan-400 flex flex-col items-end leading-none text-right">
-              <span className="bg-cyan-950/40 border border-cyan-500/30 px-1.5 py-0.5 rounded shadow-[0_0_5px_rgba(34,211,238,0.2)]">LIQUID</span>
-              <span className="text-[7px] text-slate-400 mt-0.5 font-bold">+27°C</span>
-            </div>
-
-            <div className="absolute right-7 bottom-2 text-[9px] font-mono font-black text-rose-400 flex flex-col items-end leading-none text-right">
-              <span className="bg-rose-950/40 border border-rose-500/30 px-1.5 py-0.5 rounded shadow-[0_0_5px_rgba(239,68,68,0.2)]">GAS</span>
-              <span className="text-[7px] text-slate-400 mt-0.5 font-bold">+100°C</span>
-            </div>
-
-            {/* Indicator Control Node Slider Ball */}
-            <div 
-              onMouseDown={() => setIsDraggingThermometer(true)}
-              className={`absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-[#0d222f] border-2 cursor-grab active:cursor-grabbing flex flex-col items-center justify-center shadow-2xl transition-transform duration-100 ${isDraggingThermometer ? 'scale-110 border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.6)]' : 'border-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.3)]'}`}
-              style={{ top: `calc(${scrollRef.current * 100}% - 16px)` }}
-            >
-              <span className="text-[8px] font-black font-mono text-white tracking-tighter">{currentTemp}°</span>
-              <div className="w-2 h-[2px] bg-slate-500 rounded-full mt-0.5"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* 🌟 CELLULAR BACKGROUND MANAGER */}
+      <MoleculeBackground />
 
       {/* FLASH TRANSITION OVERLAY */}
       <div className={`fixed inset-0 z-[100] pointer-events-none transition-all duration-300 ${isTransitioning ? 'opacity-100 backdrop-blur-xl bg-cyan-950/30' : 'opacity-0 backdrop-blur-none bg-transparent'}`}>
@@ -576,23 +240,8 @@ const HomePage = () => {
         .hide-scroll-x { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
-      {/* HEADER STICKY BAR (Updated Links Configuration) */}
-      <header className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[92%] max-w-6xl z-50 glass-panel rounded-full px-6 py-2 flex items-center justify-between shadow-[0_0_30px_rgba(34,211,238,0.15)]">
-        <div className="text-lg font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-slate-200">
-          FUGACITY
-        </div>
-        <nav className="hidden md:flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-300">
-          <a href="#home" className="hover:text-cyan-400 transition-colors">Home</a>
-          <a href="#about" className="hover:text-cyan-400 transition-colors">About</a>
-          <a href="#events" onClick={(e) => handleNavigation(e, '/events')} className="hover:text-cyan-400 transition-colors">Events</a>
-          <a href="#countdown" className="hover:text-cyan-400 transition-colors">Countdown</a>
-          <a href="#sponsors" onClick={(e) => handleNavigation(e, '/sponsors')} className="hover:text-cyan-400 transition-colors">Sponsors</a>
-          <a href="#teams" onClick={(e) => handleNavigation(e, '/teams')} className="hover:text-cyan-400 transition-colors">Teams</a>
-        </nav>
-        <button onClick={(e) => handleNavigation(e, '/register')} className="px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest bg-cyan-400 hover:bg-cyan-300 text-[#09141c] transition-all shadow-[0_0_20px_#22d3ee]">
-          Register Now
-        </button>
-      </header>
+      {/* 🌟 RENDER THE ACTUAL IMPORTED NAVBAR COMPONENT HERE */}
+      <Navbar />
 
       {/* CENTRAL BOUNDED CONTAINER COMPONENT */}
       <div className="relative z-10 flex flex-col pt-24 px-4 w-full max-w-[1340px] mx-auto items-center">
@@ -600,7 +249,7 @@ const HomePage = () => {
         {/* HERO SECTION */}
         <section id="home" className="flex flex-col justify-center items-center text-center mt-6 mb-12 w-full">
           <p className="text-[10px] md:text-xs font-bold text-cyan-400 uppercase tracking-[0.35em] mb-5 drop-shadow-[0_0_12px_rgba(34,211,238,0.5)]">
-            Chemical Engineering Association
+             Chemical Engineering Association
           </p>
           
           <div className="relative py-2 mb-3 select-none flex items-center justify-center">
@@ -623,7 +272,7 @@ const HomePage = () => {
             <canvas ref={shapesCanvasRef} className="mx-auto block cursor-default" />
           </div>
 
-          {/* UPDATED METRIC TILES GRID CONTAINER */}
+          {/* METRIC TILES GRID CONTAINER */}
           <div className="flex flex-wrap justify-center gap-8 md:gap-16 mt-10 w-full">
             {[
               { val: '10+', label: 'EVENTS' },
@@ -749,23 +398,8 @@ const HomePage = () => {
         </section>
       </div>
 
-      {/* FOOTER */}
-      <footer className="relative z-10 w-full border-t border-slate-800 bg-[#050b0f]/95 py-6 px-6 mt-auto">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-4 text-slate-400">
-            <div className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400 transition-all cursor-pointer text-xs">In</div>
-            <div className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400 transition-all cursor-pointer text-xs">Li</div>
-          </div>
-          <div className="text-center md:text-right flex flex-col items-center md:items-end text-[11px] text-slate-400">
-            <h4 className="font-bold text-white tracking-wider uppercase mb-1">Department</h4>
-            <p className="tracking-wide">📞 +X XX XXXX XXXX</p>
-            <p className="tracking-wide mt-0.5">✉️ XXXXXXXXX@fugs.che.com</p>
-          </div>
-        </div>
-        <div className="text-center mt-6 text-[9px] text-slate-600 tracking-widest uppercase">
-          © 2026 Fugacity. All rights reserved.
-        </div>
-      </footer>
+      {/* FOOTER COMPONENT */}
+      <Footer />
     </div>
   );
 };
