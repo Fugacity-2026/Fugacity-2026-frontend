@@ -40,14 +40,19 @@ const SponsorsPage = () => {
 
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#112733] via-[#0e202b] to-[#09151c] text-slate-100 font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
-      <NetworkCanvas />
+    <div className="relative min-h-screen bg-gradient-to-b from-[#112733] via-[#0e202b] to-[#09151c] text-white font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
+      <div className="fixed inset-0 z-0 pointer-events-none">
+  <NetworkCanvas />
+</div>
       
        <Navbar />
 
 
       {/* ── HERO ───────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative z-10 flex flex-col items-center justify-center pt-40 md:pt-32 pb-10 px-4 text-center">
+      <section
+  ref={heroRef}
+  className="relative z-10 flex flex-col items-center justify-center pt-28 md:pt-32 pb-6 md:pb-10 px-4 text-center"
+>
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={heroInView ? { opacity: 1, y: 0 } : {}}
@@ -72,7 +77,7 @@ const SponsorsPage = () => {
           initial={{ opacity: 0 }}
           animate={heroInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-slate-400 text-sm sm:text-base md:text-lg max-w-xl"
+          className="text-gray-300 text-sm sm:text-base md:text-lg max-w-xl"
           style={{ letterSpacing: '0.05em' }}
         >
           PARTNERING WITH INNOVATION, EMPOWERING EXCELLENCE
@@ -91,7 +96,7 @@ const SponsorsPage = () => {
           ].map(({ val, label, color }) => (
             <div key={label} className="text-center">
               <div className={`text-2xl md:text-3xl font-black font-display ${color}`}>{val}</div>
-              <div className="text-[10px] text-slate-400 tracking-widest">{label}</div>
+              <div className="text-[10px] text-gray-400 tracking-widest">{label}</div>
             </div>
           ))}
         </motion.div>
@@ -99,11 +104,11 @@ const SponsorsPage = () => {
 
 
       {/* ── WHY PARTNER ─────────────────────────────────────── */}
-<section className="relative z-10 py-20 px-4">
+<section className="relative z-10 py-8 md:py-20 px-4">
   <div className="max-w-6xl mx-auto">
     <SectionHeading>Why Partner With Fugacity?</SectionHeading>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
       {[
         { icon: GraduationCap, val: "IIT KGP", sub: "Premier Institution" },
         { icon: Users, val: "2000+", sub: "Participants" },
@@ -123,7 +128,7 @@ const SponsorsPage = () => {
             {val}
           </div>
 
-          <div className="text-xs text-slate-400 mt-1">
+          <div className="text-xs text-gray-300 mt-1">
             {sub}
           </div>
         </RevealCard>
@@ -134,7 +139,7 @@ const SponsorsPage = () => {
 
 
       {/* ── SPONSORSHIP BENEFITS ────────────────────────────── */}
-<section className="relative z-10 py-10 px-4">
+<section className="relative z-10 py-6 md:py-10 px-4">
   <div className="max-w-5xl mx-auto">
     <SectionHeading>Sponsorship Benefits</SectionHeading>
 
@@ -182,69 +187,49 @@ const SponsorsPage = () => {
         },
       ].map(({ icon: Icon, title, items }, i) => (
         <RevealCard
-          key={title}
-          delay={i * 0.08}
-          className="
-            group
-            rounded-xl
-            p-4
-            bg-[#0c2235]/92
-            backdrop-blur-xl
-            border border-[#06d6a0]/30
-            transition-all duration-300
-            hover:-translate-y-2
-            hover:scale-[1.02]
-            hover:border-[#06d6a0]
-            hover:shadow-[0_0_30px_rgba(6,214,160,0.35)]
-          "
-        >
-          <div
-            className="
-              w-10 h-10
-              rounded-lg
-              bg-[#06d6a0]/10
-              flex items-center justify-center
-              mb-3
-              transition-all duration-300
-              group-hover:bg-[#06d6a0]/20
-              group-hover:shadow-[0_0_18px_rgba(6,214,160,0.5)]
-            "
-          >
-            <Icon className="w-5 h-5 text-[#06d6a0]" />
-          </div>
+  key={title}
+  delay={i * 0.08}
+  className="
+    group relative overflow-hidden
+    min-h-[210px] rounded-2xl p-5
+    bg-[#071b26]/90 border border-[#06d6a0]/35
+    hover:-translate-y-2 hover:scale-[1.03]
+    hover:border-[#06d6a0]
+    hover:shadow-[0_0_35px_rgba(6,214,160,0.35)]
+    transition-all duration-300
+  "
+>
+  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#06d6a0]/15 to-transparent transition-opacity duration-300" />
 
-          <div className="text-white font-bold text-sm mb-2 font-display">
-            {title}
-          </div>
+  <div className="relative z-10">
+    <div className="w-11 h-11 rounded-xl bg-[#06d6a0]/15 flex items-center justify-center mb-4 group-hover:rotate-6 group-hover:scale-110 transition-all duration-300">
+      <Icon className="w-5 h-5 text-[#06d6a0]" />
+    </div>
 
-          <ul className="space-y-1">
-            {items.map((item) => (
-              <li
-                key={item}
-                className="
-                  flex items-center gap-1.5
-                  text-slate-300
-                  text-xs
-                  transition-colors duration-300
-                  group-hover:text-slate-100
-                "
-              >
-                <div className="w-1 h-1 rounded-full bg-[#06d6a0]" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </RevealCard>
+    <h3 className="text-white font-black text-base mb-3">
+      {title}
+    </h3>
+
+    <ul className="space-y-1.5">
+      {items.map((item) => (
+        <li key={item} className="flex items-center gap-2 text-gray-300 text-xs">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#06d6a0]" />
+          {item}
+        </li>
+      ))}
+    </ul>
+  </div>
+</RevealCard>
       ))}
     </div>
   </div>
 </section>
 
     {/* Sponsorship Tiers - Pulling Stack */}
-<section className="relative z-10 py-20 px-6">
-  <div className="max-w-6xl mx-auto text-center mb-16">
+<section className="relative z-10 py-10 md:py-20 px-4 md:px-6">
+  <div className="max-w-6xl mx-auto text-center mb-8 md:mb-16">
     <SectionHeading>Sponsorship Tiers</SectionHeading>
-    <p className="text-slate-400 mt-3">
+    <p className="text-gray-300 mt-3">
       Scroll to explore each sponsorship tier.
     </p>
   </div>
@@ -253,7 +238,7 @@ const SponsorsPage = () => {
     {tiers.map((tier, index) => (
       <div
   key={tier.name}
-  className="md:sticky mb-16 md:mb-28"
+  className="md:sticky mb-8 md:mb-28"
   style={{
     top: `${110 + index * 18}px`,
     zIndex: index + 10,
@@ -273,9 +258,9 @@ const SponsorsPage = () => {
 </section>
       {/* ── MARQUEE EVENT CARDS ──────────────────────────────── */}
       <section className="relative z-10 py-8 md:py-10 overflow-hidden">
-        <div className="max-w-5xl mx-auto mt-16 space-y-24">
+        <div className="max-w-5xl mx-auto mt-8 md:mt-16 space-y-8 md:space-y-24">
           <SectionHeading>Sponsor Individual Events</SectionHeading>
-          <p className="text-center text-slate-500 text-xs -mt-4 mb-0 tracking-wide">
+          <p className="text-center text-gray-400 text-xs -mt-4 mb-0 tracking-wide">
             Hover over a card to reveal Event Sponsor deliverables ·
           </p>
         </div>
@@ -297,7 +282,7 @@ const SponsorsPage = () => {
           </p>
 
 
-         <div className="relative min-h-[900px] mb-12 rounded-3xl overflow-hidden border border-[#06d6a0]/15 bg-[#071219]/70 px-4 sm:px-8 md:px-10 py-12 md:py-16">
+         <div className="relative min-h-[900px] mb-12 rounded-3xl overflow-hidden border border-[#06d6a0]/15 bg-[#071219]/95 px-4 sm:px-8 md:px-10 py-12 md:py-16">
   <div className="max-w-5xl mx-auto space-y-16 md:space-y-24">
     {Array.from({ length: Math.ceil(partners.length / 3) }).map((_, groupIndex) => {
       const group = partners.slice(groupIndex * 3, groupIndex * 3 + 3);
@@ -326,7 +311,7 @@ const SponsorsPage = () => {
               <div className="text-[#06d6a0] text-3xl font-black font-display leading-none">
                 FUGA<span className="text-white">CITY</span>
               </div>
-              <p className="text-slate-400 text-sm border border-[#06d6a0]/50 bg-[#06d6a0]/5 rounded-xl px-4 py-3">
+              <p className="text-gray-300 text-sm border border-[#06d6a0]/50 bg-[#06d6a0]/5 rounded-xl px-4 py-3">
                 We look forward to partnering with you
               </p>
               <div className="text-white text-3xl font-black font-display leading-tight">
@@ -343,10 +328,10 @@ const SponsorsPage = () => {
                   className="bg-[#0c2235]/92 backdrop-blur-xl border border-[#06d6a0]/50 rounded-xl p-4"
                 >
                   <div className="text-white font-bold text-sm font-display mb-1">{c.name}</div>
-                  <div className="flex items-center gap-1.5 text-slate-300 text-xs mb-1">
+                  <div className="flex items-center gap-1.5 text-gray-300 text-xs mb-1">
                     <Phone className="w-3 h-3 text-[#06d6a0]" />{c.phone}
                   </div>
-                  <div className="flex items-center gap-1.5 text-slate-400 text-[11px] break-all">
+                  <div className="flex items-center gap-1.5 text-gray-400 text-[11px] break-all">
                     <Mail className="w-3 h-3 text-[#06d6a0] flex-shrink-0" />{c.email}
                   </div>
                 </RevealCard>
