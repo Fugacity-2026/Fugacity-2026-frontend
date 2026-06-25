@@ -13,6 +13,8 @@ import {
   Handshake,
   Phone,
 } from "lucide-react";
+import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx";
 
 import { tiers, partners, contacts, events } from "../data/sponsorsData.js";
 
@@ -40,28 +42,12 @@ const SponsorsPage = () => {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#112733] via-[#0e202b] to-[#09151c] text-slate-100 font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
       <NetworkCanvas />
-      <header className="fixed top-3 left-1/2 -translate-x-1/2 w-[94%] max-w-6xl z-50 glass-panel rounded-full px-3 sm:px-6 py-2.5 flex items-center justify-between shadow-xl">
-  <a href="/" className="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-100">
-    FUGACITY
-  </a>
-
-  <nav className="hidden md:flex items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-slate-400">
-    <a href="/" className="hover:text-cyan-200 transition-colors">Home</a>
-    <a href="/#about" className="hover:text-cyan-200 transition-colors">About</a>
-    <a href="/events" className="hover:text-cyan-200 transition-colors">Events</a>
-    <a href="/sponsors" className="text-cyan-400 hover:text-cyan-200 transition-colors">Sponsors</a>
-    <a href="/#faqs" className="hover:text-cyan-200 transition-colors">FAQs</a>
-    <a href="/teams" className="hover:text-cyan-200 transition-colors">Teams</a>
-  </nav>
-
-  <button className="hidden sm:block px-4 md:px-6 py-2 rounded-full text-[10px] md:text-[11px] font-black uppercase tracking-widest bg-cyan-400 text-[#0d1b22]">
-    Register Now
-  </button>
-</header>
+      
+       <Navbar />
 
 
       {/* ── HERO ───────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative z-10 flex flex-col items-center justify-center pt-28 md:pt-32 pb-10 px-4 text-center">
+      <section ref={heroRef} className="relative z-10 flex flex-col items-center justify-center pt-40 md:pt-32 pb-10 px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={heroInView ? { opacity: 1, y: 0 } : {}}
@@ -374,49 +360,7 @@ const SponsorsPage = () => {
       </section>
 
 
-      <footer className="relative z-10 w-full border-t border-slate-800/60 bg-[#07131a]/95 backdrop-blur-xl py-6 px-8 mt-auto">
-  <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between md:justify-evenly items-center gap-6 text-center md:text-left">
-    <div className="flex items-center gap-5 text-slate-400">
-      <a
-        href="https://www.linkedin.com/company/chemical-engineering-association-iit-kharagpur/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400 hover:shadow-[0_0_12px_rgba(34,211,238,0.4)] transition-all"
-      >
-        in
-      </a>
-      <a
-        href="https://www.instagram.com/cheaiitkgp/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400 hover:shadow-[0_0_12px_rgba(34,211,238,0.4)] transition-all"
-      >
-        ◎
-      </a>
-      <a
-        href="https://www.facebook.com/cheaiitkgp/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400 hover:shadow-[0_0_12px_rgba(34,211,238,0.4)] transition-all"
-      >
-        f
-      </a>
-    </div>
-
-    <div className="text-center md:text-right flex flex-col items-center md:items-end">
-      <h4 className="text-[11px] font-bold text-slate-200 tracking-widest uppercase mb-1.5">
-        Chemical Engineering Department
-      </h4>
-      <p className="text-[11px] text-slate-400 tracking-wider flex items-center gap-2 mt-0.5">
-        <span className="text-cyan-600">✉</span> cheaiitkgp@gmail.com
-      </p>
-    </div>
-  </div>
-
-  <div className="text-center mt-6 text-[9px] text-slate-600 tracking-widest uppercase">
-    © 2026 Fugacity. All rights reserved.
-  </div>
-</footer>
+      <Footer />
     </div>
   );
 };

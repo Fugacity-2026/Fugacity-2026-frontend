@@ -9,8 +9,8 @@ import EventsPage from './pages/EventsPage';
 import AboutPage from './pages/AboutPage';
 
 const App = () => {
-  const [introComplete, setIntroComplete] = useState(false);
-  const [fadeIn, setFadeIn] = useState(false);
+  const [introComplete, setIntroComplete] = useState(true);
+  const [fadeIn, setFadeIn] = useState(true);
 
   const handleIntroComplete = () => {
     setIntroComplete(true);
