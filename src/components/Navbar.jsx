@@ -36,7 +36,13 @@ const Navbar = () => {
         <a href="#home" onClick={(e) => handleNavigation(e, '#home')} className="hover:text-cyan-400 transition-colors">Home</a>
         <a href="#about" onClick={(e) => handleNavigation(e, '#about')} className="hover:text-cyan-400 transition-colors">About</a>
         <a href="#events" onClick={(e) => handleNavigation(e, '#events')} className="hover:text-cyan-400 transition-colors">Events</a>
-        <a href="#sponsors" onClick={(e) => handleNavigation(e, '#sponsors')} className="hover:text-cyan-400 transition-colors">Sponsors</a>
+        <a
+  href="/sponsors"
+  onClick={(e) => handleNavigation(e, '/sponsors')}
+  className="hover:text-cyan-400 transition-colors"
+>
+  Sponsors
+</a>
         <a href="/teams" onClick={(e) => handleNavigation(e, '/teams')} className="hover:text-cyan-400 transition-colors">Teams</a>
         <a href="/feedback" onClick={(e) => handleNavigation(e, '/feedback')} className="hover:text-cyan-400 transition-colors">Feedback</a>
       </nav>

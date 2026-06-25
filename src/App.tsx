@@ -7,8 +7,8 @@ import MolCursor from './components/MolCursor';
 import SponsorsPage from "./pages/SponsorsPage";
 
 const App = () => {
-  const [introComplete, setIntroComplete] = useState(false);
-  const [fadeIn, setFadeIn] = useState(false);
+  const [introComplete, setIntroComplete] = useState(true);
+  const [fadeIn, setFadeIn] = useState(true);
 
   const handleIntroComplete = () => {
     setIntroComplete(true);
