@@ -71,8 +71,8 @@ const MeltTransition = ({ onDone }) => {
         d.tip = Math.min(d.tip + d.tipSpeed, d.height);
 
         const grad = ctx.createLinearGradient(d.x, 0, d.x, d.tip);
-        grad.addColorStop(0,    'rgba(0,245,212,0.95)');
-        grad.addColorStop(0.35, 'rgba(12,161,131,0.75)');
+        grad.addColorStop(0,    'rgba(78,226,255,1)');
+        grad.addColorStop(0.35, 'rgba(78,226,255,0.75)');
         grad.addColorStop(0.75, 'rgba(2,60,50,0.5)');
         grad.addColorStop(1,    'rgba(2,20,18,0)');
 
@@ -157,7 +157,7 @@ const PlasmaTransition = ({ onDone }) => {
       lightning(x1, y1, x2, y2, 120, 6);
       ctx.strokeStyle = color || `rgba(0,245,212,${alpha})`;
       ctx.lineWidth = 1.5 + Math.random() * 2;
-      ctx.shadowColor = '#00f5d4';
+      ctx.shadowColor = '#4ee2ff';
       ctx.shadowBlur = 20;
       ctx.stroke();
       ctx.shadowBlur = 0;
@@ -175,7 +175,7 @@ const PlasmaTransition = ({ onDone }) => {
       r: 8 + Math.random() * 20,
     }));
 
-    const DONE_FRAME = 55;   // ~0.9 s at 60 fps
+    const DONE_FRAME = 30;   // ~0.9 s at 60 fps
     let frame = 0;
     let finished = false;
 
@@ -227,7 +227,7 @@ const PlasmaTransition = ({ onDone }) => {
       nodes.forEach(n => {
         const pulse = 0.7 + 0.3 * Math.sin(frame * 0.2 + n.x);
         const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 3 * pulse);
-        grad.addColorStop(0, 'rgba(0,245,212,0.9)');
+        grad.addColorStop(0, 'rgba(48, 171, 202, 0.9)');
         grad.addColorStop(0.3, 'rgba(0,245,212,0.35)');
         grad.addColorStop(1, 'transparent');
         ctx.beginPath();
@@ -236,8 +236,8 @@ const PlasmaTransition = ({ onDone }) => {
         ctx.fill();
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r * pulse, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(200,255,245,0.9)';
-        ctx.shadowColor = '#00f5d4';
+        ctx.fillStyle = 'rgba(55, 166, 209, 0.9)';
+        ctx.shadowColor = '#4ee2ff';
         ctx.shadowBlur = 30;
         ctx.fill();
         ctx.shadowBlur = 0;

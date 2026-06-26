@@ -248,6 +248,7 @@ const MemberCard = ({ member, delay = 0 }) => {
         onMouseLeave={handleMouseLeave}
         className="member-card glass-panel group rounded-2xl px-6 py-10 relative overflow-hidden cursor-pointer"
       >
+        
         {/* liquid strip along the bottom edge */}
         <div className="card-liquid-strip">
           <svg viewBox="0 0 260 42" preserveAspectRatio="none">
