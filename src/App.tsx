@@ -5,6 +5,7 @@ import FlaskIntro from './components/FlaskIntro';
 import TeamsPage from './pages/TeamsPage';
 import MolCursor from './components/MolCursor';
 import SponsorsPage from "./pages/SponsorsPage";
+import EventsPage from './pages/EventsPage'; 
 
 const App = () => {
   const [introComplete, setIntroComplete] = useState(false);
@@ -27,6 +28,9 @@ const App = () => {
     <BrowserRouter>
       {/* Custom molecular cursor — always visible */}
       <MolCursor />
+       {!introComplete && (
+        <FlaskIntro onComplete={handleIntroComplete} />
+      )}
 
       {/* Intro animation or main application wrapper */}
       <div className="app-container" style={mainPageStyle}>
@@ -36,7 +40,9 @@ const App = () => {
 
           {/* Standalone webpage routes */}
           <Route path="/teams" element={<TeamsPage />} />
+          
           <Route path="/sponsors" element={<SponsorsPage />} />
+           <Route path="/events" element={<EventsPage />} />
 
           {/* Catch-all route: redirects any broken links back to the HomePage */}
           <Route path="*" element={<Navigate to="/" replace />} />
