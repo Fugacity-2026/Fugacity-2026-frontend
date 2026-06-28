@@ -34,12 +34,12 @@ const Navbar = () => {
       
       <nav className="hidden md:flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-300">
         <a href="/" onClick={(e) => handleNavigation(e, '/')} className="hover:text-cyan-400 transition-colors">Home</a>
-        <a href="#about" onClick={(e) => handleNavigation(e, '#about')} className="hover:text-cyan-400 transition-colors">About</a>
+        <a href="/about" onClick={(e) => handleNavigation(e, '/about')} className="hover:text-cyan-400 transition-colors">About</a>
         <a href="/events" onClick={(e) => handleNavigation(e, '/events')} className="hover:text-cyan-400 transition-colors">Events</a>
-        <a href="#sponsors" onClick={(e) => handleNavigation(e, '#sponsors')} className="hover:text-cyan-400 transition-colors">Sponsors</a>
+        <a href="/sponsors" onClick={(e) => handleNavigation(e, '/sponsors')} className="hover:text-cyan-400 transition-colors">Sponsors</a>
         <a href="/teams" onClick={(e) => handleNavigation(e, '/teams')} className="hover:text-cyan-400 transition-colors">Teams</a>
         <a href="/feedback" onClick={(e) => handleNavigation(e, '/feedback')} className="hover:text-cyan-400 transition-colors">Feedback</a>
-        <a href='#register' onClick={(e) => handleNavigation(e, '/register')} className="clicked:text-cyan-400 transition-colors">Register</a>
+        <a href='/register' onClick={(e) => handleNavigation(e, '/register')} className="clicked:text-cyan-400 transition-colors">Register</a>
       </nav>
       
       <button onClick={(e) => handleNavigation(e, '#register')} className="px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest bg-cyan-400 hover:bg-cyan-300 text-[#09141c] transition-all shadow-[0_0_20px_#22d3ee]">
