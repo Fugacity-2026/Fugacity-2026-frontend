@@ -6,6 +6,7 @@ import TeamsPage from './pages/TeamsPage';
 import MolCursor from './components/MolCursor';
 import SponsorsPage from "./pages/SponsorsPage";
 import EventsPage from './pages/EventsPage'; 
+import FeedbackPage from './pages/FeedbackPage';
 
 const App = () => {
   const [introComplete, setIntroComplete] = useState(false);
@@ -40,6 +41,8 @@ const App = () => {
 
           {/* Standalone webpage routes */}
           <Route path="/teams" element={<TeamsPage />} />
+
+          <Route path='/feedback' element={<FeedbackPage />} />
           
           <Route path="/sponsors" element={<SponsorsPage />} />
            <Route path="/events" element={<EventsPage />} />
