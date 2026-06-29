@@ -6,6 +6,7 @@ import TeamsPage from './pages/TeamsPage';
 import MolCursor from './components/MolCursor';
 import SponsorsPage from "./pages/SponsorsPage";
 import EventsPage from './pages/EventsPage'; 
+import AboutPage from './pages/AboutPage';
 
 const App = () => {
   const [introComplete, setIntroComplete] = useState(false);
@@ -43,6 +44,7 @@ const App = () => {
           
           <Route path="/sponsors" element={<SponsorsPage />} />
            <Route path="/events" element={<EventsPage />} />
+           <Route path="/about" element={<AboutPage />} />
 
           {/* Catch-all route: redirects any broken links back to the HomePage */}
           <Route path="*" element={<Navigate to="/" replace />} />
