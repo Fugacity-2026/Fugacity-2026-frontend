@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import NetworkCanvas from '../components/NetworkCanvas';
 
 const HOD_DATA = {
@@ -8,34 +10,34 @@ const HOD_DATA = {
   email: 'che_hod@che.iitkgp.ac.in / sc@che.iitkgp.ac.in',
   phone: '+91-3222-282249 / +91-3222-282250',
   linkedin: 'https://www.linkedin.com/in/sudiptochakraborty/',
-  photo: '/team/sudipto-chakraborty.jpg',
+  photo: '/team/sudipto-chakraborty.webp',
   speech: "I am delighted to announce that the Chemical Engineering Association of IIT Kharagpur is organizing the much-anticipated Technical Fest, 'Fugacity.' As the Head of the Chemical Engineering Department, I am excited to witness an event that promises to be both informative and enriching for the entire chemical community across the nation. This year's array of competitions, talks, and workshops, meticulously organized by the dedicated ChEA team, is designed to benefit students, professionals, and enthusiasts by providing a platform for learning, networking, and exploring the latest trends in chemical engineering. I extend a heartfelt invitation to all to join us at Fugacity and be a part of this enriching experience.",
 };
 
 const TEAM_DATA = {
   heads: [
-    { name: 'Aman Rao', role: '', initials: 'AR', email: 'aman.cheaiitkgp@gmail.com', phone: '+91 8107901487', linkedin: 'https://www.linkedin.com/in/aman-rao-638461311/', photo: '/team/aman-rao.jpeg' },
-    { name: 'Aman Rathore', role: '', initials: 'AR', email: 'amanrathore.cheaiitkgp@gmail.com', phone: '+91 9826338044', linkedin: 'https://www.linkedin.com/in/aman-rathore-65589831a/', photo: '/team/aman-rathore.jpeg' },
+    { name: 'Aman Rao', role: '', initials: 'AR', email: 'aman.cheaiitkgp@gmail.com', phone: '+91 8107901487', linkedin: 'https://www.linkedin.com/in/aman-rao-638461311/', photo: '/team/aman-rao.webp' },
+    { name: 'Aman Rathore', role: '', initials: 'AR', email: 'amanrathore.cheaiitkgp@gmail.com', phone: '+91 9826338044', linkedin: 'https://www.linkedin.com/in/aman-rathore-65589831a/', photo: '/team/aman-rathore.webp' },
     { name: 'Asanga Pillewan', role: '', initials: 'AP', email: 'asanga.cheaiitkgp@gmail.com', phone: '+91 9156605324', linkedin: 'https://www.linkedin.com/in/asanga-pillewan-iitkgp/' },
     { name: 'Kosuru Praneetha', role: '', initials: 'KP', email: 'praneetha.cheaiitkgp@gmail.com', phone: '+91 9963174477', linkedin: 'https://www.linkedin.com/in/praneetha-kosuru-585971322/' },
-    { name: 'Nikita Ameriya', role: '', initials: 'NA', email: 'nikitaameriya.cheaiitkgp@gmail.com', phone: '+91 8112289524', linkedin: 'https://www.linkedin.com/in/nikita-ameriya-b73630315/', photo: '/team/nikita-ameriya.jpeg' },
-    { name: 'Smriti Tubid', role: '', initials: 'ST', email: 'smriti.cheaiitkgp@gmail.com', phone: '+91 6294714528', linkedin: 'https://www.linkedin.com/in/smriti-tubid-8a32972ab/', photo: '/team/smriti-tubid.jpeg' },
-    { name: 'Sundram Kumar', role: '', initials: 'SK', email: 'sundram.cheaiitkgp@gmail.com', phone: '+91 7070038511', linkedin: 'https://www.linkedin.com/in/sundramkumar/', photo: '/team/sundram-kumar.jpeg' },
-    { name: 'Yeshfeen Fatima', role: '', initials: 'YF', email: 'yeshfeenfatima2710@gmail.com', phone: '+91 8467950818', linkedin: 'https://www.linkedin.com/in/yeshfeen-fatima-5ab593334/', photo: '/team/yeshfeen-fatima.jpeg' },
-    { name: 'Yug Birla', role: '', initials: 'YB', email: 'yug.cheaiitkgp@gmail.com', phone: '+91 9303903529', linkedin: 'https://www.linkedin.com/in/yug-birla-4b17b4321/', photo: '/team/yug-birla.jpeg' },
+    { name: 'Nikita Ameriya', role: '', initials: 'NA', email: 'nikitaameriya.cheaiitkgp@gmail.com', phone: '+91 8112289524', linkedin: 'https://www.linkedin.com/in/nikita-ameriya-b73630315/', photo: '/team/nikita-ameriya.webp' },
+    { name: 'Smriti Tubid', role: '', initials: 'ST', email: 'smriti.cheaiitkgp@gmail.com', phone: '+91 6294714528', linkedin: 'https://www.linkedin.com/in/smriti-tubid-8a32972ab/', photo: '/team/smriti-tubid.webp' },
+    { name: 'Sundram Kumar', role: '', initials: 'SK', email: 'sundram.cheaiitkgp@gmail.com', phone: '+91 7070038511', linkedin: 'https://www.linkedin.com/in/sundramkumar/', photo: '/team/sundram-kumar.webp' },
+    { name: 'Yeshfeen Fatima', role: '', initials: 'YF', email: 'yeshfeenfatima2710@gmail.com', phone: '+91 8467950818', linkedin: 'https://www.linkedin.com/in/yeshfeen-fatima-5ab593334/', photo: '/team/yeshfeen-fatima.webp' },
+    { name: 'Yug Birla', role: '', initials: 'YB', email: 'yug.cheaiitkgp@gmail.com', phone: '+91 9303903529', linkedin: 'https://www.linkedin.com/in/yug-birla-4b17b4321/', photo: '/team/yug-birla.webp' },
   ],
   advisors: [
-    { name: 'Ankit Anand', role: '', initials: 'AA', email: 'ankitanand3027@gmail.com', phone: '+91 7413027632', linkedin: 'https://www.linkedin.com/in/ankitanand30/', photo: '/team/ankit-anand.jpeg' },
-    { name: 'Ayush Maurya', role: '', initials: 'AM', email: '', phone: '+91 8918732423', linkedin: 'https://www.linkedin.com/in/ayush-kumar-maurya-065b14290/', photo: '/team/ayush-maurya.jpeg' },
-    { name: 'Naveen G', role: '', initials: 'NG', email: '', phone: '+91 8247365739', linkedin: 'https://www.linkedin.com/in/naveen-g-9785ba323/', photo: '/team/naveen-g.jpeg' },
+    { name: 'Ankit Anand', role: '', initials: 'AA', email: 'ankitanand3027@gmail.com', phone: '+91 7413027632', linkedin: 'https://www.linkedin.com/in/ankitanand30/', photo: '/team/ankit-anand.webp' },
+    { name: 'Ayush Maurya', role: '', initials: 'AM', email: '', phone: '+91 8918732423', linkedin: 'https://www.linkedin.com/in/ayush-kumar-maurya-065b14290/', photo: '/team/ayush-maurya.webp' },
+    { name: 'Naveen G', role: '', initials: 'NG', email: '', phone: '+91 8247365739', linkedin: 'https://www.linkedin.com/in/naveen-g-9785ba323/', photo: '/team/naveen-g.webp' },
     { name: 'Rishi Kushwaha', role: '', initials: 'RK', email: 'rishikushwaha125@gmail.com', phone: '+91 9096909682', linkedin: 'https://www.linkedin.com/in/rishi-kushwaha-2baa88244/' },
-    { name: 'Saakshi Baranwal', role: '', initials: 'SB', email: 'saakshibaranwal@kgpian.iitkgp.ac.in', phone: '+91 8918732423', linkedin: 'https://www.linkedin.com/in/saakshi-baranwal/', photo: '/team/saakshi-baranwal.jpeg' },
+    { name: 'Saakshi Baranwal', role: '', initials: 'SB', email: 'saakshibaranwal@kgpian.iitkgp.ac.in', phone: '+91 8918732423', linkedin: 'https://www.linkedin.com/in/saakshi-baranwal/', photo: '/team/saakshi-baranwal.webp' },
   ],
   profsInCharge: [
-    { name: 'Prof. Koustuv Ray', role: '', initials: 'KR', email: 'koustuv@che.iitkgp.ac.in', phone: '+91-3222-284582', linkedin: 'https://www.linkedin.com/in/koustuvray/', photo: '/team/koustuv-ray.jpeg' },
+    { name: 'Prof. Koustuv Ray', role: '', initials: 'KR', email: 'koustuv@che.iitkgp.ac.in', phone: '+91-3222-284582', linkedin: 'https://www.linkedin.com/in/koustuvray/', photo: '/team/koustuv-ray.webp' },
     { name: 'Prof. Namrata Gaikwad', role: '', initials: 'NG', email: 'dnikita@che.iitkgp.ac.in', phone: '', linkedin: '#' },
-    { name: 'Prof. Nikita Dewangan', role: '', initials: 'ND', email: 'dnikita@che.iitkgp.ac.in', phone: '', linkedin: '#', photo: '/team/nikita-dewangan.jpeg' },
-    { name: 'Prof. Nikita Saxena', role: '', initials: 'NS', email: 'nks@che.iitkgp.ac.in', phone: '', linkedin: 'https://www.linkedin.com/in/ns27/', photo: '/team/nikita-saxena.jpeg' },
+    { name: 'Prof. Nikita Dewangan', role: '', initials: 'ND', email: 'dnikita@che.iitkgp.ac.in', phone: '', linkedin: '#', photo: '/team/nikita-dewangan.webp' },
+    { name: 'Prof. Nikita Saxena', role: '', initials: 'NS', email: 'nks@che.iitkgp.ac.in', phone: '', linkedin: 'https://www.linkedin.com/in/ns27/', photo: '/team/nikita-saxena.webp' },
     { name: 'Prof. Swambabu Varanasi', role: '', initials: 'SV', email: 'swambabu@che.iitkgp.ac.in', phone: '+91-3222-283941 / +91-3222-283942', linkedin: '#' },
   ],
 };
@@ -59,6 +61,7 @@ const useReveal = (threshold = 0.15) => {
 const MemberCard = ({ member, delay = 0 }) => {
   const [revealRef, visible] = useReveal();
   const [flipped, setFlipped] = useState(false);
+  const leaveTimer = useRef(null);
 
   return (
     <div
@@ -67,8 +70,8 @@ const MemberCard = ({ member, delay = 0 }) => {
       style={{ transitionDelay: `${delay}s` }}
     >
       <div
-        onMouseEnter={() => setFlipped(true)}
-        onMouseLeave={() => { clearTimeout(window._leaveTimer); window._leaveTimer = setTimeout(() => setFlipped(false), 100); }}
+        onMouseEnter={() => { clearTimeout(leaveTimer.current); setFlipped(true); }}
+        onMouseLeave={() => { clearTimeout(leaveTimer.current); leaveTimer.current = setTimeout(() => setFlipped(false), 100); }}
         className="member-card glass-panel rounded-2xl relative cursor-pointer h-[280px] w-full"
         style={{
           transform: flipped ? 'perspective(900px) rotateY(180deg)' : 'perspective(900px) rotateY(0deg)',
@@ -160,6 +163,7 @@ const MemberCard = ({ member, delay = 0 }) => {
 const HODSection = () => {
   const [revealRef, visible] = useReveal();
   const [flipped, setFlipped] = useState(false);
+  const hodLeaveTimer = useRef(null);
 
   return (
     <section className="mb-20 w-full">
@@ -179,8 +183,8 @@ const HODSection = () => {
         {/* HOD Card */}
         <div className="flex-shrink-0 w-[270px]">
           <div
-            onMouseEnter={() => setFlipped(true)}
-            onMouseLeave={() => { clearTimeout(window._hodLeaveTimer); window._hodLeaveTimer = setTimeout(() => setFlipped(false), 100); }}
+            onMouseEnter={() => { clearTimeout(hodLeaveTimer.current); setFlipped(true); }}
+            onMouseLeave={() => { clearTimeout(hodLeaveTimer.current); hodLeaveTimer.current = setTimeout(() => setFlipped(false), 100); }}
             className="member-card glass-panel rounded-2xl relative cursor-pointer h-[280px] w-full"
             style={{
               transform: flipped ? 'perspective(900px) rotateY(180deg)' : 'perspective(900px) rotateY(0deg)',
@@ -389,22 +393,7 @@ const TeamsPage = () => {
         }
       `}</style>
 
-      <header className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl z-50 glass-panel rounded-full px-6 py-2.5 flex items-center justify-between shadow-xl">
-        <a href="#" className="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-cyan-100">
-          FUGACITY
-        </a>
-        <nav className="hidden md:flex items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-slate-400">
-          <a href="#" className="hover:text-cyan-200 transition-colors">Home</a>
-          <a href="#" className="hover:text-cyan-200 transition-colors">About</a>
-          <a href="#" className="hover:text-cyan-200 transition-colors">Events</a>
-          <a href="/sponsors" className="hover:text-cyan-200 transition-colors">Sponsors</a>
-          <a href="#" className="hover:text-cyan-200 transition-colors">FAQs</a>
-          <a href="#heads" className="text-cyan-400 hover:text-cyan-200 transition-colors">Teams</a>
-        </nav>
-        <button className="px-6 py-2 rounded-full text-[11px] font-black uppercase tracking-widest bg-cyan-400 hover:bg-cyan-300 text-[#0d1b22] transition-all shadow-[0_0_15px_rgba(34,211,238,0.4)] active:scale-95">
-          Register Now
-        </button>
-      </header>
+      <Navbar />
 
       <div className="relative z-10 flex flex-col pt-28 px-4 w-full max-w-[1400px] mx-auto">
         <section className="flex flex-col justify-center items-center text-center mt-10 mb-20">
@@ -425,41 +414,7 @@ const TeamsPage = () => {
         <TeamSection id="heads" label="HEADS" members={TEAM_DATA.heads} />
       </div>
 
-      <footer className="relative z-10 w-full border-t border-slate-800/60 bg-[#07131a]/95 backdrop-blur-xl py-6 px-8 mt-auto">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-evenly items-center gap-6">
-          <div className="flex items-center gap-5 text-slate-400">
-            <a href="https://www.linkedin.com/company/chemical-engineering-association-iit-kharagpur/" target="_blank" rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400 hover:shadow-[0_0_12px_rgba(34,211,238,0.4)] transition-all" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
-              </svg>
-            </a>
-            <a href="https://www.instagram.com/cheaiitkgp/" target="_blank" rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400 hover:shadow-[0_0_12px_rgba(34,211,238,0.4)] transition-all" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-4 h-4">
-                <rect x="3" y="3" width="18" height="18" rx="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-              </svg>
-            </a>
-            <a href="https://www.facebook.com/cheaiitkgp/" target="_blank" rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center hover:text-cyan-400 hover:border-cyan-400 hover:shadow-[0_0_12px_rgba(34,211,238,0.4)] transition-all" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                <path d="M13.5 21v-7.5h2.5l.5-3h-3V8.5c0-.87.24-1.46 1.49-1.46H16.5V4.36C16.18 4.32 15.1 4.22 13.84 4.22c-2.63 0-4.43 1.6-4.43 4.55V10.5H6.9v3h2.51V21h4.09z" />
-              </svg>
-            </a>
-          </div>
-          <div className="text-right flex flex-col items-end">
-            <h4 className="text-[11px] font-bold text-slate-200 tracking-widest uppercase mb-1.5">Chemical Engineering Department</h4>
-            <p className="text-[11px] text-slate-400 tracking-wider flex items-center gap-2 mt-0.5">
-              <span className="text-cyan-600">✉</span> cheaiitkgp@gmail.com
-            </p>
-          </div>
-        </div>
-        <div className="text-center mt-6 text-[9px] text-slate-600 tracking-widest uppercase">
-          © 2026 Fugacity. All rights reserved.
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
