@@ -15,9 +15,7 @@ import {
 } from "lucide-react";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
-
 import { tiers, partners, contacts, events } from "../data/sponsorsData.js";
-
 import NetworkCanvas from "../components/sponsors/NetworkCanvas.jsx";
 import VaporLetter from "../components/sponsors/VaporLetter.jsx";
 import SectionHeading from "../components/sponsors/SectionHeading.jsx";
@@ -37,16 +35,12 @@ const SponsorsPage = () => {
   const toggleTier = useCallback((t) => {
     setOpenTier((p) => (p === t ? null : t));
   }, []);
-
-
-  return (
+return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#112733] via-[#0e202b] to-[#09151c] text-white font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
       <div className="fixed inset-0 z-0 pointer-events-none">
-  <NetworkCanvas />
-</div>
-      
-       <Navbar />
-
+     <NetworkCanvas />
+    </div>
+      <Navbar />
 
       {/* ── HERO ───────────────────────────────────────────── */}
       <section
@@ -58,8 +52,7 @@ const SponsorsPage = () => {
           animate={heroInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
           className="mb-3"
-        >
-          <span
+        ><span
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full
             bg-[#06141c]/90
             border border-[#06d6a0]/60
@@ -101,9 +94,7 @@ const SponsorsPage = () => {
           ))}
         </motion.div>
       </section>
-
-
-      {/* ── WHY PARTNER ─────────────────────────────────────── */}
+{/* ── WHY PARTNER ─────────────────────────────────────── */}
 <section className="relative z-10 py-8 md:py-20 px-4">
   <div className="max-w-6xl mx-auto">
     <SectionHeading>Why Partner With Fugacity?</SectionHeading>
@@ -136,9 +127,7 @@ const SponsorsPage = () => {
     </div>
   </div>
 </section>
-
-
-      {/* ── SPONSORSHIP BENEFITS ────────────────────────────── */}
+{/* ── SPONSORSHIP BENEFITS ────────────────────────────── */}
 <section className="relative z-10 py-6 md:py-10 px-4">
   <div className="max-w-5xl mx-auto">
     <SectionHeading>Sponsorship Benefits</SectionHeading>
