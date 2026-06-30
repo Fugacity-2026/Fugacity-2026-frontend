@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import MoleculeBackground from '../components/MoleculeBackground';
+import NetworkCanvas from '../components/NetworkCanvas.jsx';
 
 const HomePage = () => {
   const shapesCanvasRef = useRef(null);
@@ -35,14 +36,9 @@ const HomePage = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // NAVIGATION ROUTING SIMULATOR
   const handleNavigation = (e, destination) => {
     e.preventDefault();
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setIsTransitioning(false);
-      console.log(`Mapped to ${destination}`);
-    }, 800);
+    // Doing nothing intentionally
   };
 
   // HERO LAYER SHAPES ENGINE
@@ -189,12 +185,12 @@ const HomePage = () => {
   }, []);
 
   const eventData = [
-    { icon: '🤖', title: 'ML HACKATHON', desc: 'Construct and compile advanced computational frameworks to optimize chemical asset yields.' },
-    { icon: '💻', title: 'CODING & DSA', desc: 'Race against localized constraints to debug logic components and trace sorting arrays.' },
-    { icon: '⚙️', title: 'OPTIMIZEIT', desc: 'Fine-tune mass balances, fluid flows, and loop coefficients to prevent process drop-off.' },
-    { icon: '📊', title: 'CASE STUDY', desc: 'Isolate root failure mechanisms across high-scale industrial plant infrastructure simulations.' },
-    { icon: '🎤', title: 'GUEST LECTURES', desc: 'Interact with global research leaders discussing upcoming shifts in industrial dynamics.' },
-    { icon: '🧪', title: 'CHEM-QUIZ', desc: 'Rapid reactions and conceptual checks across intense trivia timelines testing core kinetics.' }
+    { image: '/e1.png', title: 'Chemical Quiz', desc: 'Construct and compile advanced computational frameworks to optimize chemical asset yields.' },
+    { image: '/e2.png', title: 'Reaction Race', desc: 'Race against localized constraints to debug logic components and trace sorting arrays.' },
+    { image: '/e3.png', title: 'CHEM Case Study', desc: 'Fine-tune mass balances, fluid flows, and loop coefficients to prevent process drop-off.' },
+    { image: '/e4.png', title: 'MOL Modelling', desc: 'Isolate root failure mechanisms across high-scale industrial plant infrastructure simulations.' },
+    { image: '/e5.png', title: 'Code the Problem', desc: 'Interact with global research leaders discussing upcoming shifts in industrial dynamics.' },
+    { image: '/e6.png', title: 'CHEM Workshop', desc: 'Rapid reactions and conceptual checks across intense trivia timelines testing core kinetics.' }
   ];
 
   const extendedEvents = [...eventData, ...eventData];
@@ -203,7 +199,7 @@ const HomePage = () => {
     <div className="relative min-h-screen text-slate-100 font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
       
       {/* 🌟 CELLULAR BACKGROUND MANAGER */}
-      <MoleculeBackground />
+      <NetworkCanvas />
 
       {/* FLASH TRANSITION OVERLAY */}
       <div className={`fixed inset-0 z-[100] pointer-events-none transition-all duration-300 ${isTransitioning ? 'opacity-100 backdrop-blur-xl bg-cyan-950/30' : 'opacity-0 backdrop-blur-none bg-transparent'}`}>
@@ -244,36 +240,40 @@ const HomePage = () => {
       <Navbar />
 
       {/* CENTRAL BOUNDED CONTAINER COMPONENT */}
-      <div className="relative z-10 flex flex-col pt-24 px-4 w-full max-w-[1340px] mx-auto items-center">
+      {/* RESPONSIVE EDIT: Fluid horizontal gutters and adaptable layout margins prevent component dismantling */}
+      <div className="relative z-10 flex flex-col pt-20 md:pt-24 px-4 sm:px-6 lg:px-8 w-full max-w-[1340px] mx-auto items-center">
 
         {/* HERO SECTION */}
-        <section id="home" className="flex flex-col justify-center items-center text-center mt-6 mb-12 w-full">
-          <p className="text-[10px] md:text-xs font-bold text-cyan-400 uppercase tracking-[0.35em] mb-5 drop-shadow-[0_0_12px_rgba(34,211,238,0.5)]">
+        <section id="home" className="flex flex-col justify-center items-center text-center mt-4 sm:mt-6 mb-10 md:mb-12 w-full">
+          <p className="text-[9px] sm:text-[10px] md:text-xs font-bold text-cyan-400 uppercase tracking-[0.25em] sm:tracking-[0.35em] mb-4 sm:mb-5 drop-shadow-[0_0_12px_rgba(34,211,238,0.5)]">
              Chemical Engineering Association
           </p>
           
-          <div className="relative py-2 mb-3 select-none flex items-center justify-center">
-            <div className="absolute w-[110%] h-[120%] bg-cyan-500/15 rounded-full filter blur-3xl animate-subtle-pulse pointer-events-none"></div>
+          <div className="relative py-1 sm:py-2 mb-2 sm:mb-3 select-none flex items-center justify-center w-full">
+            <div className="absolute w-[90%] sm:w-[110%] h-[120%] bg-cyan-500/15 rounded-full filter blur-3xl animate-subtle-pulse pointer-events-none"></div>
             
+            {/* RESPONSIVE EDIT: Gradual typography steps from mobile text-3xl to massive fluid viewports */}
             <h1 
               ref={titleRef}
-              className="text-5xl md:text-[5.8rem] leading-none font-black tracking-wider text-white select-none filter drop-shadow-[0_0_35px_rgba(34,211,238,0.8)] animate-vapor-reveal px-2"
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.8rem] leading-none font-black tracking-wider text-white select-none filter drop-shadow-[0_0_35px_rgba(34,211,238,0.8)] animate-vapor-reveal px-2 break-words"
             >
               FUGACITY '26
             </h1>
           </div>
 
-          <p className="mt-4 text-[10px] md:text-xs text-slate-400 uppercase tracking-[0.25em] font-medium font-mono">
+          <p className="mt-2 sm:mt-4 text-[9px] sm:text-[10px] md:text-xs text-slate-400 uppercase tracking-[0.18em] sm:tracking-[0.25em] font-medium font-mono">
             Where Chemistry Meets Innovation
           </p>
 
           {/* INSTANTIATED SHAPES ELEMENT FIELD */}
+          {/* RESPONSIVE EDIT: Added relative scaling rules to keep custom canvas rendering fluid inside miniature screens */}
           <div className="w-full max-w-[750px] overflow-hidden mt-6 opacity-0 animate-vapor-reveal" style={{ animationDelay: '0.3s' }}>
-            <canvas ref={shapesCanvasRef} className="mx-auto block cursor-default" />
+            <canvas ref={shapesCanvasRef} className="mx-auto block cursor-default max-w-full h-auto" />
           </div>
 
           {/* METRIC TILES GRID CONTAINER */}
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 mt-10 w-full">
+          {/* RESPONSIVE EDIT: Grid mapping architecture transitions seamlessly from standard mobile double grids into fluid desktop flex lines */}
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center items-center gap-5 sm:gap-8 md:gap-16 mt-8 sm:mt-10 w-full max-w-sm sm:max-w-none px-2 sm:px-0">
             {[
               { val: '10+', label: 'EVENTS' },
               { val: '30+', label: 'COLLEGES' },
@@ -281,69 +281,80 @@ const HomePage = () => {
               { val: '3,000+', label: 'SOCIAL REACH' },
             ].map((stat, idx) => (
               <div key={idx} className="flex flex-col items-center group cursor-default">
-                <div className={`text-2xl md:text-3xl font-black tracking-tight transition-transform ${stat.gradient ? 'text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500 drop-shadow-[0_0_10px_rgba(245,158,11,0.3)]' : 'text-white'}`}>
+                <div className={`text-xl sm:text-2xl md:text-3xl font-black tracking-tight transition-transform ${stat.gradient ? 'text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500 drop-shadow-[0_0_10px_rgba(245,158,11,0.3)]' : 'text-white'}`}>
                   {stat.val}
                 </div>
-                <div className="text-[9px] text-cyan-400 uppercase tracking-widest font-bold mt-1 tracking-[0.15em] drop-shadow-[0_0_6px_rgba(34,211,238,0.3)]">{stat.label}</div>
+                <div className="text-[8px] sm:text-[9px] text-cyan-400 uppercase tracking-widest font-bold mt-1 tracking-[0.15em] drop-shadow-[0_0_6px_rgba(34,211,238,0.3)]">{stat.label}</div>
               </div>
             ))}
           </div>
         </section>
 
         {/* ABOUT PANEL */}
-        <section id="about" className="mb-14 w-full max-w-4xl">
-          <div className="bg-[#0b1a24]/90 backdrop-blur-xl border border-cyan-400/30 p-6 md:p-8 rounded-xl text-center relative shadow-[0_0_30px_rgba(34,211,238,0.1)]">
-            <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-400 mb-3 drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]">About Brief</h2>
-            <p className="text-slate-300 text-xs md:text-sm leading-relaxed max-w-3xl mx-auto font-light">
+        {/* RESPONSIVE EDIT: Fluid text alignment structures and container edge offsets for smooth tablet/mobile reading */}
+        <section id="about" className="mb-12 sm:mb-14 w-full max-w-4xl px-1 sm:px-0">
+          <div className="bg-[#0b1a24]/90 backdrop-blur-xl border border-cyan-400/30 p-5 sm:p-6 md:p-8 rounded-xl text-center relative shadow-[0_0_30px_rgba(34,211,238,0.1)]">
+            <h2 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-cyan-400 mb-3 drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]">About Brief</h2>
+            <p className="text-slate-300 text-[11px] sm:text-xs md:text-sm leading-relaxed max-w-3xl mx-auto font-light">
               Fugacity is the Chemical Engineering Department fest inviting everyone to short-circuit norms. Solve for numerous unique solution pathways and operationalize process control logic matrices to optimize outcomes across localized systems—designed specifically to check for specialized engineering domains.
             </p>
           </div>
         </section>
 
         {/* FEATURED EVENTS PANEL */}
-        <section id="events" className="mb-16 w-full overflow-hidden flex flex-col items-center">
-          <div className="text-center mb-8">
-            <h2 className="text-xl font-black tracking-widest text-white uppercase drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">Featured Events</h2>
+        <section id="events" className="mb-14 sm:mb-16 w-full overflow-hidden flex flex-col items-center">
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-lg sm:text-xl font-black tracking-widest text-white uppercase drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">Featured Events</h2>
           </div>
 
           <div 
             ref={scrollContainerRef}
-            className="flex gap-5 w-full overflow-x-auto hide-scroll-x cursor-grab active:cursor-grabbing pb-6 px-4"
+            className="flex gap-4 sm:gap-5 w-full overflow-x-auto hide-scroll-x cursor-grab active:cursor-grabbing pb-6 px-4 sm:px-6 md:px-8"
             style={{ WebkitOverflowScrolling: 'touch' }}
           >
             {extendedEvents.map((event, idx) => (
               <div 
                 key={idx} 
-                onClick={(e) => handleNavigation(e, `/events/${event.title.toLowerCase().replace(/\s/g, '-')}`)}
-                className="group flex-shrink-0 w-[270px] md:w-[290px] p-6 rounded-xl glass-panel border-cyan-500/30 hover:border-cyan-400 bg-[#0c1c28]/95 hover:bg-[#112738] transition-all duration-300 flex flex-col items-center text-center cursor-pointer relative top-0 hover:-top-1.5 shadow-[0_0_20px_rgba(34,211,238,0.08)] hover:shadow-[0_0_30px_rgba(34,211,238,0.25)]"
+                onClick={(e) => handleNavigation(e, '#')}
+                className="group flex-shrink-0 w-[250px] sm:w-[270px] md:w-[290px] p-5 sm:p-6 rounded-xl glass-panel border-cyan-500/30 bg-[#0c1c28]/95 flex flex-col items-center text-center relative shadow-[0_0_20px_rgba(34,211,238,0.08)]"
               >
-                <div className="w-14 h-14 mb-4 rounded-xl bg-[#061118] border border-cyan-400/50 flex items-center justify-center text-xl shadow-[0_0_20px_rgba(34,211,238,0.35)] group-hover:shadow-[0_0_25px_rgba(34,211,238,0.6)] group-hover:scale-105 transition-all text-cyan-400">
-                  {event.icon}
+                <div className="w-12 h-12 sm:w-14 sm:h-14 mb-4 rounded-xl bg-[#061118] border border-cyan-400/50 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={event.image} 
+                    alt={event.title} 
+                    className="w-full h-full object-cover" 
+                  />
                 </div>
-                <h3 className="text-base font-bold text-white tracking-wide mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.15)]">{event.title}</h3>
-                <p className="text-slate-400 text-[11px] leading-relaxed mb-6 flex-grow">{event.desc}</p>
-                <button className="text-[10px] font-bold uppercase tracking-widest text-cyan-400 group-hover:text-cyan-300 transition-colors flex items-center gap-1.5 drop-shadow-[0_0_5px_rgba(34,211,238,0.3)]">
-                  View More <span className="text-sm transition-transform group-hover:translate-x-1.5">→</span>
-                </button>
+                <h3 className="text-sm sm:text-base font-bold text-white tracking-wide mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.15)]">{event.title}</h3>
+                <p className="text-slate-400 text-[10px] sm:text-[11px] leading-relaxed flex-grow">{event.desc}</p>
               </div>
             ))}
+          </div>
+
+          {/* INFORMATIONAL DISCLAIMER LINE */}
+          {/* RESPONSIVE EDIT: Swapped explicit fixed viewport size parameters for balanced tracking scales */}
+          <div className="mt-8 text-center px-4 w-full">
+            <p className="text-[10px] sm:text-xs md:text-sm font-sans font-black tracking-widest text-white uppercase drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+              for more details and information go to the events page
+            </p>
           </div>
         </section>
 
         {/* COUNTDOWN DISPLAY */}
-        <section id="countdown" className="mb-16 max-w-4xl w-full">
-          <div className="bg-[#0c1c28]/95 backdrop-blur-xl border border-cyan-400/40 rounded-xl p-8 flex flex-col items-center w-full shadow-[0_0_35px_rgba(34,211,238,0.15)] relative">
+        {/* RESPONSIVE EDIT: Tuned container grid layouts and dynamic pad rules to keep time modules perfectly proportioned */}
+        <section id="countdown" className="mb-14 sm:mb-16 max-w-4xl w-full px-1 sm:px-0">
+          <div className="bg-[#0c1c28]/95 backdrop-blur-xl border border-cyan-400/40 rounded-xl p-5 sm:p-6 md:p-8 flex flex-col items-center w-full shadow-[0_0_35px_rgba(34,211,238,0.15)] relative">
             
             <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_15px_3px_#22d3ee]"></div>
             
-            <h2 className="text-[11px] font-black uppercase tracking-[0.3em] text-cyan-400 mb-1 drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]">
+            <h2 className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.3em] text-cyan-400 mb-1 drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]">
               Event Countdown
             </h2>
-            <p className="text-[11px] font-mono text-slate-300 font-bold tracking-wider mb-8 drop-shadow-[0_0_5px_rgba(255,255,255,0.1)]">
-              30 August 2026 &middot; IIT Kharagpur
+            <p className="text-[10px] sm:text-[11px] font-mono text-slate-300 font-bold tracking-wider mb-6 sm:mb-8 text-center drop-shadow-[0_0_5px_rgba(255,255,255,0.1)]">
+              30th August 2026 &middot; IIT Kharagpur
             </p>
             
-            <div className="grid grid-cols-4 gap-3 sm:gap-6 w-full max-w-xl">
+            <div className="grid grid-cols-4 gap-2.5 sm:gap-4 md:gap-6 w-full max-w-xl">
               {[
                 { value: timeLeft.days, label: 'DAYS' },
                 { value: timeLeft.hours, label: 'HOURS' },
@@ -351,12 +362,12 @@ const HomePage = () => {
                 { value: timeLeft.seconds, label: 'SECS' }
               ].map((item, index) => (
                 <div key={index} className="flex flex-col items-center">
-                  <div className="w-full aspect-square max-h-24 bg-[#050e14] border border-cyan-400/50 rounded-xl flex items-center justify-center shadow-[0_0_25px_rgba(34,211,238,0.22),_inset_0_0_10px_rgba(34,211,238,0.1)] mb-2.5">
-                    <span className="text-2xl sm:text-4xl font-black text-white font-mono select-none filter drop-shadow-[0_0_10px_rgba(34,211,238,0.65)]">
+                  <div className="w-full aspect-square bg-[#050e14] border border-cyan-400/50 rounded-lg sm:rounded-xl flex items-center justify-center shadow-[0_0_25px_rgba(34,211,238,0.22),_inset_0_0_10px_rgba(34,211,238,0.1)] mb-1.5 sm:mb-2.5">
+                    <span className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black text-white font-mono select-none filter drop-shadow-[0_0_10px_rgba(34,211,238,0.65)]">
                       {String(item.value).padStart(2, '0')}
                     </span>
                   </div>
-                  <span className="text-[9px] font-black text-cyan-400 tracking-widest font-sans drop-shadow-[0_0_5px_rgba(34,211,238,0.3)]">
+                  <span className="text-[7px] sm:text-[8px] md:text-[9px] font-black text-cyan-400 tracking-widest font-sans drop-shadow-[0_0_5px_rgba(34,211,238,0.3)]">
                     {item.label}
                   </span>
                 </div>
@@ -366,10 +377,10 @@ const HomePage = () => {
         </section>
 
         {/* FAQ SECTIONS MODULE */}
-        <section id="faqs" className="glass-panel border-cyan-500/30 rounded-xl p-6 max-w-4xl w-full mb-16 shadow-[0_0_25px_rgba(34,211,238,0.08)]">
+        {/* RESPONSIVE EDIT: Adapted title boundaries and tracking width rules to safely containerize multi-line labels */}
+        <section id="faqs" className="glass-panel border-cyan-500/30 rounded-xl p-4 sm:p-6 max-w-4xl w-full mb-16 shadow-[0_0_25px_rgba(34,211,238,0.08)] px-3 sm:px-6">
           <div className="flex justify-between items-end border-b border-slate-700/60 pb-3 mb-4">
-             <h2 className="text-base font-bold tracking-wider text-white">FAQ</h2>
-             <button className="text-[9px] uppercase tracking-widest text-cyan-400 hover:text-white transition-colors">View More →</button>
+              <h2 className="text-sm sm:text-base font-bold tracking-wider text-white">FAQs</h2>
           </div>
           
           <div className="space-y-2.5">
@@ -382,13 +393,17 @@ const HomePage = () => {
               <div key={index} className="bg-[#061219]/90 rounded-lg overflow-hidden border border-slate-800 hover:border-cyan-500/30 transition-colors">
                 <button
                   onClick={() => setActiveFaq(activeFaq === index ? null : index)}
-                  className="w-full text-left px-4 py-3 flex justify-between items-center focus:outline-none"
+                  className="w-full text-left px-3 sm:px-4 py-3 flex justify-between items-center gap-3 focus:outline-none"
                 >
-                  <span className="text-white text-xs font-medium tracking-wide">{faq.q}</span>
-                  <span className="text-cyan-400 text-sm">{activeFaq === index ? '−' : '＋'}</span>
+                  <span className="text-white text-[11px] sm:text-xs font-medium tracking-wide pr-2">{faq.q}</span>
+                  <span className="text-cyan-400 text-xs sm:text-sm flex-shrink-0">{activeFaq === index ? '−' : '＋'}</span>
                 </button>
-                <div className={`transition-all duration-300 ease-in-out overflow-hidden ${activeFaq === index ? 'max-h-24' : 'max-h-0'}`}>
-                  <p className="px-4 pb-3 text-cyan-100/70 text-[11px] leading-relaxed border-t border-slate-800/60 pt-2">
+                <div 
+                  className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                    activeFaq === index ? 'max-h-[140px] sm:max-h-24 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <p className="px-3 sm:px-4 pb-3 text-cyan-100/70 text-[10px] sm:text-[11px] leading-relaxed border-t border-slate-800/60 pt-2">
                     {faq.a}
                   </p>
                 </div>
