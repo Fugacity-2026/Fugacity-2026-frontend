@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
 import HomePage from './pages/HomePage';
 import FlaskIntro from './components/FlaskIntro';
 import TeamsPage from './pages/TeamsPage';
 import MolCursor from './components/MolCursor';
-import SponsorsPage from "./pages/SponsorsPage";
-import EventsPage from './pages/EventsPage'; 
+import SponsorsPage from './pages/SponsorsPage';
+import EventsPage from './pages/EventsPage';
 import FeedbackPage from './pages/FeedbackPage';
 import AboutPage from './pages/AboutPage';
 
+import ScrollTop from './components/sponsors/ScrollTop';
 const App = () => {
-  const [introComplete, setIntroComplete] = useState(false);
-  const [fadeIn, setFadeIn] = useState(false);
+  const [introComplete, setIntroComplete] = useState(true);
+  const [fadeIn, setFadeIn] = useState(true);
 
   const handleIntroComplete = () => {
     setIntroComplete(true);
@@ -28,6 +30,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+    <ScrollTop />
       {/* Custom molecular cursor — always visible */}
       <MolCursor />
        {!introComplete && (
