@@ -9,15 +9,14 @@ const NetworkCanvas = () => {
     const ctx = canvas.getContext('2d');
     let animationFrameId;
     let particles = [];
-    const particleCount = 150;
     const mouse = { x: null, y: null, radius: 180 };
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    // Responsive particle count: scales with screen area instead of a flat constant.
+    // Caps at 150 so desktop/large-screen behavior stays identical to before.
+    const getParticleCount = () => {
+      const area = canvas.width * canvas.height;
+      return Math.min(150, Math.max(30, Math.floor(area / 12000)));
     };
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
 
     class Particle {
       constructor() {
@@ -79,22 +78,55 @@ const NetworkCanvas = () => {
       }
     };
 
-    const init = () => { particles = Array.from({ length: particleCount }, () => new Particle()); };
+    const init = () => {
+      particles = Array.from({ length: getParticleCount() }, () => new Particle());
+    };
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init(); // re-init so particle density adjusts on resize/rotation too
+    };
 
     const animate = () => {
-      ctx.fillStyle = "rgba(14, 33, 44, 0.15)";
+      ctx.fillStyle = 'rgba(14, 33, 44, 0.15)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
       drawLattice();
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    const handleMouseMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
-    const handleMouseLeave = () => { mouse.x = null; mouse.y = null; };
+    const handleMouseMove = (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+    const handleMouseLeave = () => {
+      mouse.x = null;
+      mouse.y = null;
+    };
 
+    // Touch support so the interactive effect also works on phones/tablets
+    const handleTouchMove = (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    };
+    const handleTouchEnd = () => {
+      mouse.x = null;
+      mouse.y = null;
+    };
+
+    window.addEventListener('resize', resizeCanvas);
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseleave', handleMouseLeave);
-    init();
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd);
+
+    resizeCanvas(); // sets initial size AND calls init() with correct particle count
     animate();
 
     return () => {
@@ -102,6 +134,8 @@ const NetworkCanvas = () => {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
     };
   }, []);
 
