@@ -1,6 +1,8 @@
 import  { useState } from "react";
 import './FeedbackPage.css';
 import MoleculeBackground from '../components/MoleculeBackground';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 
 /**
@@ -203,8 +205,10 @@ export default function FugacityFeedbackForm() {
   }
 
   return (
+    <>
+    <MoleculeBackground />
+    <Navbar />
     <div className="fug-page">
-      <MoleculeBackground />
       <form className="fug-card" onSubmit={handleSubmit}>
         <header className="form-header">
           <p className="eyebrow">Dept. of Chemical Engineering &middot; Annual Tech Fest</p>
@@ -383,6 +387,8 @@ export default function FugacityFeedbackForm() {
         </div>
       </form>
     </div>
+    <Footer />
+    </>
   );
 }
 
