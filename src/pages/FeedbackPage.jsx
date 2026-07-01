@@ -1,6 +1,11 @@
 import  { useState } from "react";
 import './FeedbackPage.css';
 import MoleculeBackground from '../components/MoleculeBackground';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import MolCursor from "../components/MolCursor";
+import NetworkCanvas from "../components/NetworkCanvas";
+import PhaseTransition from "../components/PhaseTransition";
 
 
 /**
@@ -203,8 +208,12 @@ export default function FugacityFeedbackForm() {
   }
 
   return (
+    <>
+    <NetworkCanvas /> 
+    
+    <Navbar />
+    <p className="top-space"></p>
     <div className="fug-page">
-      <MoleculeBackground />
       <form className="fug-card" onSubmit={handleSubmit}>
         <header className="form-header">
           <p className="eyebrow">Dept. of Chemical Engineering &middot; Annual Tech Fest</p>
@@ -227,13 +236,13 @@ export default function FugacityFeedbackForm() {
               className="text-input"
               value={form.name}
               onChange={(e) => update("name", e.target.value)}
-              placeholder="Your full name"
+              placeholder="Your Full Name"
             />
           </div>
 
           <div className="field">
             <label className="field-label" htmlFor="email">
-              Registered email <span className="required-mark">*</span>
+              Registered E-mail <span className="required-mark">*</span>
             </label>
             <input
               id="email"
@@ -272,7 +281,7 @@ export default function FugacityFeedbackForm() {
             {form.category === "Other college student" && (
               <div className="field conditional-field">
                 <label className="field-label" htmlFor="collegeName">
-                  Name of your college <span className="required-mark">*</span>
+                  Name of your College <span className="required-mark">*</span>
                 </label>
                 <input
                   id="collegeName"
@@ -383,6 +392,8 @@ export default function FugacityFeedbackForm() {
         </div>
       </form>
     </div>
+    <Footer />
+    </>
   );
 }
 
