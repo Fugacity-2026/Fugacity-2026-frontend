@@ -236,13 +236,13 @@ export default function FugacityFeedbackForm() {
               className="text-input"
               value={form.name}
               onChange={(e) => update("name", e.target.value)}
-              placeholder="Your full name"
+              placeholder="Your Full Name"
             />
           </div>
 
           <div className="field">
             <label className="field-label" htmlFor="email">
-              Registered email <span className="required-mark">*</span>
+              Registered E-mail <span className="required-mark">*</span>
             </label>
             <input
               id="email"
@@ -281,7 +281,7 @@ export default function FugacityFeedbackForm() {
             {form.category === "Other college student" && (
               <div className="field conditional-field">
                 <label className="field-label" htmlFor="collegeName">
-                  Name of your college <span className="required-mark">*</span>
+                  Name of your College <span className="required-mark">*</span>
                 </label>
                 <input
                   id="collegeName"
