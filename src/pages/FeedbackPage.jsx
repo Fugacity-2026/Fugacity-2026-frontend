@@ -3,6 +3,9 @@ import './FeedbackPage.css';
 import MoleculeBackground from '../components/MoleculeBackground';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import MolCursor from "../components/MolCursor";
+import NetworkCanvas from "../components/NetworkCanvas";
+import PhaseTransition from "../components/PhaseTransition";
 
 
 /**
@@ -206,8 +209,10 @@ export default function FugacityFeedbackForm() {
 
   return (
     <>
-    <MoleculeBackground />
+    <NetworkCanvas /> 
+    
     <Navbar />
+    <p className="top-space"></p>
     <div className="fug-page">
       <form className="fug-card" onSubmit={handleSubmit}>
         <header className="form-header">

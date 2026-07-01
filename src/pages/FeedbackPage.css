@@ -9,15 +9,19 @@
   justify-content: center;
   padding: 56px 16px;
   box-sizing: border-box;
+  position: relative;
+  z-index: 10;
 }
 
 .fug-card {
-  background: #f4f1e8;
+  background: #0b1a24;
   width: 100%;
   max-width: 680px;
   border-radius: 4px;
   padding: 44px 40px;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+  border: rgba(34, 211, 238, 0.28) 0.1px solid;
+  /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); */
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.1);
 }
 
 .eyebrow {
@@ -33,13 +37,13 @@
   margin: 0 0 10px 0;
   font-size: 30px;
   font-weight: 600;
-  color: #0e2a2e;
+  color: #ffffff;
   letter-spacing: -0.01em;
 }
 
 .subhead {
   margin: 0 0 0 0;
-  color: #4a5a52;
+  color: #738b7f;
   font-size: 14px;
   line-height: 1.6;
   max-width: 480px;
@@ -60,7 +64,7 @@
   font-size: 11px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #2d6a4f;
+  color: #51bb8b;
   margin: 0 0 18px 0;
 }
 
@@ -75,7 +79,7 @@
   display: block;
   font-size: 14px;
   font-weight: 500;
-  color: #1a1a1a;
+  /* color: #1a1a1a; */
   margin-bottom: 9px;
   line-height: 1.4;
 }
@@ -258,7 +262,7 @@
 .reset-btn {
   padding: 14px 22px;
   background: transparent;
-  color: #4a5a52;
+  color: #bce5d1;
   font-family: "IBM Plex Sans", Verdana, sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -273,6 +277,7 @@
 .reset-btn:hover {
   background: #eae6d9;
   border-color: #b8af96;
+  color: #0e2a2e;
 }
 
 .success-reset {
@@ -314,4 +319,7 @@
   .reset-btn {
     width: 100%;
   }
+}
+.top-space{
+  margin: 20px;
 }
