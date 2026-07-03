@@ -15,7 +15,7 @@ const NetworkCanvas = () => {
     // Caps at 150 so desktop/large-screen behavior stays identical to before.
     const getParticleCount = () => {
       const area = canvas.width * canvas.height;
-      return Math.min(150, Math.max(30, Math.floor(area / 12000)));
+      return Math.min(180, Math.max(50, Math.floor(area / 8000)));
     };
 
     class Particle {
