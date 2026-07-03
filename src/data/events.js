@@ -19,7 +19,7 @@ export const currentEvents = [
       "Judge's decision is final",
       "Negative marking in Round 1"
     ],
-    image:'/e1.png',
+    image:'/quizbowl.png',
     icon: "⚗️",
     color: "#4ee2ff",
     phase: "liquid"
@@ -27,7 +27,7 @@ export const currentEvents = [
   {
     id: 2,
     name: "REACTION RACE",
-    category: "Lab",
+    category: "Entertainment",
     type: "Team",
     teamSize: "2",
     rounds: 2,
@@ -44,7 +44,7 @@ export const currentEvents = [
       "Spills and accidents lead to disqualification",
       "All equipment provided by organizers"
     ],
-    image:'/e2.png',
+    image:'/Chem-Intelligence.png',
     icon: "🧪",
     color: "#F59E0B",
     phase: "gas"
@@ -52,7 +52,7 @@ export const currentEvents = [
   {
     id: 3,
     name: "CHEM CASE STUDY",
-    category: "Analytical",
+    category: "Presentation",
     type: "Team",
     teamSize: "3-4",
     rounds: 2,
@@ -69,7 +69,7 @@ export const currentEvents = [
       "No internet during case analysis",
       "Originality and feasibility judged"
     ],
-    image:"/e3.png",
+    image:"/OptimiseIT.png",
     icon: "📊",
     color: "#4ee2ff",
     phase: "solid"
@@ -94,7 +94,7 @@ export const currentEvents = [
       "3-hour time limit",
       "Judged on accuracy and creativity"
     ],
-    image:'/e4.png',
+    image:'/paper.png',
     icon: "🔬",
     color: "#F59E0B",
     phase: "plasma"
@@ -120,7 +120,7 @@ export const currentEvents = [
       "No calculators allowed",
       "Judge's decision is final"
     ],
-    image:"/e5.png",
+    image:"/coding.png",
     icon: "💻",
     color: "#4ee2ff",
     phase: "liquid"
@@ -145,7 +145,7 @@ export const currentEvents = [
       "All stages mandatory",
       "offline"
     ],
-    image:"/e6.png",
+    image:"/work.png",
     icon: "🗓️",
     color: "#F59E0B",
     phase:'gas'
@@ -175,7 +175,7 @@ export const previousEvents = [
       "No calculators allowed",
       "Judge's decision is final"
     ],
-    image:"/image1.jpg",
+    image:"/image1.png",
     icon: "💻",
     color: "#7a8fa6",
     phase: "freeze",
@@ -201,7 +201,7 @@ export const previousEvents = [
       "Round 2 Venue: New Anne Building, IIT Kharagpur",
       "Live Audience Quiz Show"
     ],
-    image:"/image2.png",
+    image:"/quizbowl.png",
     icon: "❓",
     color: "#7a8fa6",
     phase: "freeze",
@@ -228,7 +228,7 @@ export const previousEvents = [
       "Round 1 Venue: New Anne Building, IIT Kharagpur",
       "Judge's decision is final"
     ],
-    image:"/image3.png",
+    image:"/chem-e-challenge.png",
     icon: "🎬",
     color: "#7a8fa6",
     phase: "freeze",
@@ -255,7 +255,7 @@ export const previousEvents = [
       "Round 2 Venue: New Anne Building, IIT Kharagpur",
       "Judge's decision is final"
     ],
-    image:"/image4.png",
+    image:"/OptimiseIT.png",
     icon: "📜",
     color: "#7a8fa6",
     phase: "freeze",
@@ -280,11 +280,11 @@ export const previousEvents = [
       "Judge's decision is final",
       "Cheating is strictly prohibited"
     ],
-    image:"/image5.png",
+    image:"/Reverse BrainStorming.png",
     icon: "🧩",
     color: "#7a8fa6",
     phase: "freeze",
-    year: "2025"
+    year: "2023"
   },
   {
     id: 106,
@@ -306,11 +306,11 @@ export const previousEvents = [
       "Judge's decision is final",
       "No AI images allowed"
     ],
-      image:"/image6.png",
+      image:"/Photography Challenge.png",
     icon: "📸",
     color: "#7a8fa6",
     phase: "freeze",
-    year: "2025"
+    year: "2023"
   },
   {
     id: 107,
@@ -332,11 +332,11 @@ export const previousEvents = [
       "Original work only",
       "Concept explanation required"
     ],
-    image:"/image7.png",
+    image:"/Chem-Meme Challenge.png",
     icon: "🎬",
     color: "#7a8fa6",
     phase: "freeze",
-    year: "2024"
+    year: "2023"
   },
   {
     id: 108,
@@ -358,11 +358,11 @@ export const previousEvents = [
       "All stages mandatory",
       "offline"
     ],
-      image:"/image8.png",
+      image:"/Aspen Workshop.png",
     icon: "🗓️",
     color: "#7a8fa6",
     phase: "freeze",
-    year: "2024"
+    year: "2023"
   },
   {
     id: 109,
@@ -382,11 +382,11 @@ export const previousEvents = [
       "Maximum team of 4",
       "offline"
     ],
-    image:"/image9.png",
+    image:"/Chem Engage.png",
     icon: "📊",
     color: "#7a8fa6",
     phase: "freeze",
-    year: "2024"
+    year: "2023"
   },
   {
     id: 110,
@@ -407,10 +407,476 @@ export const previousEvents = [
       "No smart gadgets allowed",
       "Registration Mandatory."
     ],
-    image:"/image10.png",
+    image:"/Chem-Intelligence.png",
+    icon: "🎯",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2023"
+  },
+{
+    id: 111,
+    name: "CHEMICAL QUIZ",
+    category: "Quiz",
+    type: "Individual",
+    teamSize: "1",
+    rounds: 1,
+    prize: "₹6,000",
+    description: "Get ready to put your chemical expertise to the test with ChemQuiz!",
+    description2:"From fundamental principles to cutting-edge research, challenge yourself and compete against fellow enthusiasts to prove your mastery of the subject. Join us for a thrilling and intellectually stimulating event that promises fun, learning, and friendly competition!",
+    details: [
+      "Platform:Unstop",
+      "Eligibility: UG & PG students"
+    ],
+    rules: [
+      "Individual Participation",
+      "Quiz to be completed within time limit",
+      "Registration Mandatory."
+    ],
+    image:"/chemicalquiz24.png",
     icon: "🎯",
     color: "#7a8fa6",
     phase: "freeze",
     year: "2024"
-  }
+  },
+  {
+    id: 112,
+    name: "CHEM MEME",
+    category: "Entertainment",
+    type: "Individual",
+    teamSize: "1",
+    rounds: 1,
+    prize: "₹7,000",
+    description: "Inject some humor into chemistry with our Chem Meme Challenge!",
+    description2:" Get creative and concoct hilarious memes that blend scientific concepts with comedy. From puns to visual gags, let your imagination run wild as you craft memes that will leave everyone laughing. Let us see who can create the ultimate chemistry meme masterpiece!",
+    details: [
+      "Any medium: pencil, paint, digital",
+      "Must incorporate science concepts",
+      "Submission: Google Form"
+    ],
+    rules: [
+      "registration must on Unstop",
+      "Original work only",
+      "Concept explanation required"
+    ],
+    image:"/chemmeme.png",
+    icon: "🎬",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2024"
+  },
+  {
+    id: 113,
+    name: "Paper Presentation",
+    category: "Presentation",
+    type: "Team",
+    teamSize: "4",
+    rounds: 1,
+    prize: "₹15,000",
+    description: "Step into the forefront of scientific inquiry with our Paper Presentation Showcase!",
+    description2:"This event brings together researchers, scholars, and enthusiasts to unveil their latest findings and insights in the field of chemistry.Join us for an enlightening journey through the pages of discovery at our Paper Presentation Showcase!",
+    details: [
+      'Theme: Innovation',
+      "Round 1: AN ROY Seminar Hall, IIT Kharagpur"
+    ],
+    rules: [
+      "Eligibility: UG & PG Students",
+      "Judge's decision is final",
+      "Registration must at Unstop"
+    ],
+    image:"/paper.png",
+    icon: "📜",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2024"
+  },
+   {
+    id: 114,
+    name: "CROSS-WORD",
+    category: "Strategy",
+    type: "Individual",
+    teamSize: "1",
+    rounds: 1,
+    prize: "₹7,000",
+    description: "Calling all puzzle enthusiasts and chemical buffs alike!",
+    description2:"Dive into the world of chemical terminology and concepts with our Chem Crosswords challenge. Test your knowledge and vocabulary as you solve clues related to elements, compounds, reactions, and more. Join us for a brain-teasing adventure and see if you can conquer the chemical crossword grid!",
+    details: [
+      "Venue: New Annex Building, IIT Kharagpur",
+      "Eligibility: UG & PG students"
+    ],
+    rules: [
+      "Individual Participation",
+      "No smart gadgets allowed",
+      "Registration Mandatory at Unstop"
+    ],
+    image:"/puzzle.png",
+    icon: "🎯",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2024"
+  },
+  {
+    id: 115,
+    name: "CODE THE PROBLEM",
+    category: "Coding",
+    type: "INDIVIDUAL",
+    teamSize: "1",
+    rounds: 1,
+    prize: "₹10,000",
+    description: "Join us and rewrite the future of chemical, one line of code at a time!",
+    description2:"Embark on a journey of interdisciplinary exploration with Code the Problem. Here, participants bridge the realms of chemistry and programming by tackling real-world chemical challenges through code. Dive into algorithmic solutions for molecular modeling, reaction kinetics, and more. Unleash your coding prowess and analytical thinking to revolutionize chemical problem-solving.",
+    details: [
+      "Eligibility: UG & PG Students",
+      "Venue:AN ROY Seminar Hall, IIT Kharagpur"],
+     
+    rules: [
+      "Individual Participation",
+      "No calculators allowed",
+      "Judge's decision is final"
+    ],
+    image:"/code.png",
+    icon: "💻",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2024"
+  },
+   {
+    id: 116,
+    name: "Machine Learning Hackathon",
+    category: "Coding",
+    type: "INDIVIDUAL",
+    teamSize: "1",
+    rounds: 1,
+    prize: "₹12,000",
+    description: "Join us for an exhilarating journey where chemical meets cutting-edge technology!",
+    description2:"Dive into the intersection of chemical and data science at our ML Hackathon! Unleash your creativity as you tackle real-world chemical challenges using machine learning techniques. Collaborate, innovate, and revolutionize the field with your solutions.",
+    details: [
+      "Eligibility: UG & PG Students",
+      "Venue:AN ROY Seminar Hall, IIT Kharagpur"],
+     
+    rules: [
+      "Individual Participation",
+      "No calculators allowed",
+      "Judge's decision is final"
+    ],
+    image:"/ml.png",
+    icon: "💻",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2024"
+  },
+  {
+    id: 117,
+    name: "CODE THE PROBLEM",
+    category: "Coding",
+    type: "INDIVIDUAL",
+    teamSize: "1",
+    rounds: 2,
+    prize: "₹15,000",
+    description: "Code the Problem, Unlock the future of innovation and opportunities",
+    description2:"Code the Problem is the perfect opportunity to connect with other coding enthusiasts, regardless of your experience level. This event will challenge you to think outside the box and come up with innovative solutions to complex problems.",
+    details: [
+      "Eligibility: Any student enrolled in any academic institution",
+      "Round 1: online submision of zip file on unstop",
+      "Round 2: final presentation offline at IIT Kharagpur"],
+     
+    rules: [
+      "All participants will be reached through an email after the deadline ends",
+      "Each participant can submit up to 1 entry.",
+      "Judge's decision is final"
+    ],
+    image:"/coding.png",
+    icon: "💻",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2023"
+  },
+  {
+    id: 118,
+    name: "QUIZ TIME",
+    category: "Quiz",
+    type: "Team",
+    teamSize: "3",
+    rounds: 2,
+    prize: "₹3,000",
+    description: "Get ready to put your chemical expertise to the test with Quiz Time!",
+    description2:"Join the interactive, learning, and friendly quiz competition! Gather your smartest friends, form a team of up to 3 members, and compete for the ultimate quiz master title and cash prizes!",
+    details: [
+      "Any team of students enrolled in any academic institution",
+      "Cross-Institute teams are allowed",
+      "Round 1: Preliminary and Round 2: Final"
+    ],
+    rules: [
+      "Time duration to be taken care of",
+      "Participation in both rounds is must",
+      "Registration Mandatory."
+    ],
+    image:"/q.png",
+    icon: "🎯",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2022"
+  },
+   {
+    id: 119,
+    name: "DWSIM WORKSHOP",
+    category: "Workshop",
+    type: "Individual",
+    teamSize: "1",
+    rounds: 1,
+    prize: "Goodies",
+    description: "Learn how to use the DWSIM application to simulate chemical engineering systems",
+    description2:"Mastering DWSIM is your professional superpower. This hands-on workshop will take you from a blank canvas to full-scale process mastery—covering property package selection, reactor kinetics, and rigorous multi-stage distillation column design. ",
+    details: [
+      "Stage 1: Theory (1 hr)",
+      "Stage 2: Lab (2 hrs)",
+      "Stage 3: Project Pitch"
+    ],
+    rules: [
+      "Any student enrolled in any academic institution",
+      "All stages mandatory",
+      "offline reporting is must"
+    ],
+      image:"/work.png",
+    icon: "🗓️",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2022"
+  },
+   {
+    id: 120,
+    name: "Lithium ion battery Workshop",
+    category: "Workshop",
+    type: "Individual",
+    teamSize: "1",
+    rounds: 1,
+    prize: "Goodies",
+    description: "Dive into the practical aspects of lithium-ion battery manufacturing in this hands-on workshop.",
+    description2:"Learn about the key components of lithium-ion batteries including cathodes, anodes, electrolytes, and separators, and understand their roles in battery performance.This workshop will guide you through the step-by-step process of battery assembly, from electrode preparation to cell packaging and testing. ",
+    details: [
+      "Venue: Department of Chemical Engineering",
+      "1 hr theory along with hands on experience"
+    ],
+    rules: [
+      "Eligibility: UG & PG students",
+      "Registration is mandatory at Unstop",
+      "Offline reporting is must"
+    ],
+      image:"/battery.png",
+    icon: "🗓️",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2025"
+  },
+   {
+    id: 121,
+    name: "COSMOL Workshop",
+    category: "Workshop",
+    type: "Individual",
+    teamSize: "1",
+    rounds: 1,
+    prize: "Trial version of COSMOL multiphysics",
+    description: "Decode the Future of Molecular Innovation at the COSMOL Workshop.",
+    description2:"Join us at the Cosmol Workshop, an immersive deep dive into the mechanisms that drive modern chemical synthesis and molecular modeling.Whether you’re looking to sharpen your technical edge or explore the intersection of data-driven chemistry and traditional engineering, this workshop is designed to challenge your perspective and expand your toolkit. ",
+    details: [
+      "Venue: CAPE Laboratory, Department of Chemical Engineering",
+      "Stage 1:Introduction to COMSOL Multiphysics (20 mins)",
+      "Stage 2:Capability Demonstration & Module Introduction (40 mins)",
+      "Stage 3:Hands-on Demo Session (1 hour) "
+    ],
+    rules: [
+      "Eligibility: UG & PG students",
+      "Registration is mandatory at Unstop",
+      "Offline reporting is must"
+    ],
+      image:"/cosmol.png",
+    icon: "🗓️",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2025"
+  },
+  {
+    id: 122,
+    name: "Chem-Innovation Case Study Challenge",
+    category: "Presentation",
+    type: "Team",
+    teamSize: "4",
+    rounds: 1,
+    prize: "₹12,000",
+    description: "Join us for a thrilling exploration of chemistry's complexities through practical case studies!",
+    description2:"Engage in our Case Study Challenge, where participants delve into intricate chemical scenarios with analytical precision. Dive into real-world problems spanning synthesis, reaction optimization, and material design. Utilize your chemical expertise and problem-solving skills to dissect challenges and propose innovative solutions. ",
+    details: [
+      'Stage 1: Online submission via Unstop',
+      "Stage 2: Final presentation at institute",
+      'The time limit for the final presentation is 10 minutes'
+    ],
+    rules: [
+      "Judged based on the Involvement of all the participants of the team, way of presentation, and time limit.",
+      "Judge's decision is final",
+      "The presentation must include answers to all the questions in the PS."
+    ],
+    image:"/case.png",
+    icon: "📜",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2024"
+  },
+  {
+    id: 123,
+    name: "CROSSWORD",
+    category: "Strategy",
+    type: "Team",
+    teamSize: "2",
+    rounds: 1,
+    prize: "₹2,000",
+    description: "Solve your way through a puzzle of blocks and win the race to win",
+    description2:"If you are really enthusiastic and willing to analyze your wit along with knowledge of chemical engineering, we are here with CROSSWORD for you. Bring your sharpest mind and your best vocabulary.",
+    details: [
+      "Venue: New Annex Building, IIT Kharagpur",
+      "Eligibility: Any team of students enrolled in any academic institution"
+    ],
+    rules: [
+      "Offline reporting is must",
+      "No smart gadgets allowed",
+      "Registration Mandatory"
+    ],
+    image:"/cross.png",
+    icon: "🎯",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2022"
+  },
+   {
+    id: 124,
+    name: "Debate",
+    category: "Presentation",
+    type: "Individual",
+    teamSize: "1",
+    rounds: 1,
+    prize: "₹2,000",
+    description: "With a structured case, witty arguments and indomitable rebuttals, get a chance to win",
+    description2:"This event is a collision of perspectives. We invite participants to step into the arena to defend the indefensible, challenge the status quo, and unravel the truth.Whether you are a seasoned orator or someone with a sharp perspective, this is your platform to be heard.",
+    details: [
+      'Eligibility:Any student enrolled in any academic institution',
+      "Venue: IIT Kharagpur",
+      'The time limit for the final presentation is 7 minutes'
+    ],
+    rules: [
+      "Registration is mandatory",
+      "Judge's decision is final",
+      "Adhere to the time limit"
+    ],
+    image:"/debate.png",
+    icon: "📜",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2022"
+  },
+  {
+    id: 125,
+    name: "CHEM MEME",
+    category: "Entertainment",
+    type: "Individual",
+    teamSize: "1",
+    rounds: 1,
+    prize: "₹2,000",
+    description: "Come up with a funny meme related to the Chemical Engineering field that makes us go ROFL!",
+    description2:"We’re searching for the funniest, smartest, and most relatable memes in the world of Chemistry. Whether it’s the pain of a failed titration, the struggle of organic synthesis, or just the weirdness of the periodic table, we want to see your best shot.Don’t be a noble gas—get reactive and join the fun!",
+    details: [
+      "Any medium: pencil, paint, digital",
+      "Theme:- Chemical Engineering",
+      "Eligibility:Any student enrolled in any academic institution",
+    ],
+    rules: [
+      "Each participant can submit up to 5 entries.",
+      "Original work only",
+      "Concept explanation required"
+    ],
+    image:"/meme.png",
+    icon: "🎬",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2022"
+  },
+  {
+    id: 126,
+    name: "PHOTOGRAPHY CHALLENGE",
+    category: "Entertainment",
+    type: "Individual",
+    teamSize: "1",
+    rounds: 1,
+    prize: "₹2,000",
+    description: "Transform the ordinary into the scientific.Find the hidden chemistry in everyday moments.",
+    description2:"We invite you to step outside the lecture hall and look at the world through the lens of a Chemical Engineer. Capture an image that depicts a chemical principle, a process, or a reaction occurring in your daily life.We want your most creative, thought-provoking shots that highlight chemistry in motion.",
+    details: [
+      "Theme:- Chemical Engineering in our daily lives",
+      "Eligibility: Theme:- Chemical Engineering in our daily lives",
+      "Submit upto 3 entries"
+     
+    ],
+    rules: [
+      "Individual Participation",
+      "Judge's decision is final",
+      "No AI images allowed"
+    ],
+      image:"/photo.png",
+    icon: "📸",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2022"
+  },
+  {
+    id: 127,
+    name: "CODE THE PROBLEM",
+    category: "Coding",
+    type: "Team",
+    teamSize: "3",
+    rounds: 3,
+    prize: "₹10,000",
+    description: "Fuse your knowledge of chemical engineering subjects and your coding skills to solve exciting problems",
+    description2:"Code isn’t just lines of text—it’s the architecture of the future. We are calling all developers, problem-solvers, and logic-wizards to enter the arena. This is where your ability to optimize, debug, and execute under pressure is put to the ultimate test.",
+    details: [
+      "One preliminary round",
+      "Two eliminative out-rounds",
+      "Eligibility:Any team of students enrolled in any academic institution"
+    ],
+    rules: [
+      "Language Constraints: C, C++, Java, Python or MATLAB.",
+      "Registration is mandatory",
+      "The problem statement for the preliminary round will be sent to the participating teams through an email "
+    ],
+    image:"/c.png",
+    icon: "💻",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2022"
+  },
+  {
+    id: 128,
+    name: "Chem-Innovation",
+    category: "Presentation",
+    type: "Team",
+    teamSize: "4",
+    rounds: 1,
+    prize: "₹10,000",
+    description: "Join us in this competition and challenge your abilities to prepare innovative solutions to real-life problems. ",
+    description2:"The industry is evolving, and the solutions of tomorrow are being built by the thinkers of today. We invite you to step into the role of a consultant and innovator. This challenge presents a real-world technical scenario where efficiency, sustainability, and economic feasibility are not just goals—they are requirements.",
+    details: [
+      'Cross-Institute teams are allowed',
+      "PS to be released within 12 hours of registration",
+      'Eligibility: Any team of students enrolled in any academic institution'
+    ],
+    rules: [
+      "Registration is mandatory",
+      "Judge's decision is final",
+      "The presentation must include answers to all the questions in the PS."
+    ],
+    image:"/inn.png",
+    icon: "📜",
+    color: "#7a8fa6",
+    phase: "freeze",
+    year: "2022"
+  },
+
+
+  
 ];

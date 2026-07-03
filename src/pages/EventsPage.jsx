@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-// import MoleculeBackground from '../components/MoleculeBackground';
 import NetworkCanvas from '../components/NetworkCanvas.jsx';
 
 
@@ -9,7 +8,7 @@ import EventDetail from '../components/EventDetail';
 import PhaseTransition from '../components/PhaseTransition';
 import { currentEvents, previousEvents } from '../data/events';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer'; // Adjust the path if necessary
+import Footer from '../components/Footer'; 
 
 /* ── HEADER ─────────────────────────────────── */
 const Header = () => {
@@ -185,10 +184,81 @@ const PhaseChangeSeparator = () => {
 /* ── WAVE OFFSETS ── */
 const WAVE_OFFSETS_5 = [40, -10, 60, -10, 40];
 const WAVE_OFFSETS_3 = [30, -10, 30];
+const StatsStrip = () => {
+  const stats = [
+    { value: "10+", label: "EVENTS" },
+    { value: "15+", label: "COLLEGES" },
+    { value: "2,000+", label: "REGISTRATIONS" },
+    { value: "20,000+", label: "SOCIAL REACH" },
+  ];
 
+  const isMobile = window.innerWidth < 768;
+
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", // ✅ KEY
+        gap: "20px",
+        margin: "-50px auto 50px",
+        maxWidth: "1100px",
+        padding: "22px 20px",
+       
+      }}
+    >
+      {stats.map((item, i) => (
+        <div
+          key={i}
+          style={{
+            textAlign: "center",
+            padding: "10px 0",
+            borderRight:
+              !isMobile && i !== stats.length - 1
+                ? "1px solid rgba(255,255,255,0.08)"
+                : "none",
+            borderBottom:
+              isMobile && i < 2
+                ? "1px solid rgba(255,255,255,0.08)"
+                : "none",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "25px",
+              fontWeight: "900",
+              color: "#ffffff",
+              textShadow: "0 0 12px rgba(0,229,255,0.5)",
+              fontFamily:'Arial Black'
+            }}
+          >
+            {item.value}
+          </div>
+
+          <div
+            style={{
+              fontSize: "14px",
+              color: "#00e5ff",
+              letterSpacing: "2px",
+              marginTop: "6px",
+            }}
+          >
+            {item.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 const CurrentEventsSection = ({ events, onCardClick }) => {
   const ref = useRef(null);
   const [vis, setVis] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(10); // Start with 10 (5 rows of 2)
+
+
+const handleCategoryChange = (cat) => {
+  setSelectedCategory(cat);
+  setVisibleCount(10); 
+};
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.04 });
     if (ref.current) obs.observe(ref.current);
@@ -209,11 +279,11 @@ React.useEffect(() => {
     <section id="events" style={{ position: 'relative', zIndex: 1, padding: '50px 20px 40px'}}>
       <div style={{ maxWidth: 1320, margin:'0 auto' }}>
         <SectionHeader
-          tag="⬡ THE ANNUAL CHEMICAL ENGINEERING FESTIVAL ⬡"
+          tag="THE ANNUAL CHEMICAL ENGINEERING FESTIVAL"
           title="EVENTS 2026"
           accent="#4ee2ff"
         />
-
+        <StatsStrip />
         <div ref={ref} style={{ opacity: vis ? 1 : 0, transition: 'opacity 0.5s ease' ,marginTop:'-10px'}}>
           {groups.map((group, gi) => {
             const offsets = [180, 80, 140, 80, 180]; 
@@ -226,12 +296,12 @@ React.useEffect(() => {
   style={{
     display: 'flex',
     alignItems: 'center',
-    justifyContent: isMobile ? 'center' : 'flex-start', // ✅ key
+    justifyContent: isMobile ? 'center' : 'flex-start', 
     gap: 10,
     marginBottom: 2,
-    paddingLeft: isMobile ? 0 : 4, // ✅ remove left padding on mobile
-    textAlign: isMobile ? 'center' : 'left', // ✅ center text
-    flexDirection: isMobile ? 'column' : 'row', // ✅ stack on mobile
+    paddingLeft: isMobile ? 0 : 4, 
+    textAlign: isMobile ? 'center' : 'left', 
+    flexDirection: isMobile ? 'column' : 'row', 
   }}
 >
   {/* Dot */}
@@ -263,7 +333,7 @@ React.useEffect(() => {
   <div
     style={{
       flex: isMobile ? 'none' : 1,
-      width: isMobile ? '60%' : 'auto', // ✅ centered short line on mobile
+      width: isMobile ? '60%' : 'auto', 
       height: 1,
       background: 'linear-gradient(90deg,rgba(0,245,212,0.2),transparent)',
     }}
@@ -272,14 +342,15 @@ React.useEffect(() => {
 
    <div style={{
   display: 'grid',
-  gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', // ✅ key line
+  gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', 
   gap: 40,
+  rowGap:70,
   justifyItems: isMobile ? 'start' : 'center',
   alignItems: 'start',
   paddingTop: Math.abs(minOff) + 20,
   paddingBottom: maxOff + 60,
   paddingRight: isMobile ? '10px' : '0px',  
-  paddingLeft: isMobile ? '10px' : '0px',  // 👈 shift slightly left
+  paddingLeft: isMobile ? '10px' : '0px',  
 
   width: '100%',
   maxWidth: '1100px',
@@ -307,7 +378,7 @@ React.useEffect(() => {
 };
 
 /* ── PREVIOUS EVENTS ── */
-const PreviousEventsSection = ({ events, onCardClick }) => {
+const PreviousEventsSection = ({ events, onCardClick,selectedCategory, setSelectedCategory, categories, filteredEvents,visibleCount,setVisibleCount }) => {
   const ref = useRef(null);
   const [vis, setVis] = useState(false);
   useEffect(() => {
@@ -316,18 +387,17 @@ const PreviousEventsSection = ({ events, onCardClick }) => {
     return () => obs.disconnect();
   }, []);
 
-  const rows = [];
-  for (let i = 0; i < events.length; i += 4) rows.push(events.slice(i, i + 4));
+  
   const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
 
-React.useEffect(() => {
+ useEffect(() => {
   const handleResize = () => setIsMobile(window.innerWidth < 768);
 
   window.addEventListener('resize', handleResize);
   return () => window.removeEventListener('resize', handleResize);
 }, []);
   return (
-    <section style={{ position: 'relative', zIndex: 1, padding: '50px 20px 40px',marginTop:'-100px' }}>
+    <section style={{ position: 'relative', zIndex: 1, padding: '50px 20px 40px',marginTop:'-210px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <SectionHeader
           tag="❄ ARCHIVE ❄"
@@ -335,44 +405,106 @@ React.useEffect(() => {
           accent="#4ee2ff"
         />
 
-        <div ref={ref} style={{ opacity: vis ? 1 : 0, transition: 'opacity 0.5s ease' }}>
-          
-
-<div style={{
-  display: 'grid',
-  gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
-  gap: '1.75rem',
-  maxWidth: 1100,
-  margin: '0 auto',
-}}>
-  {events.map((event, i) => (
-    <PrevEventCard key={event.id ?? event.name} event={event} onClick={onCardClick} animDelay={i * 0.07} />
-  ))}
-</div>
-
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', marginBottom: '40px',background:'#0e202b',padding: '10px',             // Space inside the box
+  borderRadius: '8px',         
+  border: '1px solid #4ee2ff', 
+  maxWidth: 'fit-content',     
+  margin: '0 auto 40px' }}>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              style={{
+                padding: '8px 20px',
+                borderRadius: '50px',
+                border: selectedCategory === cat ? '2px solid #4ee2ff' : '1px solid white',
+                backgroundColor: '#0a191c' ,
+                color: selectedCategory === cat ? '#4ee2ff' : 'white',
+                cursor: 'pointer',
+                fontSize: '14px',
+                transition: 'all 0.3s ease',
+                outline: 'none'
+              }}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
+          
+<div ref={ref} style={{ opacity: vis ? 1 : 0, transition: 'opacity 0.5s ease' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: '1.75rem', maxWidth: 1100, margin: '0 auto' }}>
+            {filteredEvents.slice(0, visibleCount).map((event, i) => (
+            <div 
+      key={event.id ?? event.name} 
+      style={{
+        gridColumn: (i === filteredEvents.slice(0, visibleCount).length - 1 && 
+                     filteredEvents.slice(0, visibleCount).length % 2 !== 0) 
+                     ? (isMobile ? 'span 1' : 'span 2') 
+                     : 'span 1',
+                     display: 'flex',
+                     justifyContent: 'center' 
+      }}
+    >
+      <div style={{ width: '100%', maxWidth: '500px' }}> 
+        <PrevEventCard event={event} onClick={onCardClick} />
+         
+          </div>
+    </div>
+  ))}
+            
+          </div>
+          {visibleCount < filteredEvents.length && (
+          <div style={{ textAlign: 'center', marginTop: '40px' }}>
+            <button 
+              onClick={() => setVisibleCount(prev => prev + 10)}
+              style={{
+                background: 'transparent',
+                border: '1px solid #4ee2ff',
+                color: '#4ee2ff',
+                padding: '10px 30px',
+                borderRadius: '50px',
+                cursor: 'pointer',
+                fontFamily: 'Arial Black',
+                letterSpacing: '2px'
+              }}
+            >
+              LOAD MORE
+            </button>
+          </div>
+        )}
+      </div> 
       </div>
     </section>
   );
 };
 
 
-
-// export default EventsPage;
 const EventsPage = () => {
   const [pendingEvent, setPendingEvent] = useState(null);
   const [transitionPhase, setTransitionPhase] = useState(null);
   const [transitionKey, setTransitionKey] = useState(0);
   const [activeEvent, setActiveEvent] = useState(null);
   
-  // Thermometer & Scroll State
+  
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentTemp, setCurrentTemp] = useState(-25);
   const [isDragging, setIsDragging] = useState(false);
   const thermometerTrackRef = useRef(null);
   const transitionInProgress = useRef(false);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const categories = ['All', 'Quiz', 'Coding', 'Entertainment', 'Presentation', 'Strategy', 'Workshop'];
+  const filteredEvents = (previousEvents || []).filter(event => 
+    selectedCategory === 'All' ? true : event.category === selectedCategory
+  );
+  const [visibleCount, setVisibleCount] = useState(10); // Start with 10 (5 rows of 2)
 
-  // 1. Logic to sync temperature and scroll from drag
+
+const handleCategoryChange = (cat) => {
+  setSelectedCategory(cat);
+  setVisibleCount(10); 
+};
+
+ 
   const updateScrollFromThermometer = useCallback((clientY) => {
     if (!thermometerTrackRef.current) return;
     const rect = thermometerTrackRef.current.getBoundingClientRect();
@@ -388,7 +520,7 @@ const EventsPage = () => {
     setCurrentTemp(Math.round(temp));
   }, []);
 
-  // 2. Global mouse listeners for smooth dragging
+  
   useEffect(() => {
     const handleMouseMove = (e) => { if (isDragging) updateScrollFromThermometer(e.clientY); };
     const handleMouseUp = () => setIsDragging(false);
@@ -403,7 +535,7 @@ const EventsPage = () => {
     };
   }, [isDragging, updateScrollFromThermometer]);
 
-  // 3. Scroll listener (Syncs thermometer when user scrolls normally)
+  
   useEffect(() => {
     const handleScroll = () => {
       if (isDragging) return;
@@ -438,7 +570,7 @@ const EventsPage = () => {
   return (
     <div className="relative min-h-screen text-slate-100 font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
       
-      {/* <MoleculeBackground/> */}
+     
       <NetworkCanvas/>
      
       
@@ -447,7 +579,15 @@ const EventsPage = () => {
         <Navbar/>
         <div style={{ height: 70 }} />
         <CurrentEventsSection events={currentEvents} onCardClick={handleEventClick} />
-        <PreviousEventsSection events={previousEvents} onCardClick={handleEventClick} />
+        <PreviousEventsSection 
+        events={previousEvents}
+        onCardClick={handleEventClick} 
+          selectedCategory={selectedCategory}
+          setSelectedCategory={handleCategoryChange}
+          categories={categories}
+          filteredEvents={filteredEvents}
+          visibleCount={visibleCount}
+          setVisibleCount={setVisibleCount}/>
         <Footer />
       </div>
 

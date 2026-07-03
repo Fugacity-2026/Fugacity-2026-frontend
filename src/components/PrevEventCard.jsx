@@ -1,11 +1,12 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 
-const PrevEventCard = ({ event, onClick, animDelay = 0 }) => {
+const PrevEventCard = ({ event, onClick, animDelay = 0  }) => {
   const [visible, setVisible] = useState(false);
   const [imageFlipped, setImageFlipped] = useState(false);
   const cardRef = useRef(null);
   const tiltRef = useRef(null);
+  const [isMobile, setIsMobile] = React.useState(false);
 
   // Scroll reveal
   useEffect(() => {
@@ -17,6 +18,12 @@ const PrevEventCard = ({ event, onClick, animDelay = 0 }) => {
     );
     obs.observe(el);
     return () => obs.disconnect();
+  }, []);
+   React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize(); // Catch initial load
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // 3D tilt on card hover
@@ -152,36 +159,16 @@ const PrevEventCard = ({ event, onClick, animDelay = 0 }) => {
           overflow: 'hidden',
           cursor: 'pointer',
           display: 'flex',
-          flexDirection: 'row',
-          height: 220,
+           flexDirection: isMobile ? 'column' : 'row',
+        height: isMobile ? 'auto' : 220, 
+          
           outline: 'none',
         }}
       >
         {/* Spotlight glow */}
         <div className="prev-event-spotlight" />
 
-        {/* Liquid wave strip */}
-        <div className="prev-event-liquid-strip">
-          <svg viewBox="0 0 520 42" preserveAspectRatio="none">
-            <path fill="#4ee2ff" opacity="0.45">
-              <animate attributeName="d" dur="3.4s" repeatCount="indefinite"
-                values="
-                  M0,5.4 C80,28.4 160,-6 260,12 C360,30 440,-2.8 520,12 L520,42 L0,42 Z;
-                  M0,-4.4 C80,-7.7 160,25.1 260,2.2 C360,-9.3 440,23.5 520,-1.1 L520,42 L0,42 Z;
-                  M0,15.3 C80,-4.4 160,26.8 260,3.8 C360,3.8 440,25.1 520,15.3 L520,42 L0,42 Z;
-                  M0,5.4 C80,28.4 160,-6 260,12 C360,30 440,-2.8 520,12 L520,42 L0,42 Z" />
-            </path>
-            <path fill="none" stroke="rgba(225,255,255,0.8)" strokeWidth="1.5" strokeLinecap="round">
-              <animate attributeName="d" dur="3.4s" repeatCount="indefinite"
-                values="
-                  M0,5.4 C80,28.4 160,-6 260,12 C360,30 440,-2.8 520,12;
-                  M0,-4.4 C80,-7.7 160,25.1 260,2.2 C360,-9.3 440,23.5 520,-1.1;
-                  M0,15.3 C80,-4.4 160,26.8 260,3.8 C360,3.8 440,25.1 520,15.3;
-                  M0,5.4 C80,28.4 160,-6 260,12 C360,30 440,-2.8 520,12" />
-            </path>
-          </svg>
-        </div>
-
+      
         {/* Corner accents */}
         {[
           { top: 0,    left: 0,   borderTop:    `2px solid ${c}`, borderLeft:   `2px solid ${c}`, borderRadius: '12px 0 0 0' },
@@ -203,7 +190,8 @@ const PrevEventCard = ({ event, onClick, animDelay = 0 }) => {
           className={`img-flip-container${imageFlipped ? ' flipped' : ''}`}
           onMouseEnter={e => { e.stopPropagation(); setImageFlipped(true); }}
           onMouseLeave={e => { e.stopPropagation(); setImageFlipped(false); }}
-          style={{ height: '100%' }}
+          style={{height: isMobile ? '180px' : '100%', 
+          width: isMobile ? '100%' : '',  marginTop: isMobile ? '16px' : '0px'  }}
           onClick={e => e.stopPropagation()}
         >
           <div className="img-flip-inner" style={{ height: '100%' }}>
@@ -213,7 +201,7 @@ const PrevEventCard = ({ event, onClick, animDelay = 0 }) => {
                 <img
                   src={event.image}
                   alt={event.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                 />
               ) : (
                 <div style={{
@@ -240,13 +228,9 @@ const PrevEventCard = ({ event, onClick, animDelay = 0 }) => {
                   fontFamily: 'Arial, sans-serif',
                   fontSize: 20, 
                   marginTop: 8, lineHeight: 1.5,
-                    background: 'linear-gradient(180deg, #FFFFFF 0%, #F59E0B 100%)',
-    WebkitBackgroundClip: 'text',
-    MozBackgroundClip: 'text',
-    backgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    textFillColor: 'transparent',
+                  color:'white',
      fontWeight: 'bold', 
+     
                 }}>
                   {event.description}
                 </p>
@@ -258,10 +242,10 @@ const PrevEventCard = ({ event, onClick, animDelay = 0 }) => {
         {/* ── RIGHT: Event details ── */}
         <div style={{
           flex: 1,
-          padding: '16px 18px 48px 18px',
+          padding: isMobile ? '16px' : '16px 18px 48px 18px',
           display: 'flex',
           flexDirection: 'column',
-          gap: 7,
+           gap: isMobile ? 10 : 7,
           position: 'relative',
           zIndex: 1,
         }}>
@@ -269,7 +253,7 @@ const PrevEventCard = ({ event, onClick, animDelay = 0 }) => {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{
               fontFamily: 'Arial Black', fontSize: 13, letterSpacing: '2px',
-              color: '#F59E0B', padding: '2px 8px',
+              color: '#4ee2ff', padding: '2px 8px',
               border: `2px solid ${c}40`, borderRadius: 3,
               background: c + '10',
             }}>
@@ -286,9 +270,9 @@ const PrevEventCard = ({ event, onClick, animDelay = 0 }) => {
           {/* Event name */}
           <div style={{
             fontFamily: 'Arial Black', fontWeight: 800,
-            fontSize: event.name?.length > 13 ? 18 : event.name?.length > 9 ? 20 : 15,
+            fontSize: event.name?.length > 13 ? 16 : event.name?.length > 9 ? 20 : 18,
             color: 'white',
-            letterSpacing: '1.5px', lineHeight: 1.2,
+            letterSpacing: '1.5px', lineHeight: 1.2, textAlign:isMobile?'center':'',
           }}>
             {event.name}
           </div>
@@ -296,28 +280,32 @@ const PrevEventCard = ({ event, onClick, animDelay = 0 }) => {
           {/* Prize */}
           <div style={{
             fontFamily: 'Arial Black, sans-serif', fontSize: 19, fontWeight: 700,
-            color: '#4ee2ff',
+            color: '#4ee2ff',textAlign:isMobile?'center':''
           }}>
             {event.prize}
           </div>
 
           {/* Stats row */}
-          <div style={{ display: 'flex', gap: 14, marginTop: 'auto' }}>
+          <div style={{ display: 'flex',   gap: isMobile ? 24 : 14, // Wider spacing gap on mobile
+          marginTop: isMobile ? 14 : 'auto', 
+          width: '100%',
+          justifyContent: isMobile ? 'center' : 'flex-start', // Centers row content horizontally
+          alignItems: 'center'}}>
             {[
               { label: 'TEAM',   value: event.teamSize },
               { label: 'ROUNDS', value: event.rounds   },
               { label: 'TYPE',   value: event.type     },
             ].map((item, i) => (
               <React.Fragment key={item.label}>
-                {i > 0 && <div style={{ width: 1, background: c + '25', alignSelf: 'stretch' }} />}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                {i > 0 &&  !isMobile && <div style={{ width: 1, background: c + '25', alignSelf: 'stretch' }} />}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 1,alignItems: isMobile ? 'center' : 'flex-start' }}>
                   <span style={{
-                    fontFamily: 'Arial Black, sans-serif', fontSize: 11,
-                    letterSpacing: '1.5px', color: 'white',
+                    fontFamily: 'Arial Black, sans-serif', fontSize: 13,
+                    letterSpacing: '1px', color: '#4ee2ff'
                   }}>{item.label}</span>
                   <span style={{
-                    fontFamily: 'sans-serif', fontSize: 18,
-                    fontWeight: 700, color: '#F59E0B',
+                    fontFamily: 'sans-serif', fontSize:event.type==="Team"? 20:14,
+                    fontWeight: 700, color: 'white',textAlign:'center'
                   }}>{item.value}</span>
                 </div>
               </React.Fragment>
@@ -333,15 +321,16 @@ const PrevEventCard = ({ event, onClick, animDelay = 0 }) => {
                 animation: 'phase-pulse 1.8s ease-in-out infinite',
               }} />
               <span style={{
-                fontFamily: 'Arial Black', fontSize: 18,
-                letterSpacing: '1px', color: '#F59E0B',
+                fontFamily: 'Arial Black',  fontSize: event.name?.length > 13 ? 18 : event.name?.length > 9 ? 20 : 18,
+                letterSpacing: '1px', color: '#4ee2ff', marginTop:event.name?.length > 13 ? -5 : event.name?.length > 9 ? 0 : 6,
               }}>
                 ChEA
               </span>
             </div>
             <span style={{
-              fontFamily: 'Arial Black, sans-serif', fontSize: 18, fontWeight: 900,
-              letterSpacing: '1.5px', color: '#F59E0B',
+              fontFamily: 'Arial Black, sans-serif', fontWeight: 900,
+              letterSpacing: '1.5px', color: 'white', fontSize: event.name?.length > 13 ? 18 : event.name?.length > 9 ? 20 : 18,
+              marginTop:event.name?.length > 13 ? -5 : event.name?.length > 9 ? 0 : 6,
             }}>
               VIEW →
             </span>

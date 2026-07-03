@@ -169,7 +169,7 @@ const PlasmaTransition = ({ onDone }) => {
       ctx.stroke();
     };
 
-    const nodes = Array.from({ length: 14 }, () => ({
+    const nodes = Array.from({ length: 24 }, () => ({
       x: Math.random() * W, y: Math.random() * H,
       vx: (Math.random() - 0.5) * 3.5, vy: (Math.random() - 0.5) * 3.5,
       r: 8 + Math.random() * 20,
