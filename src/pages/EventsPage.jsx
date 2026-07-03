@@ -238,10 +238,10 @@ const StatsStrip = () => {
             style={{
               fontSize: "14px",
               color: "#00e5ff",
-              letterSpacing: "2px",
+              letterSpacing: "1px",
               marginTop: "6px",
               fontFamily:'Ubuntu',
-              fontWeight:600
+              fontWeight:500
             }}
           >
             {item.label}
