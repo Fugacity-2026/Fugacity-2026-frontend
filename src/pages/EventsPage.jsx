@@ -240,6 +240,8 @@ const StatsStrip = () => {
               color: "#00e5ff",
               letterSpacing: "2px",
               marginTop: "6px",
+              fontFamily:'Ubuntu',
+              fontWeight:600
             }}
           >
             {item.label}

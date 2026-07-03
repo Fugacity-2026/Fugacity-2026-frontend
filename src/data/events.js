@@ -215,7 +215,7 @@ export const previousEvents = [
     teamSize: "2-3",
     rounds: 1,
     prize: "₹10,000",
-    description: "Turn science into stories. Explain, engage, inspire through reels",
+    description: "Turn science into stories. Explain, engage, inspire through reels.",
     description2:' Time for a high-octane Reel-making challenge where your lab knowledge meets internet culture. Drop the dry textbook jargon and use humor, viral video, and killer editing to explain complex scientific phenomena.',
     details: [
       "Eligibility: UG & PG Students",
@@ -572,7 +572,7 @@ export const previousEvents = [
     teamSize: "1",
     rounds: 2,
     prize: "₹15,000",
-    description: "Code the Problem, Unlock the future of innovation and opportunities",
+    description: "Code the Problem, Unlock the future of innovation and opportunities.",
     description2:"Code the Problem is the perfect opportunity to connect with other coding enthusiasts, regardless of your experience level. This event will challenge you to think outside the box and come up with innovative solutions to complex problems.",
     details: [
       "Eligibility: Any student enrolled in any academic institution",
@@ -624,7 +624,7 @@ export const previousEvents = [
     teamSize: "1",
     rounds: 1,
     prize: "Goodies",
-    description: "Learn how to use the DWSIM application to simulate chemical engineering systems",
+    description: "Learn how to use the DWSIM application to simulate chemical engineering systems.",
     description2:"Mastering DWSIM is your professional superpower. This hands-on workshop will take you from a blank canvas to full-scale process mastery—covering property package selection, reactor kinetics, and rigorous multi-stage distillation column design. ",
     details: [
       "Stage 1: Theory (1 hr)",
@@ -728,7 +728,7 @@ export const previousEvents = [
     teamSize: "2",
     rounds: 1,
     prize: "₹2,000",
-    description: "Solve your way through a puzzle of blocks and win the race to win",
+    description: "Solve your way through a puzzle of blocks and win the race to win.",
     description2:"If you are really enthusiastic and willing to analyze your wit along with knowledge of chemical engineering, we are here with CROSSWORD for you. Bring your sharpest mind and your best vocabulary.",
     details: [
       "Venue: New Annex Building, IIT Kharagpur",
@@ -753,7 +753,7 @@ export const previousEvents = [
     teamSize: "1",
     rounds: 1,
     prize: "₹2,000",
-    description: "With a structured case, witty arguments and indomitable rebuttals, get a chance to win",
+    description: "With a structured case, witty arguments and indomitable rebuttals, get a chance to win.",
     description2:"This event is a collision of perspectives. We invite participants to step into the arena to defend the indefensible, challenge the status quo, and unravel the truth.Whether you are a seasoned orator or someone with a sharp perspective, this is your platform to be heard.",
     details: [
       'Eligibility:Any student enrolled in any academic institution',
@@ -832,7 +832,7 @@ export const previousEvents = [
     teamSize: "3",
     rounds: 3,
     prize: "₹10,000",
-    description: "Fuse your knowledge of chemical engineering subjects and your coding skills to solve exciting problems",
+    description: "Fuse your knowledge of chemical engineering and your coding skills to solve exciting problems.",
     description2:"Code isn’t just lines of text—it’s the architecture of the future. We are calling all developers, problem-solvers, and logic-wizards to enter the arena. This is where your ability to optimize, debug, and execute under pressure is put to the ultimate test.",
     details: [
       "One preliminary round",
