@@ -216,12 +216,9 @@ export default function FugacityFeedbackForm() {
     <div className="fug-page">
       <form className="fug-card" onSubmit={handleSubmit}>
         <header className="form-header">
-          <p className="eyebrow">Dept. of Chemical Engineering &middot; Annual Tech Fest</p>
-          <h1>Fugacity feedback</h1>
-          <p className="subhead">
-            Fugacity: a substance's tendency to escape its current state. Tell us
-            how this year's fest measured up.
-          </p>
+          
+          <h1>Fugacity Feedback</h1>
+          
         </header>
 
         <section className="section">
