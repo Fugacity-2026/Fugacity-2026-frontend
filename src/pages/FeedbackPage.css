@@ -26,16 +26,19 @@
 }
 
 .fug-card {
-  background: #0c1e27;
+  background: transparent;
   width: 100%;
-  max-width: 680px;
-  border-radius: 6px;
-  padding: 44px 40px;
-  border: 1px solid rgba(34, 211, 238, 0.18);
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.2),
-    0 20px 60px rgba(0, 0, 0, 0.45),
-    0 0 40px rgba(34, 211, 238, 0.06);
+  max-width: 860px;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-header {
+  text-align: center;
 }
 
 .eyebrow {
@@ -44,33 +47,144 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #ff8a5c;
-  margin: 0 0 12px 0;
+  margin: 0 0 14px 0;
+  opacity: 0;
+  animation: fug-blur-in 0.7s ease both;
 }
 
 .form-header h1 {
-  margin: 0 0 12px 0;
-  font-size: 32px;
-  font-weight: 700;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  margin: 0 0 16px 0;
+  font-size: clamp(38px, 7vw, 64px);
+  font-weight: 1000;
+  text-transform: uppercase;
   color: #f4f8f7;
-  letter-spacing: -0.015em;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  opacity: 0;
+  animation: fug-blur-in 0.9s ease both;
+  animation-delay: 0.1s;
 }
 
 .subhead {
-  margin: 0 0 0 0;
+  margin: 0 auto;
   color: #8aa2ac;
   font-size: 14.5px;
   line-height: 1.65;
   max-width: 480px;
+  opacity: 0;
+  animation: fug-blur-in 0.9s ease both;
+  animation-delay: 0.22s;
+}
+
+@keyframes fug-blur-in {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
 }
 
 .section {
-  padding: 28px 0;
-  border-top: 1px solid rgba(34, 211, 238, 0.12);
-  margin-top: 8px;
+  width: 80%;
+  padding: 26px 24px;
+  box-sizing: border-box;
+  background: rgba(12, 30, 39, 0.92);
+  border: 1px solid rgba(34, 211, 238, 0.16);
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  animation: fug-card-rise 0.7s ease both;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }
-.section:first-of-type {
-  border-top: none;
-  margin-top: 30px;
+.section:hover {
+  background: rgba(15, 37, 48, 0.96);
+  transform: translateY(-2px);
+}
+
+@keyframes fug-card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section:nth-of-type(1) {
+  animation-delay: 0.35s;
+}
+.section:nth-of-type(2) {
+  animation-delay: 0.48s;
+}
+.section:nth-of-type(3) {
+  animation-delay: 0.61s;
+}
+.section:nth-of-type(4) {
+  animation-delay: 0.74s;
+}
+
+/* Odd parts sit left, even parts sit right — a left/right/left/right
+   process-flow read, each with its own colored edge. */
+.section:nth-of-type(odd) {
+  align-self: flex-start;
+  margin-right: auto;
+  margin-left: -12px;
+  border-left: 3px solid rgba(34, 211, 238, 0.5);
+}
+.section:nth-of-type(even) {
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: -12px;
+  border-right: 3px solid rgba(255, 107, 53, 0.5);
+}
+
+.section:nth-of-type(1) {
+  border-left-color: #22d3ee;
+}
+.section:nth-of-type(1) .section-label {
+  color: #22d3ee;
+}
+
+.section:nth-of-type(2) {
+  border-right-color: #ff6b35;
+}
+.section:nth-of-type(2) .section-label {
+  color: #ff8a5c;
+}
+
+.section:nth-of-type(3) {
+  border-left-color: #51d999;
+}
+.section:nth-of-type(3) .section-label {
+  color: #51d999;
+}
+
+.section:nth-of-type(4) {
+  border-right-color: #f2c14e;
+}
+.section:nth-of-type(4) .section-label {
+  color: #f2c14e;
+}
+
+@media (max-width: 760px) {
+  .section {
+    width: 100%;
+  }
+  .section:nth-of-type(odd),
+  .section:nth-of-type(even) {
+    align-self: stretch;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .section-label {
@@ -78,7 +192,6 @@
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #51d999;
   margin: 0 0 20px 0;
 }
 
@@ -375,4 +488,16 @@
 
 .top-space {
   margin: 20px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow,
+  .form-header h1,
+  .subhead,
+  .section {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
 }

@@ -208,7 +208,7 @@ export default function FugacityFeedbackForm() {
   }
 
   return (
-    <>
+    <div className="relative min-h-screen text-slate-100 font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
     <NetworkCanvas /> 
     
     <Navbar />
@@ -217,7 +217,7 @@ export default function FugacityFeedbackForm() {
       <form className="fug-card" onSubmit={handleSubmit}>
         <header className="form-header">
           
-          <h1>Fugacity Feedback</h1>
+          <h1>FEEDBACK</h1>
           
         </header>
 
@@ -390,7 +390,7 @@ export default function FugacityFeedbackForm() {
       </form>
     </div>
     <Footer />
-    </>
+    </div>
   );
 }
 
