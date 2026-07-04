@@ -261,9 +261,9 @@ const HomePage = () => {
             </h1>
           </div>
 
-          <p className="mt-2 sm:mt-4 text-[9px] sm:text-[10px] md:text-xs text-slate-400 uppercase tracking-[0.18em] sm:tracking-[0.25em] font-medium font-mono">
-            Where Chemistry Meets Innovation
-          </p>
+          <p className="mt-2 sm:mt-4 text-[9px] sm:text-[10px] md:text-xs text-white uppercase tracking-[0.18em] sm:tracking-[0.25em] font-medium font-mono">
+            where Innovation meets Opportunity
+          </p>    
 
           {/* INSTANTIATED SHAPES ELEMENT FIELD */}
           {/* RESPONSIVE EDIT: Added relative scaling rules to keep custom canvas rendering fluid inside miniature screens */}
