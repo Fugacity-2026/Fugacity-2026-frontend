@@ -33,10 +33,16 @@ const Navbar = () => {
         
         {/* LOGO LINK */}
         <div 
-          onClick={(e) => handleNavigation(e, '#home')} 
-          className="text-base sm:text-lg font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-slate-200 cursor-pointer select-none"
+          className="flex items-center gap-2 text-base sm:text-lg font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-slate-200 cursor-pointer select-none"
         >
-          FUGACITY
+          <img 
+            src="/fug.png" 
+            alt="Fugacity Logo" 
+            className="w-8 h-8 object-contain"
+          />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-slate-200">
+            FUGACITY
+          </span>
         </div>
         
         {/* DESKTOP NAVIGATION ROW */}
