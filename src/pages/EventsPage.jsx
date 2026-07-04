@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import NetworkCanvas from '../components/NetworkCanvas.jsx';
 
 
@@ -399,7 +400,7 @@ const PreviousEventsSection = ({ events, onCardClick,selectedCategory, setSelect
   return () => window.removeEventListener('resize', handleResize);
 }, []);
   return (
-    <section style={{ position: 'relative', zIndex: 1, padding: '50px 20px 40px',marginTop:'-210px' }}>
+    <section id="past-years" style={{ position: 'relative', zIndex: 1, padding: '50px 20px 40px',marginTop:'-210px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <SectionHeader
           tag="❄ ARCHIVE ❄"
@@ -482,6 +483,7 @@ const PreviousEventsSection = ({ events, onCardClick,selectedCategory, setSelect
 
 
 const EventsPage = () => {
+  const location = useLocation();
   const [pendingEvent, setPendingEvent] = useState(null);
   const [transitionPhase, setTransitionPhase] = useState(null);
   const [transitionKey, setTransitionKey] = useState(0);
@@ -500,6 +502,31 @@ const EventsPage = () => {
   );
   const [visibleCount, setVisibleCount] = useState(10); // Start with 10 (5 rows of 2)
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const categoryFromUrl = params.get('category');
+
+    if (categoryFromUrl) {
+      setSelectedCategory(categoryFromUrl);
+    } else {
+      setSelectedCategory('All');
+    }
+
+    setVisibleCount(10);
+  }, [location.search]);
+
+  useEffect(() => {
+    if (location.hash === '#past-years' || location.hash === 'past-years') {
+      const timer = window.setTimeout(() => {
+        const section = document.getElementById('past-years');
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 250);
+
+      return () => window.clearTimeout(timer);
+    }
+  }, [location.hash, location.search]);
 
 const handleCategoryChange = (cat) => {
   setSelectedCategory(cat);
