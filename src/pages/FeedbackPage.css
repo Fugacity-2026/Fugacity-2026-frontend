@@ -1,10 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+/* ---------------------------------------------------------
+   Fugacity Feedback — token reference
+   bg canvas:      #06141a
+   card:           #0c1e27
+   card border:    rgba(34,211,238,0.18)
+   input surface:  #0f2530
+   text primary:   #eef4f2
+   text muted:     #7f97a3
+   accent heat:    #ff6b35  (orange — energy / reaction)
+   accent process: #22d3ee  (cyan  — instrumentation)
+   accent go:      #51d999  (green — status / success)
+--------------------------------------------------------- */
 
 .fug-page {
   min-height: 100vh;
   width: 100%;
-  /* background: #0e2a2e; */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   display: flex;
   justify-content: center;
   padding: 56px 16px;
@@ -14,61 +26,173 @@
 }
 
 .fug-card {
-  background: #0b1a24;
+  background: transparent;
   width: 100%;
-  max-width: 680px;
-  border-radius: 4px;
-  padding: 44px 40px;
-  border: rgba(34, 211, 238, 0.28) 0.1px solid;
-  /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); */
-  box-shadow: 0 0 30px rgba(34, 211, 238, 0.1);
+  max-width: 860px;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-header {
+  text-align: center;
 }
 
 .eyebrow {
-  /* font-family: "IBM Plex Mono", monospace; */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
+  font-family: "IBM Plex Mono", monospace;
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #ff6b35;
-  margin: 0 0 10px 0;
+  color: #ff8a5c;
+  margin: 0 0 14px 0;
+  opacity: 0;
+  animation: fug-blur-in 0.7s ease both;
 }
 
 .form-header h1 {
-  margin: 0 0 10px 0;
-  font-size: 30px;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: -0.01em;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  margin: 0 0 16px 0;
+  font-size: clamp(38px, 7vw, 64px);
+  font-weight: 1000;
+  text-transform: uppercase;
+  color: #f4f8f7;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  opacity: 0;
+  animation: fug-blur-in 0.9s ease both;
+  animation-delay: 0.1s;
 }
 
 .subhead {
-  margin: 0 0 0 0;
-  color: #738b7f;
-  font-size: 14px;
-  line-height: 1.6;
+  margin: 0 auto;
+  color: #8aa2ac;
+  font-size: 14.5px;
+  line-height: 1.65;
   max-width: 480px;
+  opacity: 0;
+  animation: fug-blur-in 0.9s ease both;
+  animation-delay: 0.22s;
+}
+
+@keyframes fug-blur-in {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
 }
 
 .section {
-  padding: 26px 0;
-  border-top: 1px solid #dad4c2;
-  margin-top: 8px;
+  width: 80%;
+  padding: 26px 24px;
+  box-sizing: border-box;
+  background: rgba(12, 30, 39, 0.92);
+  border: 1px solid rgba(34, 211, 238, 0.16);
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  animation: fug-card-rise 0.7s ease both;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }
-.section:first-of-type {
-  border-top: none;
-  margin-top: 28px;
+.section:hover {
+  background: rgba(15, 37, 48, 0.96);
+  transform: translateY(-2px);
+}
+
+@keyframes fug-card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section:nth-of-type(1) {
+  animation-delay: 0.35s;
+}
+.section:nth-of-type(2) {
+  animation-delay: 0.48s;
+}
+.section:nth-of-type(3) {
+  animation-delay: 0.61s;
+}
+.section:nth-of-type(4) {
+  animation-delay: 0.74s;
+}
+
+/* Odd parts sit left, even parts sit right — a left/right/left/right
+   process-flow read, each with its own colored edge. */
+.section:nth-of-type(odd) {
+  align-self: flex-start;
+  margin-right: auto;
+  margin-left: -12px;
+  border-left: 3px solid rgba(34, 211, 238, 0.5);
+}
+.section:nth-of-type(even) {
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: -12px;
+  border-right: 3px solid rgba(255, 107, 53, 0.5);
+}
+
+.section:nth-of-type(1) {
+  border-left-color: #22d3ee;
+}
+.section:nth-of-type(1) .section-label {
+  color: #22d3ee;
+}
+
+.section:nth-of-type(2) {
+  border-right-color: #ff6b35;
+}
+.section:nth-of-type(2) .section-label {
+  color: #ff8a5c;
+}
+
+.section:nth-of-type(3) {
+  border-left-color: #51d999;
+}
+.section:nth-of-type(3) .section-label {
+  color: #51d999;
+}
+
+.section:nth-of-type(4) {
+  border-right-color: #f2c14e;
+}
+.section:nth-of-type(4) .section-label {
+  color: #f2c14e;
+}
+
+@media (max-width: 760px) {
+  .section {
+    width: 100%;
+  }
+  .section:nth-of-type(odd),
+  .section:nth-of-type(even) {
+    align-self: stretch;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .section-label {
-  /* font-family: "IBM Plex Mono", monospace; */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "IBM Plex Mono", monospace;
   font-size: 11px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #51bb8b;
-  margin: 0 0 18px 0;
+  margin: 0 0 20px 0;
 }
 
 .field {
@@ -82,69 +206,87 @@
   display: block;
   font-size: 14px;
   font-weight: 500;
-  /* color: #1a1a1a; */
-  margin-bottom: 9px;
+  color: #d7e4e1;
+  margin-bottom: 10px;
   line-height: 1.4;
 }
 
 .text-input,
 .textarea-input {
   width: 100%;
-  /* font-family: "IBM Plex Sans", Verdana, sans-serif; */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   font-size: 14px;
-  padding: 10px 12px;
-  border: 1.5px solid #dad4c2;
-  border-radius: 3px;
-  background: #fcfbf6;
-  color: #1a1a1a;
+  padding: 11px 13px;
+  border: 1.5px solid rgba(34, 211, 238, 0.16);
+  border-radius: 4px;
+  background: #0f2530;
+  color: #eef4f2;
   box-sizing: border-box;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.text-input::placeholder,
+.textarea-input::placeholder {
+  color: #4f6771;
+}
+
+.text-input:hover,
+.textarea-input:hover {
+  border-color: rgba(34, 211, 238, 0.32);
 }
 
 .text-input:focus,
 .textarea-input:focus {
   outline: none;
   border-color: #ff6b35;
+  background: #122a36;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
 }
 
 .textarea-input {
   resize: vertical;
   min-height: 90px;
-  /* font-family: "IBM Plex Sans", Verdana, sans-serif; */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
 }
 
 .tag-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 9px;
+  gap: 10px;
 }
 
 .tag-pill {
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 8px 14px;
-  border: 1.5px solid #dad4c2;
-  border-radius: 3px;
+  gap: 8px;
+  padding: 9px 15px;
+  border: 1.5px solid rgba(34, 211, 238, 0.16);
+  border-radius: 4px;
   font-size: 13px;
-  color: #1a1a1a;
+  color: #c4d5d1;
   cursor: pointer;
-  background: #fcfbf6;
+  background: #0f2530;
   transition:
     background 0.15s ease,
-    border-color 0.15s ease;
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.tag-pill:hover {
+  border-color: rgba(34, 211, 238, 0.4);
 }
 
 .tag-pill:has(input:checked) {
-  background: #ffe4d6;
+  background: rgba(255, 107, 53, 0.14);
   border-color: #ff6b35;
+  color: #ffddc9;
 }
 
 .radio-pill:has(input:checked) {
-  background: #d9f0e8;
-  border-color: #2d6a4f;
+  background: rgba(81, 217, 153, 0.14);
+  border-color: #51d999;
+  color: #cdf3e0;
 }
 
 .tag-pill input {
@@ -152,12 +294,12 @@
   cursor: pointer;
 }
 .radio-pill input {
-  accent-color: #2d6a4f;
+  accent-color: #51d999;
 }
 
 .flask-row {
   display: flex;
-  gap: 18px;
+  gap: 20px;
 }
 
 .flask-btn {
@@ -168,13 +310,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 }
 
 .flask-svg {
   width: 22px;
   height: 28px;
-  transition: transform 0.12s ease;
+  transition: transform 0.12s ease, filter 0.12s ease;
 }
 
 .flask-btn:hover .flask-svg {
@@ -183,7 +325,7 @@
 
 .flask-outline {
   fill: none;
-  stroke: #b8af96;
+  stroke: #3f5560;
   stroke-width: 1.4;
 }
 
@@ -191,30 +333,33 @@
   stroke: #ff6b35;
 }
 
+.flask-filled .flask-svg {
+  filter: drop-shadow(0 0 4px rgba(255, 107, 53, 0.45));
+}
+
 .flask-liquid {
   fill: #ff6b35;
 }
 
 .flask-num {
-  /* font-family: "IBM Plex Mono", monospace; */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "IBM Plex Mono", monospace;
   font-size: 11px;
-  color: #8a8270;
+  color: #6c848d;
 }
 
 .flask-filled .flask-num {
-  color: #ff6b35;
+  color: #ff8a5c;
   font-weight: 500;
 }
 
 .form-error {
-  background: #fbe4dd;
-  color: #99350f;
-  border: 1px solid #f0b8a0;
-  border-radius: 3px;
-  padding: 11px 14px;
+  background: rgba(255, 107, 53, 0.12);
+  color: #ffb08c;
+  border: 1px solid rgba(255, 107, 53, 0.4);
+  border-radius: 4px;
+  padding: 12px 15px;
   font-size: 13px;
-  margin: 22px 0 0;
+  margin: 24px 0 0;
 }
 
 .required-mark {
@@ -225,8 +370,8 @@
 .conditional-field {
   margin-top: 14px;
   margin-bottom: 0;
-  padding-left: 14px;
-  border-left: 2px solid #dad4c2;
+  padding-left: 15px;
+  border-left: 2px solid rgba(34, 211, 238, 0.3);
   animation: fug-slide-in 0.18s ease;
 }
 
@@ -244,74 +389,86 @@
 .btn-row {
   display: flex;
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 32px;
 }
 
 .submit-btn {
   flex: 1;
   padding: 14px 0;
   background: #ff6b35;
-  color: #fcfbf6;
-  /* font-family: "IBM Plex Sans", Verdana, sans-serif; */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: #0c1e27;
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   font-size: 15px;
   font-weight: 600;
   border: none;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
 }
 
 .submit-btn:hover {
-  background: #e2551f;
+  background: #ff7d4d;
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.35);
+}
+
+.submit-btn:active {
+  transform: translateY(1px);
 }
 
 .reset-btn {
   padding: 14px 22px;
   background: transparent;
-  color: #bce5d1;
-  /* font-family: "IBM Plex Sans", Verdana, sans-serif; */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: #9db3ac;
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   font-size: 14px;
   font-weight: 500;
-  border: 1.5px solid #dad4c2;
-  border-radius: 3px;
+  border: 1.5px solid rgba(34, 211, 238, 0.2);
+  border-radius: 4px;
   cursor: pointer;
   transition:
     background 0.15s ease,
-    border-color 0.15s ease;
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .reset-btn:hover {
-  background: #eae6d9;
-  border-color: #b8af96;
-  color: #0e2a2e;
+  background: rgba(34, 211, 238, 0.08);
+  border-color: rgba(34, 211, 238, 0.4);
+  color: #d7e4e1;
 }
 
 .success-reset {
-  margin-top: 24px;
+  margin-top: 26px;
   padding: 11px 24px;
 }
 
 .success-card {
   text-align: center;
-  padding: 64px 40px;
+  padding: 68px 40px;
 }
 .success-flask {
-  width: 36px;
-  height: 46px;
-  margin: 0 auto 18px;
+  width: 38px;
+  height: 48px;
+  margin: 0 auto 20px;
+  filter: drop-shadow(0 0 8px rgba(81, 217, 153, 0.4));
+}
+.success-card .flask-outline {
+  stroke: #51d999;
+}
+.success-card .flask-liquid {
+  fill: #51d999;
 }
 .success-card h2 {
-  color: #0e2a2e;
-  font-size: 22px;
-  font-weight: 600;
-  margin: 0 0 8px;
+  color: #f4f8f7;
+  font-size: 23px;
+  font-weight: 700;
+  margin: 0 0 10px;
 }
 .success-card p {
-  color: #4a5a52;
+  color: #8aa2ac;
   font-size: 14px;
   margin: 0;
+  line-height: 1.6;
 }
 
 @media (max-width: 480px) {
@@ -328,6 +485,19 @@
     width: 100%;
   }
 }
-.top-space{
+
+.top-space {
   margin: 20px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow,
+  .form-header h1,
+  .subhead,
+  .section {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
 }
