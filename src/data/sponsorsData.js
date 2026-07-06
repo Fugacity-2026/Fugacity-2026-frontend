@@ -177,33 +177,51 @@ export const tiers = [
 
 export const partners = [
   {
-    logo: vedanta,
     name: "VEDANTA",
-    role: "Title Sponsor",
+    role: "TITLE SPONSOR",
+    logo: vedanta,
+    description:
+      "Vedanta Limited is one of India’s leading diversified natural resources companies, operating across zinc, aluminium, copper, iron ore, oil & gas, steel and power.",
+    website: "https://www.vedantalimited.com/",
   },
   {
-    logo: algamitra,
-    name: "ALGAMITRA",
-    role: "Powered By",
-  },
+  name: "ALTAMIRA INSTRUMENTS",
+  role: "POWERED BY",
+  logo: algamitra,
+  description:
+    "Altamira Instruments is a leading manufacturer of catalyst characterization instruments, gas adsorption analyzers, and bench-scale micro-reactor systems used by universities, research laboratories, and the chemical process industry worldwide.",
+  website: "https://www.environmental-expert.com/companies/altamira-instruments-22493?__cf_chl_f_tk=XqWvbaj1pVhuUI8lO9wPocA1Of3Ks_EhngeLEqO.Zsk-1783021174-1.0.1.1-JXrs83GF_onU_iST8oFiDyQXpxRX8EMSTspfx.TkJHk",
+},
   {
-    logo: indianoil,
     name: "INDIAN OIL",
-    role: "Industry Partner",
+    role: "INDUSTRY PARTNER",
+    logo: indianoil,
+    description:
+      "IndianOil is an integrated energy company with presence across oil, gas, petrochemicals and related energy businesses in India and abroad.",
+    website: "https://iocl.com/",
   },
   {
+    name: "INDIAN INSTITUTE OF CHEMICAL ENGINEERS",
+    role: "KNOWLEDGE PARTNER",
     logo: iicu,
-    name: "Indian Institute of Chemical Engineers",
-    role: "Knowledge Partner",
+    description:
+      "IIChE is a professional body for chemical engineers in India and is recognized as a Scientific and Industrial Research Organisation by DST.",
+    website: "https://iiche.org.in/",
   },
   {
-    logo: unstop,
     name: "UNSTOP",
-    role: "Platform Partner",
+    role: "PLATFORM PARTNER",
+    logo: unstop,
+    description:
+      "Unstop is an opportunity platform for students and early talent, offering internships, jobs, competitions, hackathons and learning opportunities.",
+    website: "https://unstop.com/",
   },
   {
+    name: "NAVIN FLUORINE INTERNATIONAL",
+    role: "PREVIOUS SPONSOR",
     logo: group,
-    name: "Navin Fluorine International",
-    role: "Previous Sponsors",
+    description:
+      "Navin Fluorine International is an Indian specialty fluorochemicals company working across refrigerants, inorganic fluorides and specialty chemicals.",
+    website: "https://www.nfil.in/",
   },
 ];

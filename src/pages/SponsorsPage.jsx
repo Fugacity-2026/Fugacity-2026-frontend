@@ -16,7 +16,7 @@ import {
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import { tiers, partners, contacts, events } from "../data/sponsorsData.js";
-import NetworkCanvas from "../components/sponsors/NetworkCanvas.jsx";
+import NetworkCanvas from "../components/NetworkCanvas.jsx";
 import VaporLetter from "../components/sponsors/VaporLetter.jsx";
 import SectionHeading from "../components/sponsors/SectionHeading.jsx";
 import RevealCard from "../components/sponsors/RevealCard.jsx";
@@ -37,9 +37,9 @@ const SponsorsPage = () => {
   }, []);
 return (
     <div className="relative min-h-screen bg-gradient-to-b from-[#112733] via-[#0e202b] to-[#09151c] text-white font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      
      <NetworkCanvas />
-    </div>
+   
       <Navbar />
 
       {/* ── HERO ───────────────────────────────────────────── */}
@@ -82,10 +82,11 @@ return (
           className="mt-8 flex flex-wrap justify-center gap-6 md:gap-10"
         >
           {[
-            { val: '10+', label: 'EVENTS', color: 'text-[#06d6a0]' },
-            { val: '30+', label: 'COLLEGES', color: 'text-[#06d6a0]' },
+            
+            { val: '15+', label: 'COLLEGESIITs AND NITs)', color: 'text-[#06d6a0]' },
            
             { val: '2000+', label: 'PARTICIPANTS', color: 'text-[#06d6a0]' },
+            { val: '20000+', label: 'SOCIAL MEDIA REACH', color: 'text-[#06d6a0]' },
           ].map(({ val, label, color }) => (
             <div key={label} className="text-center">
               <div className={`text-2xl md:text-3xl font-black font-display ${color}`}>{val}</div>
@@ -135,46 +136,50 @@ return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
       {[
         {
-          icon: Award,
-          title: "Brand Visibility",
-          items: [
-            "Website logo",
-            "Event banners",
-            "Standees & backdrops",
-            "Merchandise",
-          ],
-        },
-        {
-          icon: Globe,
-          title: "Digital Presence",
-          items: [
-            "Social media posts",
-            "Dedicated sponsor posts",
-            "Website mentions",
-            "Company hyperlink",
-          ],
-        },
-        {
-          icon: Handshake,
-          title: "Direct Engagement",
-          items: [
-            "Exhibition stalls",
-            "Product showcases",
-            "Recruitment access",
-            "Networking sessions",
-          ],
-        },
-        {
-          icon: Megaphone,
-          title: "Premium Exposure",
-          items: [
-            "Naming rights",
-            "Video branding",
-            "Workshop hosting",
-            "Sponsored challenges",
-          ],
-        },
-      ].map(({ icon: Icon, title, items }, i) => (
+  icon: Award,
+  number: "10+",
+  title: "Brand Visibility",
+  items: [
+    "Events & Workshops",
+    "Website logo",
+    "Event banners",
+    "Standees & backdrops",
+  ],
+},
+{
+  icon: Globe,
+  number: "3000+",
+  title: "Digital Presence",
+  items: [
+    "Social media reach",
+    "Dedicated sponsor posts",
+    "Website mentions",
+    "Company hyperlink",
+  ],
+},
+{
+  icon: Handshake,
+  number: "2000+",
+  title: "Direct Engagement",
+  items: [
+    "Participants",
+    "Exhibition stalls",
+    "Recruitment access",
+    "Networking sessions",
+  ],
+},
+{
+  icon: Megaphone,
+  number: "250+",
+  title: "Premium Exposure",
+  items: [
+    "Competition attendees",
+    "Workshop hosting",
+    "Sponsored challenges",
+    "Naming rights",
+  ],
+},
+      ].map(({ icon: Icon, number, title, items }, i) => (
         <RevealCard
   key={title}
   delay={i * 0.08}
@@ -194,6 +199,7 @@ return (
     <div className="w-11 h-11 rounded-xl bg-[#06d6a0]/15 flex items-center justify-center mb-4 group-hover:rotate-6 group-hover:scale-110 transition-all duration-300">
       <Icon className="w-5 h-5 text-[#06d6a0]" />
     </div>
+    
 
     <h3 className="text-white font-black text-base mb-3">
       {title}
@@ -214,8 +220,113 @@ return (
   </div>
 </section>
 
+{/* ── SPONSORSHIP AMOUNTS ───────────────────────────── */}
+<section className="relative z-10 py-8 md:py-12 px-4">
+  <div className="max-w-7xl mx-auto">
+
+    <SectionHeading>Sponsorship Amounts</SectionHeading>
+
+    <p className="text-center text-gray-400 mt-3 mb-8 text-sm">
+  Choose the partnership tier that best aligns with your brand and engagement goals.
+</p>
+
+    <div className="grid grid-cols-2 lg:grid-cols-6 gap-5 mt-10">
+
+  {[
+  {
+    title: "STRATEGIC PARTNER",
+    amount: "₹50k",
+  },
+  {
+    title: "IN ASSOCIATION WITH",
+    amount: "₹1.6 Lakh",
+  },
+  {
+    title: "POWERED BY",
+    amount: "₹1.2 Lakh",
+  },
+  {
+    title: "TITLE SPONSOR",
+    amount: "₹2 Lakh",
+  },
+  
+  {
+    title: "MAJOR SPONSOR",
+    amount: "₹80k",
+  },
+  
+  {
+    title: "EVENT SPONSOR",
+    amount: "₹40k",
+  },
+].map((item, index) => (
+    <RevealCard
+  key={item.title}
+  delay={index * 0.05}
+  className="
+    h-36
+    rounded-2xl
+    border border-[#06d6a0]/35
+    bg-[#071b26]/90
+    backdrop-blur-xl
+    flex flex-col
+    items-center
+    justify-center
+    hover:-translate-y-1
+    hover:scale-[1.03]
+    hover:border-[#06d6a0]
+    hover:shadow-[0_0_30px_rgba(6,214,160,0.35)]
+    transition-all duration-300
+  "
+>
+
+  {/* Sponsorship Tier */}
+  <div className="h-12 flex flex-col items-center justify-start">
+  <span
+    className="
+      text-[11px]
+      md:text-xs
+      uppercase
+      tracking-[0.18em]
+      text-gray-300
+      font-semibold
+      text-center
+      px-2
+      leading-snug
+    "
+  >
+    {item.title}
+  </span>
+
+  <div className="w-12 h-[2px] bg-[#06d6a0]/60 rounded-full mt-3"></div>
+</div>
+
+<span
+  className="
+    mt-4
+    text-xl
+    md:text-2xl
+    font-extrabold
+    tracking-tight
+    text-[#06d6a0]
+    leading-none
+  "
+>
+  {item.amount}
+</span>
+
+</RevealCard>
+  ))}
+
+</div>
+
+    
+
+  </div>
+</section>
+
     {/* Sponsorship Tiers - Pulling Stack */}
-<section className="relative z-10 py-10 md:py-20 px-4 md:px-6">
+<section className="relative z-10 pt-10 pb-2 md:pt-20 md:pb-4 px-4 md:px-6">
   <div className="max-w-6xl mx-auto text-center mb-8 md:mb-16">
     <SectionHeading>Sponsorship Tiers</SectionHeading>
     <p className="text-gray-300 mt-3">
@@ -227,7 +338,7 @@ return (
     {tiers.map((tier, index) => (
       <div
   key={tier.name}
-  className="md:sticky mb-8 md:mb-28"
+  className="md:sticky mb-4 md:mb-8"
   style={{
     top: `${110 + index * 18}px`,
     zIndex: index + 10,
@@ -245,55 +356,68 @@ return (
     ))}
   </div>
 </section>
-      {/* ── MARQUEE EVENT CARDS ──────────────────────────────── */}
-      <section className="relative z-10 py-8 md:py-10 overflow-hidden">
-        <div className="max-w-5xl mx-auto mt-8 md:mt-16 space-y-8 md:space-y-24">
-          <SectionHeading>Sponsor Individual Events</SectionHeading>
-          <p className="text-center text-gray-400 text-xs -mt-4 mb-0 tracking-wide">
-            Hover over a card to reveal Event Sponsor deliverables ·
-          </p>
-        </div>
-        {/* fade edges */}
-        <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-r from-[#0e202b] to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-[#0e202b] to-transparent pointer-events-none" />
-          <MarqueeStrip events={events} />
-        </div>
-      </section>
+    
 
 
       {/* ── OUR PARTNERS & GET IN TOUCH ─────────────────────── */}
-      <section className="relative z-10 py-10 px-4">
-        <div className="max-w-5xl mx-auto">
-          <SectionHeading>Our Catalysts</SectionHeading>
-          <p className="text-center text-slate-500 text-xs -mt-4 mb-6 tracking-wide">
-            The catalysts powering Fugacity's reactions
-          </p>
+      <section className="relative z-10 pt-0 pb-10 px-4">
+  <div className="max-w-6xl mx-auto">
+    <div className="relative mb-12 rounded-3xl overflow-hidden border border-[#06d6a0]/20 bg-[#071219]/95 px-5 sm:px-8 md:px-10 py-10">
+  <div className="space-y-14">
+    {Array.from(new Set(partners.map((p) => p.role))).map((role) => (
+      <div key={role}>
+        <SectionHeading>{role}</SectionHeading>
 
+        <div className="flex justify-center mt-8">
+  {partners
+    .filter((p) => p.role === role)
+    .map((sponsor) => (
+      <div
+        key={sponsor.name}
+        className="group w-full max-w-[700px] rounded-2xl border border-[#06d6a0]/35 bg-[#061823]/90 p-6 flex flex-col sm:flex-row gap-6 items-center sm:items-start hover:border-[#06d6a0] hover:shadow-[0_0_35px_rgba(6,214,160,0.28)] transition-all duration-300"
+      >
+                <div className="w-36 h-36 rounded-xl bg-white flex items-center justify-center p-4 shrink-0">
+                  <img
+                    src={sponsor.logo}
+                    alt={sponsor.name}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
 
-         <div className="relative min-h-[900px] mb-12 rounded-3xl overflow-hidden border border-[#06d6a0]/15 bg-[#071219]/95 px-4 sm:px-8 md:px-10 py-12 md:py-16">
-  <div className="max-w-5xl mx-auto space-y-16 md:space-y-24">
-    {Array.from({ length: Math.ceil(partners.length / 3) }).map((_, groupIndex) => {
-      const group = partners.slice(groupIndex * 3, groupIndex * 3 + 3);
+                <div className="text-center sm:text-left flex flex-col h-full">
+                  <h3 className="text-xl font-black text-white mb-1">
+                    {sponsor.name}
+                  </h3>
 
-      return (
-        <div key={groupIndex} className="space-y-16 md:space-y-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-28 items-center">
-            {group.slice(0, 2).map((sponsor) => (
-              <SponsorCard key={sponsor.name} {...sponsor} />
+                  <p className="text-[#06d6a0] text-xs font-bold tracking-widest mb-3">
+                    {sponsor.role}
+                  </p>
+
+                  <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                    {sponsor.description}
+                  </p>
+
+                  <a
+  href={sponsor.website || "#"}
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={(e) => {
+    if (!sponsor.website || sponsor.website === "#") {
+      e.preventDefault();
+    }
+  }}
+  className="inline-flex w-fit mx-auto sm:mx-0 mt-auto items-center gap-2 px-5 py-2 rounded-full bg-[#241c4a] border border-[#06d6a0]/40 text-white text-sm font-semibold hover:bg-[#06d6a0] hover:text-[#06141c] transition-all duration-300"
+>
+  Know More →
+</a>
+                </div>
+              </div>
             ))}
-          </div>
-
-          {group[2] && (
-            <div className="flex justify-center">
-              <SponsorCard key={group[2].name} {...group[2]} />
-            </div>
-          )}
         </div>
-      );
-    })}
+      </div>
+    ))}
   </div>
-</div>
+       </div>
           {/* Let's Collaborate */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start mb-8">
             <RevealCard className="flex flex-col gap-4">
