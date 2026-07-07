@@ -242,7 +242,7 @@ const PrevEventCard = ({ event, onClick, animDelay = 0  }) => {
         {/* ── RIGHT: Event details ── */}
         <div style={{
           flex: 1,
-          padding: isMobile ? '16px' : '16px 18px 48px 18px',
+          padding: isMobile ? '16px' : '16px 18px 5px 18px',
           display: 'flex',
           flexDirection: 'column',
            gap: isMobile ? 10 : 7,
@@ -270,7 +270,7 @@ const PrevEventCard = ({ event, onClick, animDelay = 0  }) => {
           {/* Event name */}
           <div style={{
             fontFamily: 'Arial Black', fontWeight: 800,
-            fontSize: event.name?.length > 13 ? 16 : event.name?.length > 9 ? 20 : 18,
+            fontSize: 15,
             color: 'white',
             letterSpacing: '1.5px', lineHeight: 1.2, textAlign:isMobile?'center':'',
           }}>
@@ -286,10 +286,10 @@ const PrevEventCard = ({ event, onClick, animDelay = 0  }) => {
           </div>
 
           {/* Stats row */}
-          <div style={{ display: 'flex',   gap: isMobile ? 24 : 14, // Wider spacing gap on mobile
+          <div style={{ display: 'flex',   gap: isMobile ? 24 : 14, 
           marginTop: isMobile ? 14 : 'auto', 
           width: '100%',
-          justifyContent: isMobile ? 'center' : 'flex-start', // Centers row content horizontally
+          justifyContent: isMobile ? 'center' : 'flex-start', 
           alignItems: 'center'}}>
             {[
               { label: 'TEAM',   value: event.teamSize },
@@ -304,7 +304,7 @@ const PrevEventCard = ({ event, onClick, animDelay = 0  }) => {
                     letterSpacing: '1px', color: '#4ee2ff'
                   }}>{item.label}</span>
                   <span style={{
-                    fontFamily: 'sans-serif', fontSize:event.type==="Team"? 20:14,
+                    fontFamily: 'sans-serif', fontSize:14,
                     fontWeight: 700, color: 'white',textAlign:'center'
                   }}>{item.value}</span>
                 </div>
@@ -313,24 +313,27 @@ const PrevEventCard = ({ event, onClick, animDelay = 0  }) => {
           </div>
 
           {/* Footer row */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 6 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto',paddingRight: '18px', 
+  paddingLeft: '18px',
+  width: '100%', 
+  boxSizing: 'border-box' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 5, }}>
               <div style={{
                 width: 6, height: 6, borderRadius: '50%',
                 background: c, boxShadow: `0 0 6px ${c}`,
-                animation: 'phase-pulse 1.8s ease-in-out infinite',
+                animation: 'phase-pulse 1.8s ease-in-out infinite'
               }} />
               <span style={{
-                fontFamily: 'Arial Black',  fontSize: event.name?.length > 13 ? 18 : event.name?.length > 9 ? 20 : 18,
-                letterSpacing: '1px', color: '#4ee2ff', marginTop:event.name?.length > 13 ? -5 : event.name?.length > 9 ? 0 : 6,
+                fontFamily: 'Arial Black',  fontSize:18,
+                letterSpacing: '1px', color: '#4ee2ff', marginTop:8,
               }}>
                 ChEA
               </span>
             </div>
             <span style={{
               fontFamily: 'Arial Black, sans-serif', fontWeight: 900,
-              letterSpacing: '1.5px', color: 'white', fontSize: event.name?.length > 13 ? 18 : event.name?.length > 9 ? 20 : 18,
-              marginTop:event.name?.length > 13 ? -5 : event.name?.length > 9 ? 0 : 6,
+              letterSpacing: '1px', color: 'white', fontSize: 18,
+              marginTop:8
             }}>
               VIEW →
             </span>

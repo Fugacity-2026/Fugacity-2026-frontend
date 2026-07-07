@@ -158,7 +158,7 @@ export const previousEvents = [
     id: 101,
     name: "CODE THE PROBLEM",
     category: "Coding",
-    type: "INDIVIDUAL",
+    type: "Individual",
     teamSize: "1",
     rounds: 1,
     prize: "₹15,000",
