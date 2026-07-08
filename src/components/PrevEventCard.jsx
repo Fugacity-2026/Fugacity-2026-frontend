@@ -201,7 +201,7 @@ const PrevEventCard = ({ event, onClick, animDelay = 0  }) => {
                 <img
                   src={event.image}
                   alt={event.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               ) : (
                 <div style={{
