@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import MolCursor from "../components/MolCursor";
 import NetworkCanvas from "../components/NetworkCanvas";
 import PhaseTransition from "../components/PhaseTransition";
+import { currentEvents } from "../data/events";
 
 
 /**
@@ -20,16 +21,7 @@ import PhaseTransition from "../components/PhaseTransition";
  * for anyone in the department who'll recognize it.
  */
 
-const EVENTS = [
-  "Process Simulation Challenge",
-  "Reaction Engineering Hackathon",
-  "Plant Design Sprint",
-  "Robotics & Automation Arena",
-  "Coding Marathon",
-  "Technical Paper Presentation",
-  "Workshop Series",
-  "Cultural Night",
-];
+const EVENTS = currentEvents.map((event) => event.name);
 
 const HEAR_ABOUT_OPTIONS = [
   "Social media",
@@ -127,6 +119,7 @@ export default function FugacityFeedbackForm() {
   const [form, setForm] = useState(INITIAL_FORM);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const update = (key, value) => setForm((f) => ({ ...f, [key]: value }));
 
@@ -142,7 +135,7 @@ export default function FugacityFeedbackForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!form.name.trim()) {
@@ -167,8 +160,39 @@ export default function FugacityFeedbackForm() {
     }
 
     setError("");
-    setSubmitted(true);
-    // axios.post("/api/feedback", form);
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/feedback`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          category: form.category,
+          collegeName: form.collegeName.trim() || undefined,
+          hearAboutUs: form.hearAbout,
+          eventsAttended: form.eventsAttended,
+          qualityOfProblemStatement: form.problemStatementRating || undefined,
+          smoothnessOfScheduling: form.schedulingRating || undefined,
+          helpfulnessOfTeam: form.helpfulnessRating || undefined,
+          venueArrangements: form.venueRating || undefined,
+          bestHighlight: form.highlight.trim() || undefined,
+          majorIssues: form.challenges.trim() || undefined,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.message || "Something went wrong. Please try again.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || "Couldn't submit feedback. Check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
@@ -382,8 +406,10 @@ export default function FugacityFeedbackForm() {
         {error && <div className="form-error">{error}</div>}
 
         <div className="btn-row">
-          <button type="submit" className="submit-btn">Submit feedback</button>
-          <button type="button" className="reset-btn" onClick={handleReset}>
+          <button type="submit" className="submit-btn" disabled={isSubmitting}>
+            {isSubmitting ? "Submitting…" : "Submit feedback"}
+          </button>
+          <button type="button" className="reset-btn" onClick={handleReset} disabled={isSubmitting}>
             Reset
           </button>
         </div>
