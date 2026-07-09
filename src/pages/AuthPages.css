@@ -1,0 +1,351 @@
+/* ---------------------------------------------------------
+   Fugacity Auth Pages (Register / Login) — reuses the global
+   theme tokens defined in src/index.css (:root), matching the
+   site's primary sci-fi identity (Orbitron / Share Tech Mono /
+   Rajdhani, cyan-neon on dark teal).
+--------------------------------------------------------- */
+
+.auth-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.auth-main {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 140px 20px 80px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-cyan);
+  border-radius: 14px;
+  padding: 40px 36px;
+  box-shadow: var(--glow-lg);
+}
+
+.auth-toggle-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.auth-toggle {
+  display: inline-flex;
+  margin: 0 auto 32px;
+  background: var(--slate-dark);
+  border-radius: 999px;
+  padding: 4px;
+  border: 1px solid var(--border-cyan);
+}
+
+.auth-toggle a {
+  display: block;
+  padding: 9px 26px;
+  border-radius: 999px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.auth-toggle a.active {
+  background: var(--cyan-neon);
+  color: #012024;
+  box-shadow: var(--glow-sm);
+}
+
+.auth-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--text-white);
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+  margin: 0 0 28px;
+}
+
+/* ---------- step indicator (register only) ---------- */
+.auth-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.auth-step-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1.5px solid var(--border-cyan);
+  color: var(--text-dim);
+  background: var(--slate-dark);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.auth-step-dot.active {
+  background: var(--cyan-neon);
+  border-color: var(--cyan-neon);
+  color: #012024;
+  box-shadow: var(--glow-sm);
+}
+
+.auth-step-dot.done {
+  background: transparent;
+  border-color: var(--cyan-neon);
+  color: var(--cyan-neon);
+}
+
+.auth-step-line {
+  width: 32px;
+  height: 1.5px;
+  background: var(--border-cyan);
+}
+
+.auth-step-line.done {
+  background: var(--cyan-neon);
+}
+
+/* ---------- fields ---------- */
+.auth-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.auth-field {
+  margin-bottom: 18px;
+}
+
+.auth-field label {
+  display: block;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 7px;
+}
+
+.auth-field .req {
+  color: var(--cyan-neon);
+}
+
+.auth-field input,
+.auth-field select {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--slate-dark);
+  border: 1.5px solid var(--border-cyan);
+  border-radius: 8px;
+  padding: 12px 15px;
+  color: var(--text-white);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+}
+
+.auth-field input::placeholder {
+  color: var(--text-dim);
+}
+
+.auth-field input:focus,
+.auth-field select:focus {
+  outline: none;
+  border-color: var(--cyan-neon);
+  box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.15);
+}
+
+.auth-field select option {
+  background: var(--bg-panel);
+  color: var(--text-white);
+}
+
+/* ---------- actions ---------- */
+.auth-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.auth-btn-primary {
+  flex: 1;
+  padding: 13px 0;
+  background: transparent;
+  border: 1.5px solid var(--cyan-neon);
+  color: var(--cyan-neon);
+  border-radius: 999px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.auth-btn-primary:hover:not(:disabled) {
+  background: var(--cyan-neon);
+  color: #012024;
+  box-shadow: var(--glow-md);
+}
+
+.auth-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.auth-btn-secondary {
+  padding: 13px 24px;
+  background: transparent;
+  border: 1.5px solid var(--border-cyan);
+  color: var(--text-light);
+  border-radius: 999px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.auth-btn-secondary:hover:not(:disabled) {
+  border-color: var(--border-cyan-bright);
+  color: var(--cyan-neon);
+}
+
+.auth-btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.auth-error {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 13.5px;
+  color: #ff8a8a;
+  background: rgba(255, 90, 90, 0.08);
+  border: 1px solid rgba(255, 90, 90, 0.3);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin: 0 0 18px;
+}
+
+.auth-hint {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+
+.auth-hint a {
+  color: var(--cyan-neon);
+  text-decoration: none;
+}
+
+.auth-hint a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  .auth-card { padding: 30px 22px; }
+  .auth-field-row { grid-template-columns: 1fr; }
+  .auth-step-dot { width: 26px; height: 26px; font-size: 11px; }
+  .auth-step-line { width: 18px; }
+}
+
+/* ---------- email confirm modal ---------- */
+.auth-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 10, 10, 0.72);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  animation: auth-modal-fade-in 0.15s ease;
+}
+
+@keyframes auth-modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.auth-modal-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-cyan-bright);
+  border-radius: 14px;
+  padding: 32px 28px;
+  text-align: center;
+  box-shadow: var(--glow-lg);
+  animation: auth-modal-rise 0.2s ease;
+}
+
+@keyframes auth-modal-rise {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.auth-modal-eyebrow {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan-neon);
+  margin: 0 0 14px;
+}
+
+.auth-modal-text {
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+
+.auth-modal-text strong {
+  color: var(--text-white);
+}
+
+.auth-modal-email {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 15px;
+  color: var(--text-white);
+  background: var(--slate-dark);
+  border: 1px solid var(--border-cyan);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0 0 16px;
+  word-break: break-all;
+}
+
+.auth-modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+  .auth-modal-card { padding: 26px 20px; }
+}

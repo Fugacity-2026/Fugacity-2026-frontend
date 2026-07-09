@@ -1,0 +1,327 @@
+/* ---------------------------------------------------------
+   Fugacity Admin Console — reuses the global theme tokens
+   defined in src/index.css (:root) rather than redefining
+   its own palette. Leans on the site's primary sci-fi
+   identity (Orbitron / Share Tech Mono / Rajdhani) since this
+   is the internal control-room, not a marketing page.
+--------------------------------------------------------- */
+
+.admin-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 48px 24px 80px;
+  box-sizing: border-box;
+  font-family: "Rajdhani", sans-serif;
+  color: var(--text-white);
+  background: var(--bg-deep);
+}
+
+.admin-eyebrow {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan-neon);
+  margin: 0 0 6px;
+}
+
+.admin-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto 36px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-cyan);
+}
+
+.admin-header h1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 900;
+  color: var(--text-white);
+  letter-spacing: 0.04em;
+  text-shadow: var(--glow-md);
+  margin: 0;
+}
+
+.admin-logout-btn {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  background: transparent;
+  color: var(--text-light);
+  border: 1.5px solid var(--border-cyan);
+  border-radius: 4px;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.admin-logout-btn:hover {
+  border-color: var(--border-cyan-bright);
+  color: var(--cyan-neon);
+  background: rgba(0, 245, 212, 0.06);
+}
+
+.admin-stats-row {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.admin-stat-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-cyan);
+  border-radius: 8px;
+  padding: 24px 26px;
+  text-align: center;
+}
+
+.admin-stat-value {
+  font-family: "Orbitron", sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--cyan-neon);
+  text-shadow: var(--glow-sm);
+}
+
+.admin-stat-label {
+  margin-top: 8px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.admin-section {
+  max-width: 1200px;
+  margin: 0 auto 44px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-cyan);
+  border-radius: 8px;
+  padding: 26px 28px;
+}
+
+.admin-section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.admin-section-header h2 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 20px;
+  color: var(--text-white);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.admin-loading {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  padding: 6px 0 14px;
+}
+
+.admin-section-error,
+.admin-login-error {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 13.5px;
+  color: #ff8a8a;
+  background: rgba(255, 90, 90, 0.08);
+  border: 1px solid rgba(255, 90, 90, 0.3);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 6px 0 14px;
+}
+
+.admin-login-error {
+  margin: 0 0 18px;
+  text-align: left;
+}
+
+.admin-mono {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-table th {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--cyan-neon);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-cyan);
+}
+
+.admin-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0, 245, 212, 0.08);
+  color: var(--text-light);
+}
+
+.admin-table tr:hover td {
+  background: rgba(0, 245, 212, 0.04);
+}
+
+.admin-empty-row {
+  text-align: center;
+  color: var(--text-dim);
+  padding: 20px;
+}
+
+.admin-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.admin-filter-row select {
+  background: var(--slate-dark);
+  color: var(--text-white);
+  border: 1px solid var(--border-cyan);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 14px;
+}
+
+.admin-pending-card {
+  border: 1px dashed rgba(240, 165, 0, 0.4);
+  background: rgba(240, 165, 0, 0.05);
+  border-radius: 6px;
+  padding: 18px 20px;
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.admin-pending-card code {
+  background: rgba(0, 245, 212, 0.08);
+  color: var(--cyan-neon);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12.5px;
+}
+
+/* ---------- login gate ---------- */
+.admin-login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-deep);
+  padding: 24px;
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-cyan);
+  border-radius: 10px;
+  padding: 40px 32px;
+  text-align: center;
+  box-shadow: var(--glow-lg);
+}
+
+.admin-login-card h1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--text-white);
+  margin: 0 0 6px;
+  letter-spacing: 0.03em;
+}
+
+.admin-login-note {
+  color: var(--text-dim);
+  font-size: 13px;
+  margin: 0 0 28px;
+}
+
+.admin-field {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.admin-field label {
+  display: block;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.admin-field input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--slate-dark);
+  border: 1.5px solid var(--border-cyan);
+  border-radius: 4px;
+  padding: 11px 13px;
+  color: var(--text-white);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+}
+
+.admin-field input:focus {
+  outline: none;
+  border-color: var(--cyan-neon);
+  box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.15);
+}
+
+.admin-login-btn {
+  width: 100%;
+  padding: 13px 0;
+  background: var(--cyan-neon);
+  color: #012024;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.05s ease;
+}
+
+.admin-login-btn:hover {
+  box-shadow: var(--glow-md);
+}
+
+.admin-login-btn:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 640px) {
+  .admin-header { flex-direction: column; align-items: flex-start; }
+  .admin-table { font-size: 12.5px; }
+  .admin-section { padding: 20px 16px; }
+}

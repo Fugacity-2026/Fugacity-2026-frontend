@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 import MolCursor from "../components/MolCursor";
 import NetworkCanvas from "../components/NetworkCanvas";
 import PhaseTransition from "../components/PhaseTransition";
-import { currentEvents } from "../data/events";
 
 
 /**
@@ -21,7 +20,14 @@ import { currentEvents } from "../data/events";
  * for anyone in the department who'll recognize it.
  */
 
-const EVENTS = currentEvents.map((event) => event.name);
+const EVENTS = [
+  "CODE THE PROBLEM",
+  "ASPEN WORKSHOP",
+  "QUIZBOWL",
+  "PITCH AN IDEA",
+  "OPTIMISEIT",
+  "ML HACKATHON",
+];
 
 const HEAR_ABOUT_OPTIONS = [
   "Social media",

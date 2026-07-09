@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const EventDetail = ({ event, onClose }) => {
+  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [closing, setClosing] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [hoverBack, setHoverBack] = useState(false);
-  const [registerClicked, setRegisterClicked] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 30);
@@ -243,21 +244,21 @@ const EventDetail = ({ event, onClose }) => {
            
           }}>
             {!event.year && (
-              <button 
-                onClick={() => setRegisterClicked(true)}
+              <button
+                onClick={() => navigate('/register')}
                 style={{
-                    flex: 1,   
+                    flex: 1,
                     width: '100%',
                     padding: isMobile ? '10px 16px' : '12px',
-                    background: registerClicked ? '#ffffff' : '#4ee2ff',
-                    color: registerClicked ? '#000' : '#012024',
+                    background: '#4ee2ff',
+                    color: '#012024',
                     border: 'none',
                     cursor: 'pointer',
                     fontSize: isMobile ? 18 : 25,
                     transition: 'all 0.25s ease',
                     fontFamily:'Arial Black'
                 }}>
-                {registerClicked ? 'REGISTER' : 'REGISTER'}
+                REGISTER
               </button>
             )}
 

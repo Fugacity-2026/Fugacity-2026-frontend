@@ -1,0 +1,145 @@
+/* ---------------------------------------------------------
+   Fugacity Profile Page — same theme tokens as AuthPages.css
+   (global :root vars from src/index.css).
+--------------------------------------------------------- */
+
+.profile-page {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.profile-main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 140px 20px 80px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-cyan);
+}
+
+.profile-eyebrow {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan-neon);
+  margin: 0 0 6px;
+}
+
+.profile-header h1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 900;
+  color: var(--text-white);
+  margin: 0;
+}
+
+.profile-logout-btn {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  background: transparent;
+  color: var(--text-light);
+  border: 1.5px solid var(--border-cyan);
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.profile-logout-btn:hover {
+  border-color: var(--border-cyan-bright);
+  color: var(--cyan-neon);
+}
+
+.profile-section {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-cyan);
+  border-radius: 12px;
+  padding: 26px 28px;
+  margin-bottom: 28px;
+}
+
+.profile-section h2 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 18px;
+  color: var(--text-white);
+  margin: 0 0 20px;
+}
+
+.profile-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.profile-info-item label {
+  display: block;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 5px;
+}
+
+.profile-info-item div {
+  color: var(--text-white);
+  font-size: 15px;
+}
+
+.profile-event-card {
+  border: 1px solid var(--border-cyan);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  background: rgba(0, 245, 212, 0.02);
+}
+
+.profile-event-card:last-child {
+  margin-bottom: 0;
+}
+
+.profile-event-name {
+  font-family: "Orbitron", sans-serif;
+  font-size: 16px;
+  color: var(--cyan-neon);
+  margin: 0 0 8px;
+}
+
+.profile-event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.profile-empty {
+  color: var(--text-dim);
+  font-size: 14px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.profile-loading {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  color: var(--text-dim);
+  text-align: center;
+  padding: 140px 0 60px;
+}
+
+@media (max-width: 600px) {
+  .profile-section { padding: 20px 18px; }
+}
