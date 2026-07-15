@@ -17,7 +17,7 @@ import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import { tiers, partners, contacts, events } from "../data/sponsorsData.js";
 import NetworkCanvas from "../components/NetworkCanvas.jsx";
-import VaporLetter from "../components/sponsors/VaporLetter.jsx";
+import VaporLetter from "../components/sponsors/Vaporletter.jsx";
 import SectionHeading from "../components/sponsors/SectionHeading.jsx";
 import RevealCard from "../components/sponsors/RevealCard.jsx";
 import TierCard from "../components/sponsors/TierCard.jsx";
