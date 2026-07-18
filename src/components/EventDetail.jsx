@@ -152,7 +152,7 @@ const EventDetail = ({ event, onClose }) => {
             fontSize: isMobile ? 24 : 25,
             wordBreak: 'break-word'
           }}>
-            {event.rounds} Rounds • Team: {event.teamSize}
+            {event.rounds} Rounds • Team Size: {event.teamSize}
           </p>
 
           {/* ABOUT */}
@@ -163,7 +163,7 @@ const EventDetail = ({ event, onClose }) => {
               fontFamily:'Ubuntu',
               fontSize: isMobile ? 20 : 21
             }}>
-              {event.description2}
+              {event.description}
             </p>
           </Section>
 
@@ -176,7 +176,7 @@ const EventDetail = ({ event, onClose }) => {
           }}>
             {[
               { label: 'PRIZE', value: event.prize },
-              { label: 'TEAM', value: event.teamSize },
+              { label: 'TEAM SIZE', value: event.teamSize },
               { label: 'ROUNDS', value: event.rounds }
             ].map((s) => (
               <div key={s.label} style={{

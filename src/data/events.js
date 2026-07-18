@@ -1,23 +1,26 @@
 export const currentEvents = [
   {
     id: 1,
-    name: "CHEMICAL QUIZ",
+    name: "QUIZ BOWL",
     category: "Quiz",
     type: "Team",
-    teamSize: "2-3",
-    rounds: 3,
+    teamSize: "4",
+    rounds: 2,
     prize: "₹5,000",
-    description2: "A multi-round chemistry quiz testing knowledge from basic to advanced levels. Teams battle through elimination rounds covering organic, inorganic, and physical chemistry.",
+    description2: "A multi-round chemical quiz testing knowledge from basic to advanced levels.",
+    description:"Quiz Bowl is a high-energy academic quiz show being loud, fast and highly intellectual. From deep-dive thermodynamics and chemical reaction engineering to transport phenomena-the event is designed to test your reflexes under fire.",
     details: [
-      "Round 1: Written MCQ — 30 questions, 20 minutes",
-      "Round 2: Rapid Fire — buzzer-based speed round",
-      "Round 3: Final Showdown — visual and analytical problems"
+      "Round 1: Timed MCQ on Unstop",
+      "Round 2: Face off on-stage in front of quizmaster panel",
+      "Venue: Department of Chemical Engineering, IIT Kharagpur",
+      "Round 2 Time: 30th August 2026- 02:00 pm to 04:00 pm",
+      "Eligibility: Students pursuing Chemical,Material Science, Petroleum, Biotechnology, Energy Engineering and related technical domains"
     ],
     rules: [
-      "Team of 2-3 members",
-      "No electronic devices in quiz hall",
-      "Judge's decision is final",
-      "Negative marking in Round 1"
+      "Only team leader to participate in Round 1",
+      "Tab switching or online research during Round 1 will lead to disqualification",
+      "Quizmaster's decision is final in Round 2",
+      "Exactly 4 members in team - inter-college team is allowed"
     ],
     image:'/quizbowl.png',
     icon: "⚗️",
@@ -26,23 +29,25 @@ export const currentEvents = [
   },
   {
     id: 2,
-    name: "REACTION RACE",
-    category: "Entertainment",
+    name: "Pitch an Idea",
+    category: "Strategy",
     type: "Team",
-    teamSize: "2",
-    rounds: 2,
+    teamSize: "1-3",
+    rounds: 1,
     prize: "₹8,000",
-    description2: "Speed-based lab experiment competition where teams race to complete chemical reactions correctly. Accuracy and speed both count toward your final score.",
+    description2: "Great ideas can change industries, but only a handful of people can pitch them effectively.",
+    description:"If you think you are one of those who can effectively pitch an idea to the audience, then this event might just be the perfect stage for you to show your skills, to let know the people the ideas that can change the industries.",
     details: [
-      "Perform given reactions as fast as possible",
-      "Points for speed and accuracy of observations",
-      "Safety compliance is mandatory"
+      "UG and PG students of science, engineering and management institutions",
+      "Duration: 3-minute pitch + 5-minute Q&A per team",
+      "Venue: Department of Chemical Engineering, IIT Kharagpur",
+      "Time:30th August 2026- 02:00 pm to 04:00 pm "
     ],
     rules: [
-      "Lab coat and gloves mandatory",
-      "Pair of 2 participants",
-      "Spills and accidents lead to disqualification",
-      "All equipment provided by organizers"
+      "No time extension during presentation",
+      "Concept present must be the original work of team",
+      "Final rankings are decided by faculty jury.",
+      
     ],
     image:'/Chem-Intelligence.png',
     icon: "🧪",
@@ -51,17 +56,18 @@ export const currentEvents = [
   },
   {
     id: 3,
-    name: "CHEM CASE STUDY",
+    name: "OptimizeIT",
     category: "Presentation",
     type: "Team",
     teamSize: "3-4",
-    rounds: 2,
+    rounds: 1,
     prize: "₹10,000",
-    description2: "Solve real-world industrial chemistry problems. Teams analyze chemical processes, identify inefficiencies, and propose optimized solutions based on thermodynamic and kinetic principles.",
+    description2:'This event challenges students to solve real world problems and propose innovative solutions.',
+    description: "Solve real-world industrial chemical-industry problems. Teams analyze chemical processes, identify inefficiencies, and propose optimized solutions based on thermodynamic and kinetic principles.",
     details: [
-      "Case study released 30 minutes before presentation",
+      "Case study released 10 days before presentation",
       "10-minute presentation + 5-minute Q&A",
-      "Judges include industry professionals"
+      "Time:30th August 2026- 04:00 pm to 06:00 pm"
     ],
     rules: [
       "Team of 3-4 members",
@@ -76,23 +82,26 @@ export const currentEvents = [
   },
   {
     id: 4,
-    name: "MOL MODELLING",
-    category: "Strategy",
-    type: "Individual",
-    teamSize: "1",
-    rounds: 1,
+    name: "ML Hackathon",
+    category: "Coding",
+    type: "Team",
+    teamSize: "1-4",
+    rounds: 2,
     prize: "₹6,000",
-    description2: "Design and optimize molecular structures using computational chemistry tools. Participants model drug candidates, predict properties, and present their findings.",
+    description2:"Data is the new oil, but it takes a truly brilliant engineer to refine it.",
+    description: "Welcome to the ultimate battleground where data science meets chemical engineering! You will be working on industrial datasets to build predictive models to solve real-world chemical engineering problems.",
     details: [
-      "Software: Avogadro / MarvinSketch provided",
-      "Design a molecule for a given therapeutic target",
-      "Submit model + brief report"
+      "Round 1: Online- submit the prediction file",
+      "Round 2: Offline presentation at Department of Chemical Engineering, IIT Kharagpur",
+      "Eligibility: UG and PG students",
+      "Round 2: Time:30th August 2026- 04:00 pm to 06:00 pm",
+      "PS release: 20th August 2026"
     ],
     rules: [
-      "Individual event",
-      "Computers provided by organizers",
-      "3-hour time limit",
-      "Judged on accuracy and creativity"
+      "Follow the prediction file format",
+      "Finalists to submit fully documented .ipynb files",
+      "Zero tolerance to plagiarism",
+      "Judged on metrics defined in problem statement"
     ],
     image:'/paper.png',
     icon: "🔬",
@@ -107,17 +116,17 @@ export const currentEvents = [
     teamSize: "1",
     rounds: 1,
     prize: "₹15,000",
-    description: "Think of solutions in the form of code to solve a problem and exhibit your problem solving skills and creativity.",
-    description2:"Harness the power of technical creativity. This challenge invites developers to design scalable, data-driven code architectures that solve pressing modern problems, demonstrating analytical depth and innovative execution.",
+    description2: "Think of solutions in the form of code to solve a problem and exhibit your problem solving skills and creativity.",
+    description:"Harness the power of technical creativity. This challenge invites developers to design scalable, data-driven code architectures that solve pressing modern problems, demonstrating analytical depth and innovative execution.",
     details: [
       "Eligibility: UG & PG Students",
-      "Platform: HackerRank",
-      "Winner's Prize: ₹15,000",
-      "Runner-Up's Prize: ₹7,000"
+      "Time: 30th August 2026: 08:30 am -10:00 am",
+      "Languages: C,C++,Java and Python",
+      "Venue: CAPE Laboratory"
     ],
     rules: [
       "Individual Participation",
-      "No calculators allowed",
+      "Use of AI tools is prohibited",
       "Judge's decision is final"
     ],
     image:"/coding.png",
@@ -127,18 +136,19 @@ export const currentEvents = [
   },
   {
     id: 106,
-    name: "CHEM WORKSHOP",
+    name: "ASPEN WORKSHOP",
     category: "Workshop",
     type: "Team",
     teamSize: "1-2",
     rounds: 1,
     prize: "Goodies",
-    description: "A hands-on workshop introducing Aspen software for process simulation and design.",
-    description2:"Stop guessing your process yields and start simulating them like an industrial expert.Welcome to 'Aspen Workshop' an intensive,hands-on workshop that bridges the gap between chemical theory & digital plant design.",
+    description2: "A hands-on workshop introducing Aspen software for process simulation and design.",
+    description:"Stop guessing your process yields and start simulating them like an industrial expert.Welcome to 'Aspen Workshop' an intensive,hands-on workshop that bridges the gap between chemical theory & digital plant design.",
     details: [
+      "Time:Time: 30th August 2026: 10:30 am -12:30 pm ",
       "Stage 1: Theory (1 hr)",
       "Stage 2: Lab (2 hrs)",
-      "Stage 3: Project Pitch"
+      
     ],
     rules: [
       "Maximum team of 2",

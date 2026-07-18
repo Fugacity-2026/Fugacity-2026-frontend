@@ -157,7 +157,7 @@ const FlaskCard = ({ event, onClick }) => {
             
             {/* UPDATED DETAILS */}
             <span className="flask-details">
-              <span>Team: {event.teamSize}</span>
+              <span>Team Size: {event.teamSize}</span>
               <span className="divider"> | </span>
               <span>Rounds: {event.rounds} </span>
             </span>
