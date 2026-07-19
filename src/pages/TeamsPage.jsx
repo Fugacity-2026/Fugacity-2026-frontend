@@ -18,8 +18,8 @@ const TEAM_DATA = {
   heads: [
     { name: 'Aman Rao', role: '', initials: 'AR', email: 'aman.cheaiitkgp@gmail.com', phone: '+91 8107901487', linkedin: 'https://www.linkedin.com/in/aman-rao-638461311/', photo: '/team/aman-rao.webp' },
     { name: 'Aman Rathore', role: '', initials: 'AR', email: 'amanrathore.cheaiitkgp@gmail.com', phone: '+91 9826338044', linkedin: 'https://www.linkedin.com/in/aman-rathore-65589831a/', photo: '/team/aman-rathore.webp' },
-    { name: 'Asanga Pillewan', role: '', initials: 'AP', email: 'asanga.cheaiitkgp@gmail.com', phone: '+91 9156605324', linkedin: 'https://www.linkedin.com/in/asanga-pillewan-iitkgp/' },
-    { name: 'Kosuru Praneetha', role: '', initials: 'KP', email: 'praneetha.cheaiitkgp@gmail.com', phone: '+91 9963174477', linkedin: 'https://www.linkedin.com/in/praneetha-kosuru-585971322/' },
+    { name: 'Asanga Pillewan', role: '', initials: 'AP', email: 'asanga.cheaiitkgp@gmail.com', phone: '+91 9156605324', linkedin: 'https://www.linkedin.com/in/asanga-pillewan-iitkgp/', photo: '/team/asanga-pillewan.webp'},
+    { name: 'Kosuru Praneetha', role: '', initials: 'KP', email: 'praneetha.cheaiitkgp@gmail.com', phone: '+91 9963174477', linkedin: 'https://www.linkedin.com/in/praneetha-kosuru-585971322/', photo:'/team/praneetha-kosuru.webp' },
     { name: 'Nikita Ameriya', role: '', initials: 'NA', email: 'nikitaameriya.cheaiitkgp@gmail.com', phone: '+91 8112289524', linkedin: 'https://www.linkedin.com/in/nikita-ameriya-b73630315/', photo: '/team/nikita-ameriya.webp' },
     { name: 'Smriti Tubid', role: '', initials: 'ST', email: 'smriti.cheaiitkgp@gmail.com', phone: '+91 6294714528', linkedin: 'https://www.linkedin.com/in/smriti-tubid-8a32972ab/', photo: '/team/smriti-tubid.webp' },
     { name: 'Sundram Kumar', role: '', initials: 'SK', email: 'sundram.cheaiitkgp@gmail.com', phone: '+91 7070038511', linkedin: 'https://www.linkedin.com/in/sundramkumar/', photo: '/team/sundram-kumar.webp' },
@@ -133,14 +133,14 @@ const MemberCard = ({ member, delay = 0 }) => {
             transform: 'scaleX(-1)',
           }}
         >
-          <p className="text-sm font-bold text-cyan-300 mb-4">{member.name}</p>
+          <p className="text-base font-bold text-cyan-300 mb-4">{member.name}</p>
           {member.email && (
-            <p className="text-[11px] text-slate-300 tracking-wide flex items-center gap-2 mb-2">
+            <p className="text-[14px] text-slate-300 tracking-wide flex items-center gap-2 mb-2">
               <span className="text-cyan-400">✉</span> {member.email}
             </p>
           )}
           {member.phone && (
-            <p className="text-[11px] text-slate-300 tracking-wide flex items-center gap-2 mb-4">
+            <p className="text-[14px] text-slate-300 tracking-wide flex items-center gap-2 mb-4">
               <span className="text-cyan-400">📞</span> {member.phone}
             </p>
           )}
@@ -242,14 +242,14 @@ const HODSection = () => {
                 pointerEvents: flipped ? 'auto' : 'none',
                 transform: 'scaleX(-1)',
               }}>
-              <p className="text-sm font-bold text-cyan-300 mb-4">{HOD_DATA.name}</p>
+              <p className="text-base font-bold text-cyan-300 mb-4">{HOD_DATA.name}</p>
               {HOD_DATA.email && (
-                <p className="text-[11px] text-slate-300 tracking-wide flex items-center gap-2 mb-2">
+                <p className="text-[14px] text-slate-300 tracking-wide flex items-center gap-2 mb-2">
                   <span className="text-cyan-400">✉</span> {HOD_DATA.email}
                 </p>
               )}
               {HOD_DATA.phone && (
-                <p className="text-[11px] text-slate-300 tracking-wide flex items-center gap-2 mb-4">
+                <p className="text-[14px] text-slate-300 tracking-wide flex items-center gap-2 mb-4">
                   <span className="text-cyan-400">📞</span> {HOD_DATA.phone}
                 </p>
               )}

@@ -12,6 +12,28 @@
   flex-direction: column;
   position: relative;
   z-index: 1;
+
+  /* Locally override the theme's cyan tokens to match the blue-leaning
+     cyan used by NetworkCanvas (rgb(34,211,238)) instead of the global
+     --cyan-neon (#00f5d4), which reads as green next to the particle
+     background. Scoped here so it doesn't affect other pages that
+     already rely on the original --cyan-neon (scrollbar, cursor, etc). */
+  --cyan-neon: #22d3ee;
+  --cyan-bright: #22d3ee;
+  --cyan-glow: #67e8f9;
+  --border-cyan: rgba(34, 211, 238, 0.3);
+  --border-cyan-bright: rgba(34, 211, 238, 0.7);
+  --glow-sm: 0 0 8px rgba(34, 211, 238, 0.4);
+  --glow-md: 0 0 20px rgba(34, 211, 238, 0.5);
+  --glow-lg: 0 0 40px rgba(34, 211, 238, 0.4);
+
+  /* --bg-panel / --slate-dark are teal (G == B), which reads greener
+     than the blue-leaning navy backdrop NetworkCanvas paints
+     (rgba(14,33,44) — B > G). Nudging both toward blue-navy here so
+     the card and inputs sit visually in the same family as the
+     particle background, without changing these tokens elsewhere. */
+  --bg-panel: #0a2230;
+  --slate-dark: #0f2836;
 }
 
 .auth-main {
@@ -175,7 +197,7 @@
 .auth-field select:focus {
   outline: none;
   border-color: var(--cyan-neon);
-  box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.15);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
 }
 
 .auth-field select option {
@@ -349,3 +371,4 @@
 @media (max-width: 480px) {
   .auth-modal-card { padding: 26px 20px; }
 }
+
