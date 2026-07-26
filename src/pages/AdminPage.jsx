@@ -1,14 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import "./AdminPage.css";
 
-/**
- * Fugacity Admin Console — internal ops dashboard.
- * Reachable only by direct URL (/admin), intentionally not linked from
- * site navigation. Wired to the real /api/admin/* endpoints; the admin
- * JWT lives in sessionStorage (cleared when the tab closes) and any
- * 401/403 from an admin call drops the session back to the login gate.
- */
-
 const API_URL = import.meta.env.VITE_API_URL;
 const TOKEN_KEY = "fugacity_admin_token";
 
@@ -315,6 +307,7 @@ export default function AdminPage() {
   }
 
   return (
+    <div className="relative min-h-screen text-slate-100 font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
     <div className="admin-page">
       <header className="admin-header">
         <div>
@@ -368,6 +361,7 @@ export default function AdminPage() {
         <SectionStatus loading={feedback.loading} error={feedback.error} />
         {feedback.data && <FeedbackTable rows={feedback.data} />}
       </section>
+    </div>
     </div>
   );
 }

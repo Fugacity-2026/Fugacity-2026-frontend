@@ -1,12 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   const handleScrollToSection = (id) => {
     if (window.location.pathname === '/') {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     } else {
       window.location.href = `/#${id}`;
     }
+  };
+
+  const handleNavigation = (e, destination) => {
+    e.preventDefault();
+    navigate(destination);
   };
 
   return (
@@ -39,19 +47,19 @@ const Footer = () => {
         <div className="flex flex-col gap-4">
           <h4 className="text-sm font-bold text-cyan-400 tracking-widest uppercase border-b border-cyan-500/20 pb-1.5">Navigation</h4>
           <nav className="flex flex-col gap-3 text-sm font-medium tracking-wider text-slate-400">
-            <a href="/" className="hover:text-cyan-300 transition-colors w-fit flex items-center gap-1 group">
+            <a href="/" onClick={(e) => handleNavigation(e, '/')} className="hover:text-cyan-300 transition-colors w-fit flex items-center gap-1 group">
               <span className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[11px]">&gt;</span> Home
             </a>
-            <a href="/about" className="hover:text-cyan-300 transition-colors w-fit flex items-center gap-1 group">
+            <a href="/about" onClick={(e) => handleNavigation(e, '/about')} className="hover:text-cyan-300 transition-colors w-fit flex items-center gap-1 group">
               <span className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[11px]">&gt;</span> About
             </a>
-            <a href="/events" className="hover:text-cyan-300 transition-colors w-fit flex items-center gap-1 group">
+            <a href="/events" onClick={(e) => handleNavigation(e, '/events')} className="hover:text-cyan-300 transition-colors w-fit flex items-center gap-1 group">
               <span className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[11px]">&gt;</span> Events
             </a>
-            <a href="/sponsors" className="hover:text-cyan-300 transition-colors w-fit flex items-center gap-1 group">
+            <a href="/sponsors" onClick={(e) => handleNavigation(e, '/sponsors')} className="hover:text-cyan-300 transition-colors w-fit flex items-center gap-1 group">
               <span className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[11px]">&gt;</span> Sponsors
             </a>
-            <a href="/teams" className="hover:text-cyan-300 transition-colors w-fit flex items-center gap-1 group">
+            <a href="/teams" onClick={(e) => handleNavigation(e, '/teams')} className="hover:text-cyan-300 transition-colors w-fit flex items-center gap-1 group">
               <span className="text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-[11px]">&gt;</span> Meet the Team
             </a>
           </nav>
