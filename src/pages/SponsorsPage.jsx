@@ -198,8 +198,8 @@ return (
 
   {[
   {
-    title: "STRATEGIC PARTNER",
-    amount: "₹50k",
+    title: "TITLE SPONSOR",
+    amount: "₹2 Lakh",
   },
   {
     title: "IN ASSOCIATION WITH",
@@ -210,15 +210,13 @@ return (
     amount: "₹1.2 Lakh",
   },
   {
-    title: "TITLE SPONSOR",
-    amount: "₹2 Lakh",
-  },
-  
-  {
     title: "MAJOR SPONSOR",
     amount: "₹80k",
   },
-  
+  {
+    title: "STRATEGIC PARTNER",
+    amount: "₹50k",
+  },
   {
     title: "EVENT SPONSOR",
     amount: "₹40k",
