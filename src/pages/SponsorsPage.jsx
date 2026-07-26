@@ -352,7 +352,7 @@ return (
                   </h3>
 
                   <p className="text-[#22d3ee] text-xs font-bold tracking-widest mb-3">
-                    {sponsor.role}
+                    {sponsor.role}{sponsor.year ? ` · ${sponsor.year}` : ""}
                   </p>
 
                   <p className="text-gray-300 text-sm leading-relaxed mb-6">

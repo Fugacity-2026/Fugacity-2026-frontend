@@ -180,6 +180,7 @@ export const partners = [
     name: "VEDANTA",
     role: "TITLE SPONSOR",
     logo: vedanta,
+    year: "2024",
     description:
       "Vedanta Limited is one of India’s leading diversified natural resources companies, operating across zinc, aluminium, copper, iron ore, oil & gas, steel and power.",
     website: "https://www.vedantalimited.com/",
@@ -188,6 +189,7 @@ export const partners = [
   name: "ALTAMIRA INSTRUMENTS",
   role: "POWERED BY",
   logo: algamitra,
+  year: "2024",
   description:
     "Altamira Instruments is a leading manufacturer of catalyst characterization instruments, gas adsorption analyzers, and bench-scale micro-reactor systems used by universities, research laboratories, and the chemical process industry worldwide.",
   website: "https://www.environmental-expert.com/companies/altamira-instruments-22493?__cf_chl_f_tk=XqWvbaj1pVhuUI8lO9wPocA1Of3Ks_EhngeLEqO.Zsk-1783021174-1.0.1.1-JXrs83GF_onU_iST8oFiDyQXpxRX8EMSTspfx.TkJHk",
@@ -220,6 +222,7 @@ export const partners = [
     name: "NAVIN FLUORINE INTERNATIONAL",
     role: "PREVIOUS SPONSOR",
     logo: group,
+    year: "2023",
     description:
       "Navin Fluorine International is an Indian specialty fluorochemicals company working across refrigerants, inorganic fluorides and specialty chemicals.",
     website: "https://www.nfil.in/",
