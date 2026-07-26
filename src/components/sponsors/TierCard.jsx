@@ -30,7 +30,7 @@ const TierCard = ({ name, subtitle, accentClass, icon: Icon, deliverables }) => 
             {d.value === "optional" || d.value === null ? (
               <Minus className="w-4 h-4 text-amber-400 mt-1 flex-shrink-0" />
             ) : (
-              <CheckCircle2 className="w-4 h-4 text-[#06d6a0] mt-1 flex-shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-[#22d3ee] mt-1 flex-shrink-0" />
             )}
 
             <span className="text-slate-300 leading-relaxed">
@@ -39,7 +39,7 @@ const TierCard = ({ name, subtitle, accentClass, icon: Icon, deliverables }) => 
               {typeof d.value === "string" &&
                 d.value !== "yes" &&
                 d.value !== "optional" && (
-                  <span className="text-[#06d6a0] ml-1">— {d.value}</span>
+                  <span className="text-[#22d3ee] ml-1">— {d.value}</span>
                 )}
 
               {d.value === "optional" && (

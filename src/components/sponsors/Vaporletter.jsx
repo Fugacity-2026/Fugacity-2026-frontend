@@ -8,7 +8,7 @@ const VaporLetter = ({ ch, delay }) => (
     className="inline-block font-display"
     style={{
       textShadow:
-        "0 0 28px rgba(6,214,160,0.65), 0 0 60px rgba(6,214,160,0.3)",
+        "0 0 28px rgba(34,211,238,0.65), 0 0 60px rgba(34,211,238,0.3)",
     }}
   >
     {ch === " " ? "\u00A0" : ch}

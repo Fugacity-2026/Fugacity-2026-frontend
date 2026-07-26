@@ -38,7 +38,7 @@ const MarqueeEventCard = ({ event }) => {
             initial={{ opacity: 0.55 }}
             animate={{ opacity: 0 }}
             transition={{ duration: 0.42 }}
-            className="absolute inset-0 z-30 bg-[#06d6a0] rounded-[14px] pointer-events-none"
+            className="absolute inset-0 z-30 bg-[#22d3ee] rounded-[14px] pointer-events-none"
           />
         )}
       </AnimatePresence>
@@ -59,7 +59,7 @@ const MarqueeEventCard = ({ event }) => {
   <div className="absolute inset-0 bg-gradient-to-t from-[#071219] via-[#071219]/20 to-transparent" />
           {/* top badge */}
           <div className="absolute top-2 left-2 right-2 flex justify-end">
-            <span className="text-[9px] font-bold tracking-widest bg-[#06d6a0]/20 text-[#06d6a0] border border-[#06d6a0]/30 px-2 py-0.5 rounded-full font-display">
+            <span className="text-[9px] font-bold tracking-widest bg-[#22d3ee]/20 text-[#22d3ee] border border-[#22d3ee]/30 px-2 py-0.5 rounded-full font-display">
               FUGACITY '26
             </span>
           </div>
@@ -75,15 +75,15 @@ const MarqueeEventCard = ({ event }) => {
 
 
         {/* ── BACK FACE ── */}
-        <div className="flip-face flip-back bg-gradient-to-b from-[#0c2235] to-[#071a26] border border-[#06d6a0]/25 flex flex-col p-3">
+        <div className="flip-face flip-back bg-gradient-to-b from-[#0c2235] to-[#071a26] border border-[#22d3ee]/25 flex flex-col p-3">
           {/* header row */}
           <div className="flex items-center justify-between mb-3">
             <div>
-              <div className="text-[#06d6a0] font-bold text-[11px] font-display tracking-wider">EVENT SPONSOR</div>
+              <div className="text-[#22d3ee] font-bold text-[11px] font-display tracking-wider">EVENT SPONSOR</div>
               <div className="text-slate-400 text-[9px]">{event.name}</div>
             </div>
             <div
-                className="w-full text-center text-[10px] font-bold font-display bg-[#06d6a0] text-[#071219] py-1.5 rounded-lg tracking-wide"
+                className="w-full text-center text-[10px] font-bold font-display bg-[#22d3ee] text-[#071219] py-1.5 rounded-lg tracking-wide"
                  >
                  
             </div>
@@ -98,7 +98,7 @@ const MarqueeEventCard = ({ event }) => {
                 </p>
             </div>
             <div className="flex items-start gap-1.5 text-[10px]">
-              <CheckCircle2 className="w-3 h-3 text-[#06d6a0] mt-0.5 flex-shrink-0" />
+              <CheckCircle2 className="w-3 h-3 text-[#22d3ee] mt-0.5 flex-shrink-0" />
               <span className="text-slate-300 leading-tight">Social media posts with company logo</span>
             </div>
            
@@ -120,7 +120,7 @@ const MarqueeEventCard = ({ event }) => {
           <div className="border-t border-white/10 pt-2 mt-1">
             <button
               onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
-              className="flex items-center justify-between w-full text-[9px] text-slate-400 hover:text-[#06d6a0] transition-colors"
+              className="flex items-center justify-between w-full text-[9px] text-slate-400 hover:text-[#22d3ee] transition-colors"
             >
              
               <motion.div animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
@@ -138,11 +138,11 @@ const MarqueeEventCard = ({ event }) => {
                 >
                   <div className="pt-1.5 space-y-1.5">
                     <div className="flex items-start gap-1.5 text-[9px]">
-                      <Plus className="w-2.5 h-2.5 text-[#06d6a0]/60 mt-0.5 flex-shrink-0" />
+                      <Plus className="w-2.5 h-2.5 text-[#22d3ee]/60 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-400 leading-tight">Stall or presentation setup (upgrade)</span>
                     </div>
                     <div className="flex items-start gap-1.5 text-[9px]">
-                      <Plus className="w-2.5 h-2.5 text-[#06d6a0]/60 mt-0.5 flex-shrink-0" />
+                      <Plus className="w-2.5 h-2.5 text-[#22d3ee]/60 mt-0.5 flex-shrink-0" />
                       <span className="text-slate-400 leading-tight">Branding through photobooths (upgrade)</span>
                     </div>
                   </div>

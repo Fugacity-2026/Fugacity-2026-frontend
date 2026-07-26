@@ -80,7 +80,7 @@ const MemberCard = ({ member, delay = 0 }) => {
       >
         <div className="card-liquid-strip">
           <svg viewBox="0 0 260 42" preserveAspectRatio="none">
-            <path fill="#4ee2ff" opacity="0.55">
+            <path fill="#22d3ee" opacity="0.55">
               <animate attributeName="d" dur="3.4s" repeatCount="indefinite"
                 values="
                   M0,5.4 C40,28.4 80,-6 130,12 C180,30 220,-2.8 260,12 L260,42 L0,42 Z;
@@ -193,7 +193,7 @@ const HODSection = () => {
           >
             <div className="card-liquid-strip">
               <svg viewBox="0 0 260 42" preserveAspectRatio="none">
-                <path fill="#4ee2ff" opacity="0.55">
+                <path fill="#22d3ee" opacity="0.55">
                   <animate attributeName="d" dur="3.4s" repeatCount="indefinite"
                     values="
                       M0,5.4 C40,28.4 80,-6 130,12 C180,30 220,-2.8 260,12 L260,42 L0,42 Z;
