@@ -25,7 +25,8 @@ export const currentEvents = [
     image:'/quizbowl.png',
     icon: "⚗️",
     color: "#4ee2ff",
-    phase: "liquid"
+    phase: "liquid",
+    registrationLink: "https://unstop.com/competitions/1718673/register"
   },
   {
     id: 2,
@@ -52,7 +53,8 @@ export const currentEvents = [
     image:'/Chem-Intelligence.png',
     icon: "🧪",
     color: "#F59E0B",
-    phase: "gas"
+    phase: "gas",
+    registrationLink: "https://unstop.com/competitions/1719708/register"
   },
   {
     id: 3,
@@ -78,7 +80,8 @@ export const currentEvents = [
     image:"/OptimiseIT.png",
     icon: "📊",
     color: "#4ee2ff",
-    phase: "solid"
+    phase: "solid",
+    registrationLink: "https://unstop.com/competitions/1716678/register"
   },
   {
     id: 4,
@@ -106,7 +109,8 @@ export const currentEvents = [
     image:'/paper.png',
     icon: "🔬",
     color: "#F59E0B",
-    phase: "plasma"
+    phase: "plasma",
+    registrationLink: "https://unstop.com/competitions/1716679/register"
   },
   {
     id: 5,
@@ -132,7 +136,8 @@ export const currentEvents = [
     image:"/coding.png",
     icon: "💻",
     color: "#4ee2ff",
-    phase: "liquid"
+    phase: "liquid",
+    registrationLink: "https://unstop.com/competitions/1719692/register"
   },
   {
     id: 106,

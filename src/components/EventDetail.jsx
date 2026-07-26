@@ -245,7 +245,13 @@ const EventDetail = ({ event, onClose }) => {
           }}>
             {!event.year && (
               <button
-                onClick={() => navigate('/register')}
+                onClick={() => {
+                  if (event.registrationLink) {
+                    window.open(event.registrationLink, '_blank', 'noopener,noreferrer');
+                  } else {
+                    navigate('/register');
+                  }
+                }}
                 style={{
                     flex: 1,
                     width: '100%',
