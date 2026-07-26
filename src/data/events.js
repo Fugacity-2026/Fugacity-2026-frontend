@@ -29,7 +29,7 @@ export const currentEvents = [
   },
   {
     id: 2,
-    name: "Pitch an Idea",
+    name: "PITCH AN IDEA",
     category: "Strategy",
     type: "Team",
     teamSize: "1-3",
@@ -56,7 +56,7 @@ export const currentEvents = [
   },
   {
     id: 3,
-    name: "OptimizeIT",
+    name: "OPTIMIZEIT",
     category: "Presentation",
     type: "Team",
     teamSize: "3-4",
@@ -82,7 +82,7 @@ export const currentEvents = [
   },
   {
     id: 4,
-    name: "ML Hackathon",
+    name: "ML HACKATHON",
     category: "Coding",
     type: "Team",
     teamSize: "1-4",

@@ -3,14 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import NetworkCanvas from '../components/NetworkCanvas.jsx';
+import EventDetail from '../components/EventDetail';
+import { currentEvents } from '../data/events';
 
 const HomePage = () => {
   const shapesCanvasRef = useRef(null);
   const titleRef = useRef(null);
   const scrollContainerRef = useRef(null);
-  
+
   const [activeFaq, setActiveFaq] = useState(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [activeEvent, setActiveEvent] = useState(null);
 
   // COUNTDOWN STATE ENGINE
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -184,16 +187,6 @@ const HomePage = () => {
     return () => cancelAnimationFrame(animationId);
   }, []);
 
-  const eventData = [
-    { image: '/e1.png', title: 'Chemical Quiz', desc: 'Construct and compile advanced computational frameworks to optimize chemical asset yields.' },
-    { image: '/e2.png', title: 'Reaction Race', desc: 'Race against localized constraints to debug logic components and trace sorting arrays.' },
-    { image: '/e3.png', title: 'CHEM Case Study', desc: 'Fine-tune mass balances, fluid flows, and loop coefficients to prevent process drop-off.' },
-    { image: '/e4.png', title: 'MOL Modelling', desc: 'Isolate root failure mechanisms across high-scale industrial plant infrastructure simulations.' },
-    { image: '/e5.png', title: 'Code the Problem', desc: 'Interact with global research leaders discussing upcoming shifts in industrial dynamics.' },
-    { image: '/e6.png', title: 'CHEM Workshop', desc: 'Rapid reactions and conceptual checks across intense trivia timelines testing core kinetics.' }
-  ];
-
-  const extendedEvents = [...eventData, ...eventData];
 
   return (
     <div className="relative min-h-screen text-slate-100 font-sans overflow-x-hidden selection:bg-cyan-500/30 custom-scrollbar">
@@ -312,21 +305,21 @@ const HomePage = () => {
             className="flex gap-4 sm:gap-5 w-full overflow-x-auto hide-scroll-x cursor-grab active:cursor-grabbing pb-6 px-4 sm:px-6 md:px-8"
             style={{ WebkitOverflowScrolling: 'touch' }}
           >
-            {extendedEvents.map((event, idx) => (
-              <div 
-                key={idx} 
-                onClick={(e) => handleNavigation(e, '#')}
-                className="group flex-shrink-0 w-[250px] sm:w-[270px] md:w-[290px] p-5 sm:p-6 rounded-xl glass-panel border-cyan-500/30 bg-[#0c1c28]/95 flex flex-col items-center text-center relative shadow-[0_0_20px_rgba(34,211,238,0.08)]"
+            {currentEvents.map((event) => (
+              <div
+                key={event.id}
+                onClick={() => setActiveEvent(event)}
+                className="group flex-shrink-0 w-[250px] sm:w-[270px] md:w-[290px] p-5 sm:p-6 rounded-xl glass-panel border-cyan-500/30 bg-[#0c1c28]/95 flex flex-col items-center text-center relative shadow-[0_0_20px_rgba(34,211,238,0.08)] cursor-pointer"
               >
                 <div className="w-12 h-12 sm:w-14 sm:h-14 mb-4 rounded-xl bg-[#061118] border border-cyan-400/50 flex items-center justify-center overflow-hidden">
-                  <img 
-                    src={event.image} 
-                    alt={event.title} 
-                    className="w-full h-full object-cover" 
+                  <img
+                    src={event.image}
+                    alt={event.name}
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                <h3 className="text-sm sm:text-base font-bold text-white tracking-wide mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.15)]">{event.title}</h3>
-                <p className="text-slate-400 text-[10px] sm:text-[11px] leading-relaxed flex-grow">{event.desc}</p>
+                <h3 className="text-sm sm:text-base font-bold text-white tracking-wide mb-2 drop-shadow-[0_0_10px_rgba(255,255,255,0.15)]">{event.name}</h3>
+                <p className="text-slate-400 text-[10px] sm:text-[11px] leading-relaxed flex-grow">{event.description2}</p>
               </div>
             ))}
           </div>
@@ -415,6 +408,10 @@ const HomePage = () => {
 
       {/* FOOTER COMPONENT */}
       <Footer />
+
+      {activeEvent && (
+        <EventDetail event={activeEvent} onClose={() => setActiveEvent(null)} />
+      )}
     </div>
   );
 };
