@@ -74,7 +74,10 @@ const Footer = () => {
               <span className="text-cyan-400 p-1.5 mt-0.5 flex items-center justify-center w-8 h-8 shrink-0">
                 <span className="text-cyan-400 font-mono text-sm">📍</span>
               </span>
-              <span>Chemical Engineering Department,<br />Indian Institute of Technology, Kharagpur<br />West Bengal, India - 721302</span>
+              <span>
+                Chemical Engineering Department,<br />Indian Institute of Technology, Kharagpur<br />West Bengal, India - 721302<br />
+                <a href="mailto:cheaiitkgp@gmail.com" className="hover:text-cyan-300 transition-colors">cheaiitkgp@gmail.com</a>
+              </span>
             </p>
           </div>
         </div>
