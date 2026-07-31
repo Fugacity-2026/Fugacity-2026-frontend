@@ -20,6 +20,10 @@ const FlaskCard = ({ event, onClick }) => {
           height: 420px; /* ✅ FIXED HEIGHT */
           display: flex;
           flex-direction: column;
+
+          /* fixed card width so incomplete rows wrap centered instead of grid-stretching */
+          flex: 1 1 300px;
+          max-width: 340px;
         }
 
         .flask-card:hover {

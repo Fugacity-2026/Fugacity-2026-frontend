@@ -344,16 +344,16 @@ React.useEffect(() => {
 </div>
 
    <div style={{
-  display: 'grid',
-  gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', 
-  gap: 40,
-  rowGap:70,
-  justifyItems: isMobile ? 'start' : 'center',
-  alignItems: 'start',
+  display: 'flex',
+  flexWrap: 'wrap',
+  columnGap: 40,
+  rowGap: 70,
+  justifyContent: 'center',
+  alignItems: 'flex-start',
   paddingTop: Math.abs(minOff) + 20,
   paddingBottom: maxOff + 60,
-  paddingRight: isMobile ? '10px' : '0px',  
-  paddingLeft: isMobile ? '10px' : '0px',  
+  paddingRight: isMobile ? '10px' : '0px',
+  paddingLeft: isMobile ? '10px' : '0px',
 
   width: '100%',
   maxWidth: '1100px',
