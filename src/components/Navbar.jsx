@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserToken, hasAccountOnThisBrowser } from '../utils/userAuth';
 
+const UNSTOP_FEST_LINK = 'https://unstop.com/college-fests/fugacity-2026-indian-institute-of-technology-iit-kharagpur-486161?lb=NnIQkFIK';
+
 const Navbar = () => {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -73,7 +75,13 @@ const Navbar = () => {
           {/* REGISTER NOW / LOGIN / PROFILE ACTION CTA BUTTON */}
           {/* RESPONSIVE EDIT: Scaled typography dynamically to save inline asset space on small mobile headers */}
           <button
-            onClick={(e) => handleNavigation(e, ctaDestination)}
+            onClick={(e) => {
+              if (ctaLabel === 'Register Now') {
+                window.open(UNSTOP_FEST_LINK, '_blank', 'noopener,noreferrer');
+                return;
+              }
+              handleNavigation(e, ctaDestination);
+            }}
             className="px-4 sm:px-5 py-1.5 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest bg-cyan-400 hover:bg-cyan-300 text-[#09141c] transition-all shadow-[0_0_20px_#22d3ee]"
           >
             {ctaLabel}

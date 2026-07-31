@@ -22,7 +22,6 @@ import PhaseTransition from "../components/PhaseTransition";
 
 const EVENTS = [
   "CODE THE PROBLEM",
-  "ASPEN WORKSHOP",
   "QUIZBOWL",
   "PITCH AN IDEA",
   "OPTIMISEIT",

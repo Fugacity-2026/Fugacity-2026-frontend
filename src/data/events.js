@@ -139,33 +139,6 @@ export const currentEvents = [
     phase: "liquid",
     registrationLink: "https://unstop.com/competitions/1719692/register"
   },
-  {
-    id: 106,
-    name: "ASPEN WORKSHOP",
-    category: "Workshop",
-    type: "Team",
-    teamSize: "1-2",
-    rounds: 1,
-    prize: "Goodies",
-    description2: "A hands-on workshop introducing Aspen software for process simulation and design.",
-    description:"Stop guessing your process yields and start simulating them like an industrial expert.Welcome to 'Aspen Workshop' an intensive,hands-on workshop that bridges the gap between chemical theory & digital plant design.",
-    details: [
-      "Time:Time: 30th August 2026: 10:30 am -12:30 pm ",
-      "Stage 1: Theory (1 hr)",
-      "Stage 2: Lab (2 hrs)",
-      
-    ],
-    rules: [
-      "Maximum team of 2",
-      "All stages mandatory",
-      "offline"
-    ],
-    image:"/work.png",
-    icon: "🗓️",
-    color: "#F59E0B",
-    phase:'gas'
-   
-  },
 ];
 
 export const previousEvents = [
