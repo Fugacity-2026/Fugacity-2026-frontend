@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+const UNSTOP_FEST_LINK = 'https://unstop.com/college-fests/fugacity-2026-indian-institute-of-technology-iit-kharagpur-486161?lb=NnIQkFIK';
 
 const EventDetail = ({ event, onClose }) => {
-  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [closing, setClosing] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -246,11 +246,11 @@ const EventDetail = ({ event, onClose }) => {
             {!event.year && (
               <button
                 onClick={() => {
-                  if (event.registrationLink) {
-                    window.open(event.registrationLink, '_blank', 'noopener,noreferrer');
-                  } else {
-                    navigate('/register');
-                  }
+                  window.open(
+                    event.registrationLink || UNSTOP_FEST_LINK,
+                    '_blank',
+                    'noopener,noreferrer'
+                  );
                 }}
                 style={{
                     flex: 1,

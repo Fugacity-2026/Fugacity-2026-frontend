@@ -10,9 +10,9 @@ import EventsPage from './pages/EventsPage';
 import FeedbackPage from './pages/FeedbackPage';
 import AboutPage from './pages/AboutPage';
 import AdminPage from './pages/AdminPage';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
-import ProfilePage from './pages/ProfilePage';
+// Account system (Register/Login/Profile) is disconnected from routing —
+// registrations now go through Unstop. Pages still live in src/pages/ if
+// this needs to be reconnected later.
 
 import ScrollTop from './components/sponsors/ScrollTop';
 const App = () => {
@@ -55,11 +55,6 @@ const App = () => {
           <Route path="/sponsors" element={<SponsorsPage />} />
            <Route path="/events" element={<EventsPage />} />
            <Route path="/about" element={<AboutPage />} />
-
-          {/* User account — registration, login, profile */}
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
 
           {/* Admin console — intentionally not linked from site nav, URL-only */}
           <Route path="/admin" element={<AdminPage />} />
